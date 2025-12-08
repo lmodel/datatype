@@ -79,10 +79,12 @@ class LinkMLMeta(RootModel):
 
 
 linkml_meta = LinkMLMeta({'default_prefix': 'data',
+     'default_range': 'string',
      'description': 'A set of classes representing data-types. These may be used '
                     'for observation results, or for the range of specific '
                     'properties in other applications where scaled numbers, '
-                    'ranges, percents etc are required.',
+                    'ranges, percents etc are required.\n'
+                    'LinkML rendering of http://linked.data.gov.au/def/datatype',
      'id': 'https://w3id.org/lmodel/datatype',
      'imports': ['linkml:types'],
      'license': 'CC0-1.0',
@@ -100,8 +102,6 @@ linkml_meta = LinkMLMeta({'default_prefix': 'data',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/UO_'},
                   'data': {'prefix_prefix': 'data',
                            'prefix_reference': 'http://linked.data.gov.au/def/datatype/'},
-                  'dct': {'prefix_prefix': 'dct',
-                          'prefix_reference': 'http://purl.org/dc/terms/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'owl': {'prefix_prefix': 'owl',
@@ -109,7 +109,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'data',
                   'prov': {'prefix_prefix': 'prov',
                            'prefix_reference': 'http://www.w3.org/ns/prov#'},
                   'qudt': {'prefix_prefix': 'qudt',
-                           'prefix_reference': 'http://qudt.org/vocab/unit/'},
+                           'prefix_reference': 'http://qudt.org/schema/qudt/'},
                   'rdf': {'prefix_prefix': 'rdf',
                           'prefix_reference': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'},
                   'rdfs': {'prefix_prefix': 'rdfs',
@@ -125,43 +125,47 @@ linkml_meta = LinkMLMeta({'default_prefix': 'data',
      'see_also': ['http://linked.data.gov.au/def/datatype'],
      'source_file': 'src/datatype/schema/datatype.yaml',
      'title': 'AGLDWG Datatype Ontology (LinkML rendering)',
-     'types': {'concept value': {'description': 'Idea or notion; a unit of thought',
+     'types': {'concept value': {'base': 'str',
+                                 'description': 'Idea or notion; a unit of thought',
                                  'from_schema': 'https://w3id.org/lmodel/datatype',
                                  'name': 'concept value',
-                                 'typeof': 'string',
+                                 'typeof': 'string value',
                                  'uri': 'skos:Concept'},
-               'data value': {'description': 'simple value (a literal)',
+               'data value': {'base': 'str',
+                              'description': 'simple value (a literal)',
                               'from_schema': 'https://w3id.org/lmodel/datatype',
                               'name': 'data value',
-                              'typeof': 'string',
+                              'typeof': 'string value',
                               'uri': 'rdf:value'},
-               'decimal value': {'base': 'decimal',
+               'decimal value': {'base': 'float',
                                  'description': 'Generic decimal value used for '
                                                 'quantitative measures',
                                  'from_schema': 'https://w3id.org/lmodel/datatype',
                                  'name': 'decimal value',
                                  'uri': 'xsd:decimal'},
-               'integer value': {'base': 'integer',
+               'integer value': {'base': 'int',
                                  'description': 'Integer count value',
                                  'from_schema': 'https://w3id.org/lmodel/datatype',
                                  'name': 'integer value',
                                  'uri': 'xsd:integer'},
-               'percent value': {'description': 'Percentage value',
+               'percent value': {'base': 'float',
+                                 'description': 'Percentage value',
                                  'from_schema': 'https://w3id.org/lmodel/datatype',
                                  'name': 'percent value',
                                  'typeof': 'double',
                                  'uri': 'UO:0000187'},
-               'string value': {'base': 'string',
+               'string value': {'base': 'str',
                                 'description': 'Generic string value',
                                 'from_schema': 'https://w3id.org/lmodel/datatype',
                                 'name': 'string value',
                                 'uri': 'xsd:string'},
-               'unit value': {'description': 'Unit of measure value',
-                              'exact_mappings': ['qud:Unit'],
+               'unit value': {'base': 'str',
+                              'description': 'Unit of measure value',
+                              'exact_mappings': ['qudt:Unit'],
                               'from_schema': 'https://w3id.org/lmodel/datatype',
                               'id_prefixes': ['UO'],
                               'name': 'unit value',
-                              'typeof': 'string',
+                              'typeof': 'string value',
                               'uri': 'UO:0000000'}}} )
 
 
@@ -179,7 +183,7 @@ class Text(ConfiguredBaseModel):
                                   'required': True,
                                   'slot_uri': 'xsd:string'}}})
 
-    value: string = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: str = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value'],
@@ -241,11 +245,11 @@ class Count(ConfiguredBaseModel):
                                   'range': 'integer value',
                                   'required': True}}})
 
-    value: integer = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: int = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
-    uncertainty: Optional[decimal] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
+    uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
          'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
          'is_a': 'value',
@@ -265,7 +269,7 @@ class QuantitativeMeasure(ConfiguredBaseModel):
                                   'range': 'decimal value',
                                   'required': True}}})
 
-    value: decimal = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
@@ -273,7 +277,7 @@ class QuantitativeMeasure(ConfiguredBaseModel):
          'domain_of': ['Quantitative Measure', 'Quantitative Range'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit']} })
-    uncertainty: Optional[decimal] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
+    uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
          'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
          'is_a': 'value',
@@ -300,12 +304,12 @@ class QuantitativeRange(ConfiguredBaseModel):
                                 'required': True},
                         'unit': {'name': 'unit', 'required': True}}})
 
-    min: decimal = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
+    min: float = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
          'close_mappings': ['wikidata:Q10585806'],
          'domain_of': ['Quantitative Range'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Min']} })
-    max: decimal = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
+    max: float = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
          'close_mappings': ['wikidata:Q10578722', 'STATO:0000666', 'STATO:0000151'],
          'domain_of': ['Quantitative Range'],
          'is_a': 'value',
@@ -314,7 +318,7 @@ class QuantitativeRange(ConfiguredBaseModel):
          'domain_of': ['Quantitative Measure', 'Quantitative Range'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit']} })
-    uncertainty: Optional[decimal] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
+    uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
          'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
          'is_a': 'value',
@@ -334,7 +338,7 @@ class Percent(QuantitativeMeasure):
                                  'range': 'percent value',
                                  'slot_uri': 'qudt:PERCENT'}}})
 
-    value: decimal = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
@@ -344,7 +348,7 @@ class Percent(QuantitativeMeasure):
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit'],
          'slot_uri': 'qudt:PERCENT'} })
-    uncertainty: Optional[decimal] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
+    uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
          'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
          'is_a': 'value',
@@ -366,12 +370,12 @@ class PercentRange(QuantitativeRange):
                                  'range': 'percent value',
                                  'slot_uri': 'qudt:PERCENT'}}})
 
-    min: decimal = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
+    min: float = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
          'close_mappings': ['wikidata:Q10585806'],
          'domain_of': ['Quantitative Range'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Min']} })
-    max: decimal = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
+    max: float = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
          'close_mappings': ['wikidata:Q10578722', 'STATO:0000666', 'STATO:0000151'],
          'domain_of': ['Quantitative Range'],
          'is_a': 'value',
@@ -381,7 +385,7 @@ class PercentRange(QuantitativeRange):
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit'],
          'slot_uri': 'qudt:PERCENT'} })
-    uncertainty: Optional[decimal] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
+    uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
          'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
          'is_a': 'value',

@@ -18,14 +18,13 @@ license: CC0-1.0
 
 prefixes:
   data: http://linked.data.gov.au/def/datatype/
-  dct: http://purl.org/dc/terms/
   # doap: "http://usefulinc.com/ns/doap#"
   linkml: https://w3id.org/linkml/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   OBCS: http://purl.obolibrary.org/obo/OBCS_
   owl: "http://www.w3.org/2002/07/owl#"
   prov: http://www.w3.org/ns/prov#
-  qudt: http://qudt.org/vocab/unit/
+  qudt: http://qudt.org/schema/qudt/
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   schema: http://schema.org/
@@ -37,6 +36,7 @@ prefixes:
   xsd: "http://www.w3.org/2001/XMLSchema#"
 
 default_prefix: data
+default_range: string
 imports:
   - linkml:types
 
@@ -45,42 +45,46 @@ types:
 
   decimal value:
     uri: xsd:decimal
-    base: decimal
+    base: float
     description: Generic decimal value used for quantitative measures
 
   integer value:
     uri: xsd:integer
-    base: integer
+    base: int
     description: Integer count value
 
   string value:
     uri: xsd:string
-    base: string
+    base: str
     description: Generic string value
 
   percent value:
     typeof: double
+    base: float
     uri: UO:0000187
     description: Percentage value
 
   concept value:
-    typeof: string
+    typeof: string value
+    base: str
     uri: skos:Concept
     description: Idea or notion; a unit of thought
 
   data value:
-    typeof: string
+    typeof: string value
+    base: str
     uri: rdf:value
     description: simple value (a literal)
 
   unit value:
-    typeof: string
+    typeof: string value
+    base: str
     uri: UO:0000000
     description: Unit of measure value
     id_prefixes:
       - UO
     exact_mappings:
-      - qud:Unit
+      - qudt:Unit
 
 ###############
 ### Classes ###

@@ -1,7 +1,9 @@
 name: datatype
-description: A set of classes representing data-types. These may be used for observation
+description: 'A set of classes representing data-types. These may be used for observation
   results, or for the range of specific properties in other applications where scaled
   numbers, ranges, percents etc are required.
+
+  LinkML rendering of http://linked.data.gov.au/def/datatype'
 title: AGLDWG Datatype Ontology (LinkML rendering)
 notes:
 - Originally developed for use as the value of an observation result (sosa:hasResult)
@@ -17,9 +19,6 @@ prefixes:
   data:
     prefix_prefix: data
     prefix_reference: http://linked.data.gov.au/def/datatype/
-  dct:
-    prefix_prefix: dct
-    prefix_reference: http://purl.org/dc/terms/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -37,7 +36,7 @@ prefixes:
     prefix_reference: http://www.w3.org/ns/prov#
   qudt:
     prefix_prefix: qudt
-    prefix_reference: http://qudt.org/vocab/unit/
+    prefix_reference: http://qudt.org/schema/qudt/
   rdf:
     prefix_prefix: rdf
     prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
@@ -70,21 +69,21 @@ types:
     definition_uri: http://linked.data.gov.au/def/datatype/DecimalValue
     description: Generic decimal value used for quantitative measures
     from_schema: https://w3id.org/lmodel/datatype
-    base: decimal
+    base: float
     uri: xsd:decimal
   integer value:
     name: integer value
     definition_uri: http://linked.data.gov.au/def/datatype/IntegerValue
     description: Integer count value
     from_schema: https://w3id.org/lmodel/datatype
-    base: integer
+    base: int
     uri: xsd:integer
   string value:
     name: string value
     definition_uri: http://linked.data.gov.au/def/datatype/StringValue
     description: Generic string value
     from_schema: https://w3id.org/lmodel/datatype
-    base: string
+    base: str
     uri: xsd:string
   percent value:
     name: percent value
@@ -99,7 +98,7 @@ types:
     definition_uri: http://linked.data.gov.au/def/datatype/ConceptValue
     description: Idea or notion; a unit of thought
     from_schema: https://w3id.org/lmodel/datatype
-    typeof: string
+    typeof: string value
     base: str
     uri: skos:Concept
   data value:
@@ -107,7 +106,7 @@ types:
     definition_uri: http://linked.data.gov.au/def/datatype/DataValue
     description: simple value (a literal)
     from_schema: https://w3id.org/lmodel/datatype
-    typeof: string
+    typeof: string value
     base: str
     uri: rdf:value
   unit value:
@@ -118,8 +117,8 @@ types:
     description: Unit of measure value
     from_schema: https://w3id.org/lmodel/datatype
     exact_mappings:
-    - qud:Unit
-    typeof: string
+    - qudt:Unit
+    typeof: string value
     base: str
     uri: UO:0000000
   string:
@@ -984,7 +983,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-08T22:30:38'
-source_file_size: 7853
-generation_date: '2025-12-08T22:35:28'
+source_file_date: '2025-12-08T23:48:19'
+source_file_size: 7973
+generation_date: '2025-12-08T23:49:43'
 
