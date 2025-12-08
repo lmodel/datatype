@@ -1,0 +1,321 @@
+id: https://w3id.org/lmodel/datatype
+name: datatype
+title: AGLDWG Datatype Ontology (LinkML rendering)
+description: >-
+  A set of classes representing data-types. These may be used for observation
+  results, or for the range of specific properties in other applications where
+  scaled numbers, ranges, percents etc are required.
+
+  LinkML rendering of http://linked.data.gov.au/def/datatype
+notes:
+  - >-
+    Originally developed for use as the value of an observation result
+    (sosa:hasResult) in the context of the TERN-plot ontology. However,
+    objects from these classes may appear in many contexts.
+see_also:
+  - http://linked.data.gov.au/def/datatype
+license: CC0-1.0
+
+prefixes:
+  data: http://linked.data.gov.au/def/datatype/
+  dct: http://purl.org/dc/terms/
+  # doap: "http://usefulinc.com/ns/doap#"
+  linkml: https://w3id.org/linkml/
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  OBCS: http://purl.obolibrary.org/obo/OBCS_
+  owl: "http://www.w3.org/2002/07/owl#"
+  prov: http://www.w3.org/ns/prov#
+  qudt: http://qudt.org/vocab/unit/
+  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: http://schema.org/
+  skos: "http://www.w3.org/2004/02/skos/core#"
+  STATO: http://purl.obolibrary.org/obo/STATO_
+  UO: http://purl.obolibrary.org/obo/UO_
+  wikidata: https://www.wikidata.org/wiki/
+  # xml: http://www.w3.org/XML/1998/namespace
+  xsd: "http://www.w3.org/2001/XMLSchema#"
+
+default_prefix: data
+imports:
+  - linkml:types
+
+# simple scalar types
+types:
+
+  decimal value:
+    uri: xsd:decimal
+    base: decimal
+    description: Generic decimal value used for quantitative measures
+
+  integer value:
+    uri: xsd:integer
+    base: integer
+    description: Integer count value
+
+  string value:
+    uri: xsd:string
+    base: string
+    description: Generic string value
+
+  percent value:
+    typeof: double
+    uri: UO:0000187
+    description: Percentage value
+
+  concept value:
+    typeof: string
+    uri: skos:Concept
+    description: Idea or notion; a unit of thought
+
+  data value:
+    typeof: string
+    uri: rdf:value
+    description: simple value (a literal)
+
+  unit value:
+    typeof: string
+    uri: UO:0000000
+    description: Unit of measure value
+    id_prefixes:
+      - UO
+    exact_mappings:
+      - qud:Unit
+
+###############
+### Classes ###
+###############
+
+classes:
+
+  Text:
+    description: Class to encapsulate a textual value
+    slots:
+      - value
+    slot_usage:
+      value:
+        range: string value
+        required: true
+        slot_uri: xsd:string
+    exact_mappings:
+      - NCIT:C25704
+      - schema:Text
+      - wikidata:Q234460
+      - wikidata:Q1145976   # plain text
+
+  Boolean:
+    description: Class to encapsulate a true-or-false value
+    slots:
+      - value
+    slot_usage:
+      value:
+        range: boolean
+        slot_uri: xsd:boolean
+        required: true
+    exact_mappings:
+      - NCIT:C45254
+      - wikidata:Q520777  # boolean data type
+    close_mappings:
+      - wikidata:Q3269980  # boolean domain
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Boolean
+
+  Concept:
+    description: >-
+      Class to encapsulate a classifier, usually a values from a controlled
+      vocabulary
+    slots:
+      - value
+      - vocabulary
+    slot_usage:
+      value:
+        range: concept value
+        required: true
+      vocabulary:
+        required: true
+    exact_mappings:
+      - NCIT:C45728
+      - skos:Concept
+      - wikidata:Q151885
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Concept
+
+  Count:
+    description: Class to encapsulate an integer value
+    slots:
+      - value
+      - uncertainty
+    slot_usage:
+      value:
+        range: integer value
+        required: true
+    exact_mappings:
+      - NCIT:Q1520033  # Count noun
+      - wikidata:Q1520033  # Count noun
+    related_mappings:
+      - NCIT:C25463  # Count
+      - wikidata:Q729138  # integer
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Count
+
+  Quantitative Measure:
+    description: Class to encapsulate a quantitative measure value
+    slots:
+      - value
+      - unit
+      - uncertainty
+      - standard
+    slot_usage:
+      unit:
+        required: true
+      value:
+        range: decimal value
+        required: true
+    related_mappings:
+      - schema:QuantitativeValue
+      - wikidata:Q309314  # quantity
+    see_also:
+      - http://linked.data.gov.au/def/datatype/QuantitativeMeasure
+
+  Quantitative Range:
+    description: Class to encapsulate a quantitative range
+    slots:
+      - min
+      - max
+      - unit
+      - uncertainty
+    slot_usage:
+      unit:
+        required: true
+      min:
+        range: decimal value
+        required: true
+      max:
+        range: decimal value
+        required: true
+    related_mappings:
+      - wikidata:Q1165839  # range
+    see_also:
+      - http://linked.data.gov.au/def/datatype/QuantitativeRange
+
+  Percent:
+    description: >-
+      Class to encapsulate a quantitative measure expressed as a percent value
+    is_a: Quantitative Measure
+    slot_usage:
+      unit:
+        slot_uri: qudt:PERCENT
+        broad_mappings:
+          - wikidata:Q1196827  # value
+        range: percent value
+    exact_mappings:
+      - NCIT:C48570  # Percent unit
+      - UO:0000187  # percent
+      - wikidata:Q11229  # percent
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Percent
+
+  Percent Range:
+    description: >-
+      Class to encapsulate a quantitative range expressed as in percent values
+    is_a: Quantitative Range
+    slot_usage:
+      unit:
+        slot_uri: qudt:PERCENT
+        range: percent value
+    see_also:
+      - http://linked.data.gov.au/def/datatype/PercentRange
+
+##############
+### SLOTS ###
+##############
+
+slots:
+
+  ### Datatype Properties ###
+
+  value:
+    range: data value
+    description: simple value (a literal)
+    narrow_mappings:
+      - NCIT:C25712  # Value
+      - prov:Value
+    exact_mappings:
+      - schema:Value
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Value
+
+  min:
+    aliases:
+      - "data minimum"
+    is_a: value
+    range: decimal value
+    description: Minimum value of range
+    close_mappings:
+      - wikidata:Q10585806  # minimum
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Min
+
+  max:
+    aliases:
+      - "data maximum"
+    is_a: value
+    range: decimal value
+    description: Maximum value of a range
+    close_mappings:
+      - wikidata:Q10578722  # maximum
+      - STATO:0000666  # maximum possible value
+      - STATO:0000151  # maximum observed value
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Max
+
+  uncertainty:
+    aliases:
+      - "data uncertainty"
+    is_a: value
+    range: decimal value
+    description: Uncertainty for a quantitative value
+    multivalued: false
+    close_mappings:
+      - wikidata:Q1403517  # measurement uncertainty
+    narrow_mappings:
+      - OBCS:0000340  # measurement uncertainty
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Uncertainty
+
+  ### Object Properties ###
+
+  standard:
+    aliases:
+      - "data standard"
+    description: >-
+      Measurement standard, scale, uom, reference system, controlled vocabulary,
+      taxonomy etc
+    range: uriorcurie
+    exact_mappings:
+      - NCIT:C14298  # Measurement Standard
+      - wikidata:Q1271511  # measurement standard
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Standard
+
+  unit:
+    range: unit value
+    aliases:
+      - "unit of measure"
+    is_a: standard
+    description: Measurement scale
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Unit
+
+  vocabulary:
+    range: uriorcurie
+    is_a: standard
+    description: controlled vocabulary, taxonomy etc
+    broad_mappings:
+      - skos:ConceptScheme
+      - skos:Collection
+      - owl:Ontology
+    exact_mappings:
+      - skos:Concept
+    see_also:
+      - http://linked.data.gov.au/def/datatype/Vocabulary
