@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: v0.4.1-33-g4ec9c0d
+_src_path: gh:linkml/linkml-project-copier
+add_example: false
+copyright_year: '2025'
+email: noel.mcloughlin@gmail.com
+full_name: Noel McLoughlin
+gh_action_docs_preview: true
+gh_action_pypi: true
+github_org: lmodel
+license: Apache-2.0
+project_description: AGLDWG Datatype Ontology (Linkml Schema)
+project_name: datatype
+project_slug: datatype
+
