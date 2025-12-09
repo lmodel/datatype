@@ -1,17 +1,16 @@
 id: https://w3id.org/lmodel/datatype
 name: datatype
 title: AGLDWG Datatype Ontology (LinkML rendering)
-description: >-
+description: |-
+  LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
+
   A set of classes representing data-types. These may be used for observation
   results, or for the range of specific properties in other applications where
-  scaled numbers, ranges, percents etc are required.
+  scaled numbers, ranges, percents, etc, are required.
 
-  This is a LinkML rendering of http://linked.data.gov.au/def/datatype
-notes:
-  - >-
-    Originally developed for use as the value of an observation result
-    (sosa:hasResult) in the context of the TERN-plot ontology. However,
-    objects from these classes may appear in many contexts.
+  History Note: Originally developed for use as the value of an observation
+  result (sosa:hasResult) in the context of the TERN-plot ontology. However,
+  objects from these classes may appear in many contexts.
 see_also:
   - http://linked.data.gov.au/def/datatype
 license: CC0-1.0
