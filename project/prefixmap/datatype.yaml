@@ -4,6 +4,7 @@
    "STATO": "http://purl.obolibrary.org/obo/STATO_",
    "UO": "http://purl.obolibrary.org/obo/UO_",
    "data": "http://linked.data.gov.au/def/datatype/",
+   "dct": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
    "owl": "http://www.w3.org/2002/07/owl#",
    "prov": "http://www.w3.org/ns/prov#",

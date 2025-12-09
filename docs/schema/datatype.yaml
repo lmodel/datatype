@@ -15,16 +15,26 @@ description: 'LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/d
 
   objects from these classes may appear in many contexts.'
 title: AGLDWG Datatype Ontology (LinkML rendering)
+source: http://linked.data.gov.au/def/datatype
+in_language: EN
 see_also:
-- http://linked.data.gov.au/def/datatype
+- https://github.com/AGLDWG/datatype-ont
+contributors:
+- https://orcid.org/0000-0002-3884-3420
+- https://ror.org/03qn8fb07
+- https://www.csiro.au
+created_on: '2019-03-25T00:00:00'
 id: https://w3id.org/lmodel/datatype
 imports:
 - linkml:types
-license: CC0-1.0
+license: http://creativecommons.org/publicdomain/zero/1.0/
 prefixes:
   data:
     prefix_prefix: data
     prefix_reference: http://linked.data.gov.au/def/datatype/
+  dct:
+    prefix_prefix: dct
+    prefix_reference: http://purl.org/dc/terms/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -114,7 +124,7 @@ types:
     from_schema: https://w3id.org/lmodel/datatype
     typeof: string value
     base: str
-    uri: rdf:value
+    uri: xsd:nonNegativeInteger
   unit value:
     name: unit value
     id_prefixes:
@@ -989,7 +999,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-09T22:55:02'
-source_file_size: 7904
-generation_date: '2025-12-09T23:00:34'
+source_file_date: '2025-12-10T00:07:43'
+source_file_size: 8193
+generation_date: '2025-12-10T00:08:23'
 

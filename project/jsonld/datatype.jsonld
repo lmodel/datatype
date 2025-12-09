@@ -2,18 +2,30 @@
   "name": "datatype",
   "description": "LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).\n\nA set of classes representing data-types. These may be used for observation\nresults, or for the range of specific properties in other applications where\nscaled numbers, ranges, percents, etc, are required.\n\nHistory Note: Originally developed for use as the value of an observation\nresult (sosa:hasResult) in the context of the TERN-plot ontology. However,\nobjects from these classes may appear in many contexts.",
   "title": "AGLDWG Datatype Ontology (LinkML rendering)",
+  "source": "http://linked.data.gov.au/def/datatype",
+  "in_language": "EN",
   "see_also": [
-    "http://linked.data.gov.au/def/datatype"
+    "https://github.com/AGLDWG/datatype-ont"
   ],
+  "contributors": [
+    "https://orcid.org/0000-0002-3884-3420",
+    "https://ror.org/03qn8fb07",
+    "https://www.csiro.au"
+  ],
+  "created_on": "2019-03-25T00:00:00",
   "id": "https://w3id.org/lmodel/datatype",
   "imports": [
     "linkml:types"
   ],
-  "license": "CC0-1.0",
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
   "prefixes": [
     {
       "prefix_prefix": "data",
       "prefix_reference": "http://linked.data.gov.au/def/datatype/"
+    },
+    {
+      "prefix_prefix": "dct",
+      "prefix_reference": "http://purl.org/dc/terms/"
     },
     {
       "prefix_prefix": "linkml",
@@ -129,7 +141,7 @@
       "from_schema": "https://w3id.org/lmodel/datatype",
       "typeof": "string_value",
       "base": "str",
-      "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+      "uri": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
       "@type": "TypeDefinition"
     },
     {
@@ -1154,9 +1166,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "datatype.yaml",
-  "source_file_date": "2025-12-09T22:55:02",
-  "source_file_size": 7904,
-  "generation_date": "2025-12-09T23:00:28",
+  "source_file_date": "2025-12-10T00:07:43",
+  "source_file_size": 8193,
+  "generation_date": "2025-12-10T00:08:16",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/datatype.context.jsonld",

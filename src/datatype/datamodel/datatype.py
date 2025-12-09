@@ -1,5 +1,5 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-09T23:00:28
+# Generation date: 2025-12-10T00:08:17
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
@@ -12,7 +12,7 @@
 #   History Note: Originally developed for use as the value of an observation
 #   result (sosa:hasResult) in the context of the TERN-plot ontology. However,
 #   objects from these classes may appear in many contexts.
-# license: CC0-1.0
+# license: http://creativecommons.org/publicdomain/zero/1.0/
 
 import dataclasses
 import re
@@ -76,6 +76,7 @@ OBCS = CurieNamespace('OBCS', 'http://purl.obolibrary.org/obo/OBCS_')
 STATO = CurieNamespace('STATO', 'http://purl.obolibrary.org/obo/STATO_')
 UO = CurieNamespace('UO', 'http://purl.obolibrary.org/obo/UO_')
 DATA = CurieNamespace('data', 'http://linked.data.gov.au/def/datatype/')
+DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 OWL = CurieNamespace('owl', 'http://www.w3.org/2002/07/owl#')
 PROV = CurieNamespace('prov', 'http://www.w3.org/ns/prov#')
@@ -132,8 +133,8 @@ class ConceptValue(StringValue):
 
 class DataValue(StringValue):
     """ simple value (a literal) """
-    type_class_uri = RDF["value"]
-    type_class_curie = "rdf:value"
+    type_class_uri = XSD["nonNegativeInteger"]
+    type_class_curie = "xsd:nonNegativeInteger"
     type_name = "data value"
     type_model_uri = DATA.DataValue
 

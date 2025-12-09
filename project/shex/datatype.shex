@@ -17,7 +17,7 @@ PREFIX qudt: <http://qudt.org/schema/qudt/>
 
 <ConceptValue> skos:Concept
 
-<DataValue> rdf:value
+<DataValue> xsd:nonNegativeInteger
 
 <UnitValue> <http://purl.obolibrary.org/obo/UO_0000000>
 

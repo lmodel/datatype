@@ -3,10 +3,10 @@
 @prefix STATO: <http://purl.obolibrary.org/obo/STATO_> .
 @prefix UO: <http://purl.obolibrary.org/obo/UO_> .
 @prefix data: <http://linked.data.gov.au/def/datatype/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema1: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -16,13 +16,13 @@
 data:Text a owl:Class ;
     rdfs:label "Text" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 1 ;
             owl:onProperty data:value ] ;
     skos:definition "Class to encapsulate a textual value" ;
     skos:exactMatch NCIT:C25704,
@@ -33,9 +33,15 @@ data:Text a owl:Class ;
 
 <https://w3id.org/lmodel/datatype.owl.ttl> a owl:Ontology ;
     rdfs:label "datatype" ;
-    dcterms:license "CC0-1.0" ;
-    dcterms:title "AGLDWG Datatype Ontology (LinkML rendering)" ;
-    rdfs:seeAlso <http://linked.data.gov.au/def/datatype> ;
+    dct:contributor <https://orcid.org/0000-0002-3884-3420>,
+        <https://ror.org/03qn8fb07>,
+        <https://www.csiro.au> ;
+    dct:license "http://creativecommons.org/publicdomain/zero/1.0/" ;
+    dct:source <http://linked.data.gov.au/def/datatype> ;
+    dct:title "AGLDWG Datatype Ontology (LinkML rendering)" ;
+    pav:createdOn "2019-03-25T00:00:00" ;
+    schema1:inLanguage "EN" ;
+    rdfs:seeAlso <https://github.com/AGLDWG/datatype-ont> ;
     skos:definition """LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
 
 A set of classes representing data-types. These may be used for observation
@@ -50,13 +56,13 @@ data:Boolean a owl:Class ;
     rdfs:label "Boolean" ;
     rdfs:seeAlso data:Boolean ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty data:value ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:boolean ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty data:value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty data:value ] ;
     skos:closeMatch wikidata:Q3269980 ;
     skos:definition "Class to encapsulate a true-or-false value" ;
@@ -68,22 +74,22 @@ data:Concept a owl:Class ;
     rdfs:label "Concept" ;
     rdfs:seeAlso data:Concept ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:vocabulary ],
+            owl:minCardinality 1 ;
+            owl:onProperty data:value ],
         [ a owl:Restriction ;
             owl:allValuesFrom skos:Concept ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
+            owl:minCardinality 1 ;
             owl:onProperty data:vocabulary ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty data:value ],
+            owl:maxCardinality 1 ;
+            owl:onProperty data:vocabulary ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom xsd:anyURI ;
             owl:onProperty data:vocabulary ] ;
     skos:definition "Class to encapsulate a classifier, usually a values from a controlled vocabulary" ;
     skos:exactMatch NCIT:C45728,
@@ -95,11 +101,8 @@ data:Count a owl:Class ;
     rdfs:label "Count" ;
     rdfs:seeAlso data:Count ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty data:value ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty data:value ],
+            owl:minCardinality 0 ;
+            owl:onProperty data:uncertainty ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:decimal ;
             owl:onProperty data:uncertainty ],
@@ -107,8 +110,11 @@ data:Count a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty data:uncertainty ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty data:uncertainty ],
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty data:value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty data:value ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty data:value ] ;
@@ -142,22 +148,22 @@ data:PercentRange a owl:Class ;
     rdfs:label "Percent Range" ;
     rdfs:seeAlso data:PercentRange ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom UO:0000187 ;
+            owl:maxCardinality 1 ;
             owl:onProperty data:unit ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty data:unit ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom UO:0000187 ;
             owl:onProperty data:unit ],
         data:QuantitativeRange ;
     skos:definition "Class to encapsulate a quantitative range expressed as in percent values" ;
     skos:inScheme <https://w3id.org/lmodel/datatype> .
 
-rdf:value a rdfs:Datatype ;
-    owl:equivalentClass xsd:string .
-
 xsd:integer a rdfs:Datatype .
+
+xsd:nonNegativeInteger a rdfs:Datatype ;
+    owl:equivalentClass xsd:string .
 
 data:QuantitativeMeasure a owl:Class ;
     rdfs:label "Quantitative Measure" ;
@@ -166,37 +172,37 @@ data:QuantitativeMeasure a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty data:value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty data:standard ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:anyURI ;
             owl:onProperty data:standard ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:uncertainty ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:standard ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty data:uncertainty ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:value ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:decimal ;
             owl:onProperty data:value ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty data:unit ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty data:unit ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty data:standard ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:decimal ;
-            owl:onProperty data:uncertainty ],
         [ a owl:Restriction ;
             owl:allValuesFrom UO:0000000 ;
+            owl:onProperty data:unit ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty data:uncertainty ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty data:uncertainty ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty data:uncertainty ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty data:standard ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty data:unit ] ;
     skos:definition "Class to encapsulate a quantitative measure value" ;
     skos:inScheme <https://w3id.org/lmodel/datatype> ;
@@ -208,40 +214,40 @@ data:QuantitativeRange a owl:Class ;
     rdfs:seeAlso data:QuantitativeRange ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty data:min ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty data:unit ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:decimal ;
-            owl:onProperty data:max ],
+            owl:onProperty data:uncertainty ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty data:unit ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty data:min ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty data:max ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty data:min ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty data:max ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty data:max ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty data:uncertainty ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
             owl:onProperty data:uncertainty ],
         [ a owl:Restriction ;
             owl:allValuesFrom UO:0000000 ;
             owl:onProperty data:unit ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty data:max ],
+            owl:onProperty data:unit ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:decimal ;
-            owl:onProperty data:uncertainty ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty data:min ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:decimal ;
-            owl:onProperty data:min ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:uncertainty ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty data:max ] ;
+            owl:onProperty data:min ] ;
     skos:definition "Class to encapsulate a quantitative range" ;
     skos:inScheme <https://w3id.org/lmodel/datatype> ;
     skos:relatedMatch wikidata:Q1165839 .
@@ -325,7 +331,7 @@ data:unit a owl:DatatypeProperty ;
 
 data:value a owl:DatatypeProperty ;
     rdfs:label "value" ;
-    rdfs:range rdf:value ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:seeAlso data:Value ;
     skos:definition "simple value (a literal)" ;
     skos:exactMatch schema1:Value ;

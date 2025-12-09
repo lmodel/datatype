@@ -11,12 +11,20 @@ description: |-
   History Note: Originally developed for use as the value of an observation
   result (sosa:hasResult) in the context of the TERN-plot ontology. However,
   objects from these classes may appear in many contexts.
+source: http://linked.data.gov.au/def/datatype
 see_also:
-  - http://linked.data.gov.au/def/datatype
-license: CC0-1.0
+  - https://github.com/AGLDWG/datatype-ont
+in_language: EN
+contributors:
+  - https://orcid.org/0000-0002-3884-3420
+  - https://ror.org/03qn8fb07
+  - https://www.csiro.au
+created_on: "2019-03-25"
+license: http://creativecommons.org/publicdomain/zero/1.0/
 
 prefixes:
   data: http://linked.data.gov.au/def/datatype/
+  dct: 'http://purl.org/dc/terms/'
   linkml: https://w3id.org/linkml/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   OBCS: http://purl.obolibrary.org/obo/OBCS_
@@ -71,7 +79,7 @@ types:
   data value:
     typeof: string value
     base: str
-    uri: rdf:value
+    uri: xsd:nonNegativeInteger
     description: simple value (a literal)
 
   unit value:
