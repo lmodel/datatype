@@ -1,0 +1,215 @@
+{
+    "$defs": {
+        "Boolean": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a true-or-false value",
+            "properties": {
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "title": "Boolean",
+            "type": "object"
+        },
+        "Concept": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a classifier, usually a values from a controlled vocabulary",
+            "properties": {
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "string"
+                },
+                "vocabulary": {
+                    "description": "controlled vocabulary, taxonomy etc",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "value",
+                "vocabulary"
+            ],
+            "title": "Concept",
+            "type": "object"
+        },
+        "Count": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate an integer value",
+            "properties": {
+                "uncertainty": {
+                    "description": "Uncertainty for a quantitative value",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "title": "Count",
+            "type": "object"
+        },
+        "Percent": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a quantitative measure expressed as a percent value",
+            "properties": {
+                "standard": {
+                    "description": "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uncertainty": {
+                    "description": "Uncertainty for a quantitative value",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "description": "Measurement scale",
+                    "type": "number"
+                },
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ],
+            "title": "Percent",
+            "type": "object"
+        },
+        "PercentRange": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a quantitative range expressed as in percent values",
+            "properties": {
+                "max": {
+                    "description": "Maximum value of a range",
+                    "type": "number"
+                },
+                "min": {
+                    "description": "Minimum value of range",
+                    "type": "number"
+                },
+                "uncertainty": {
+                    "description": "Uncertainty for a quantitative value",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "description": "Measurement scale",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "min",
+                "max",
+                "unit"
+            ],
+            "title": "PercentRange",
+            "type": "object"
+        },
+        "QuantitativeMeasure": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a quantitative measure value",
+            "properties": {
+                "standard": {
+                    "description": "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uncertainty": {
+                    "description": "Uncertainty for a quantitative value",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "description": "Measurement scale",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ],
+            "title": "QuantitativeMeasure",
+            "type": "object"
+        },
+        "QuantitativeRange": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a quantitative range",
+            "properties": {
+                "max": {
+                    "description": "Maximum value of a range",
+                    "type": "number"
+                },
+                "min": {
+                    "description": "Minimum value of range",
+                    "type": "number"
+                },
+                "uncertainty": {
+                    "description": "Uncertainty for a quantitative value",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "description": "Measurement scale",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "min",
+                "max",
+                "unit"
+            ],
+            "title": "QuantitativeRange",
+            "type": "object"
+        },
+        "Text": {
+            "additionalProperties": false,
+            "description": "Class to encapsulate a textual value",
+            "properties": {
+                "value": {
+                    "description": "simple value (a literal)",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "title": "Text",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/datatype",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "datatype",
+    "type": "object",
+    "version": null
+}

@@ -1,0 +1,57 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// Class to encapsulate a true-or-false value
+message Boolean
+ {
+  boolean value = 0
+ }
+// Class to encapsulate a classifier, usually a values from a controlled vocabulary
+message Concept
+ {
+  conceptValue value = 0
+  uriorcurie vocabulary = 0
+ }
+// Class to encapsulate an integer value
+message Count
+ {
+  integerValue value = 0
+  decimalValue uncertainty = 0
+ }
+// Class to encapsulate a quantitative measure expressed as a percent value
+message Percent
+ {
+  decimalValue value = 0
+  decimalValue uncertainty = 0
+  uriorcurie standard = 0
+  percentValue unit = 0
+ }
+// Class to encapsulate a quantitative range expressed as in percent values
+message PercentRange
+ {
+  decimalValue min = 0
+  decimalValue max = 0
+  decimalValue uncertainty = 0
+  percentValue unit = 0
+ }
+// Class to encapsulate a quantitative measure value
+message QuantitativeMeasure
+ {
+  decimalValue value = 0
+  unitValue unit = 0
+  decimalValue uncertainty = 0
+  uriorcurie standard = 0
+ }
+// Class to encapsulate a quantitative range
+message QuantitativeRange
+ {
+  decimalValue min = 0
+  decimalValue max = 0
+  unitValue unit = 0
+  decimalValue uncertainty = 0
+ }
+// Class to encapsulate a textual value
+message Text
+ {
+  stringValue value = 0
+ }

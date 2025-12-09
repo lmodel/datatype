@@ -1,0 +1,54 @@
+# metamodel_version: 1.7.0
+type Boolean
+  {
+    value: Boolean!
+  }
+
+type Concept
+  {
+    value: ConceptValue!
+    vocabulary: String!
+  }
+
+type Count
+  {
+    value: IntegerValue!
+    uncertainty: DecimalValue
+  }
+
+type Percent
+  {
+    value: DecimalValue!
+    uncertainty: DecimalValue
+    standard: String
+    unit: PercentValue!
+  }
+
+type PercentRange
+  {
+    min: DecimalValue!
+    max: DecimalValue!
+    uncertainty: DecimalValue
+    unit: PercentValue!
+  }
+
+type QuantitativeMeasure
+  {
+    value: DecimalValue!
+    unit: UnitValue!
+    uncertainty: DecimalValue
+    standard: String
+  }
+
+type QuantitativeRange
+  {
+    min: DecimalValue!
+    max: DecimalValue!
+    unit: UnitValue!
+    uncertainty: DecimalValue
+  }
+
+type Text
+  {
+    value: StringValue!
+  }

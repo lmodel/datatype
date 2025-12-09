@@ -1,10 +1,10 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-08T23:49:50
+# Generation date: 2025-12-09T20:32:48
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
 # description: A set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required.
-#   LinkML rendering of http://linked.data.gov.au/def/datatype
+#   This is a LinkML rendering of http://linked.data.gov.au/def/datatype
 # license: CC0-1.0
 
 import dataclasses

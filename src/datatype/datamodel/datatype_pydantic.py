@@ -84,7 +84,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'data',
                     'for observation results, or for the range of specific '
                     'properties in other applications where scaled numbers, '
                     'ranges, percents etc are required.\n'
-                    'LinkML rendering of http://linked.data.gov.au/def/datatype',
+                    'This is a LinkML rendering of '
+                    'http://linked.data.gov.au/def/datatype',
      'id': 'https://w3id.org/lmodel/datatype',
      'imports': ['linkml:types'],
      'license': 'CC0-1.0',
