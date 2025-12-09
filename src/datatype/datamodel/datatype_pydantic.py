@@ -80,19 +80,24 @@ class LinkMLMeta(RootModel):
 
 linkml_meta = LinkMLMeta({'default_prefix': 'data',
      'default_range': 'string',
-     'description': 'A set of classes representing data-types. These may be used '
-                    'for observation results, or for the range of specific '
-                    'properties in other applications where scaled numbers, '
-                    'ranges, percents etc are required.\n'
-                    'This is a LinkML rendering of '
-                    'http://linked.data.gov.au/def/datatype',
+     'description': 'LinkML schema of AGLDWG Datatypes '
+                    '(http://linked.data.gov.au/def/datatype).\n'
+                    '\n'
+                    'A set of classes representing data-types. These may be used '
+                    'for observation\n'
+                    'results, or for the range of specific properties in other '
+                    'applications where\n'
+                    'scaled numbers, ranges, percents, etc, are required.\n'
+                    '\n'
+                    'History Note: Originally developed for use as the value of an '
+                    'observation\n'
+                    'result (sosa:hasResult) in the context of the TERN-plot '
+                    'ontology. However,\n'
+                    'objects from these classes may appear in many contexts.',
      'id': 'https://w3id.org/lmodel/datatype',
      'imports': ['linkml:types'],
      'license': 'CC0-1.0',
      'name': 'datatype',
-     'notes': ['Originally developed for use as the value of an observation result '
-               '(sosa:hasResult) in the context of the TERN-plot ontology. '
-               'However, objects from these classes may appear in many contexts.'],
      'prefixes': {'NCIT': {'prefix_prefix': 'NCIT',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/NCIT_'},
                   'OBCS': {'prefix_prefix': 'OBCS',

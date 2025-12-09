@@ -1,10 +1,17 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-09T20:32:48
+# Generation date: 2025-12-09T23:00:28
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
-# description: A set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required.
-#   This is a LinkML rendering of http://linked.data.gov.au/def/datatype
+# description: LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
+#
+#   A set of classes representing data-types. These may be used for observation
+#   results, or for the range of specific properties in other applications where
+#   scaled numbers, ranges, percents, etc, are required.
+#
+#   History Note: Originally developed for use as the value of an observation
+#   result (sosa:hasResult) in the context of the TERN-plot ontology. However,
+#   objects from these classes may appear in many contexts.
 # license: CC0-1.0
 
 import dataclasses
