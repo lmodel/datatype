@@ -78,7 +78,10 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'contributors': ['https://orcid.org/0000-0002-3884-3420',
+linkml_meta = LinkMLMeta({'comments': ['This LinkML schema is based on AGLDWG Datatype ontology and '
+                  'auto-generated OWL artifact may not capture all details of '
+                  'original ontology.'],
+     'contributors': ['https://orcid.org/0000-0002-3884-3420',
                       'https://ror.org/03qn8fb07',
                       'https://www.csiro.au'],
      'created_on': '2019-03-25T00:00:00+00:00',

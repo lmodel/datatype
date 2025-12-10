@@ -2,6 +2,9 @@
   "name": "datatype",
   "description": "LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).\n\nA set of classes representing data-types. These may be used for observation\nresults, or for the range of specific properties in other applications where\nscaled numbers, ranges, percents, etc, are required.\n\nHistory Note: Originally developed for use as the value of an observation\nresult (sosa:hasResult) in the context of the TERN-plot ontology. However,\nobjects from these classes may appear in many contexts.",
   "title": "AGLDWG Datatype Ontology (LinkML rendering)",
+  "comments": [
+    "This LinkML schema is based on AGLDWG Datatype ontology and auto-generated OWL artifact may not capture all details of original ontology."
+  ],
   "source": "http://linked.data.gov.au/def/datatype",
   "in_language": "EN",
   "see_also": [
@@ -1167,9 +1170,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "datatype.yaml",
-  "source_file_date": "2025-12-10T20:57:28",
-  "source_file_size": 8288,
-  "generation_date": "2025-12-10T20:57:44",
+  "source_file_date": "2025-12-10T21:03:22",
+  "source_file_size": 8444,
+  "generation_date": "2025-12-10T21:03:33",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/datatype.context.jsonld",
