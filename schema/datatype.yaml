@@ -25,6 +25,7 @@ contributors:
 - https://www.csiro.au
 created_on: '2019-03-25T00:00:00'
 id: https://w3id.org/lmodel/datatype
+version: '1.0'
 imports:
 - linkml:types
 license: http://creativecommons.org/publicdomain/zero/1.0/
@@ -999,7 +1000,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-10T00:10:04'
-source_file_size: 8193
-generation_date: '2025-12-10T00:10:16'
+source_file_date: '2025-12-10T20:47:22'
+source_file_size: 8283
+generation_date: '2025-12-10T20:47:32'
 
