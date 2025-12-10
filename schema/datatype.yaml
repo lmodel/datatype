@@ -23,7 +23,7 @@ contributors:
 - https://orcid.org/0000-0002-3884-3420
 - https://ror.org/03qn8fb07
 - https://www.csiro.au
-created_on: '2019-03-25T00:00:00'
+created_on: '2019-03-25T00:00:00+00:00'
 id: https://w3id.org/lmodel/datatype
 version: '1.0'
 imports:
@@ -420,13 +420,13 @@ slots:
     - NCIT:C25712
     - prov:Value
     slot_uri: data:value
-    owner: Quantitative Measure
+    owner: QuantitativeMeasure
     domain_of:
     - Text
     - Boolean
     - Concept
     - Count
-    - Quantitative Measure
+    - QuantitativeMeasure
     range: data value
   min:
     name: min
@@ -441,9 +441,9 @@ slots:
     - wikidata:Q10585806
     is_a: value
     slot_uri: data:min
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Range
+    - QuantitativeRange
     range: decimal value
   max:
     name: max
@@ -460,9 +460,9 @@ slots:
     - STATO:0000151
     is_a: value
     slot_uri: data:max
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Range
+    - QuantitativeRange
     range: decimal value
   uncertainty:
     name: uncertainty
@@ -479,11 +479,11 @@ slots:
     - OBCS:0000340
     is_a: value
     slot_uri: data:uncertainty
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
     - Count
-    - Quantitative Measure
-    - Quantitative Range
+    - QuantitativeMeasure
+    - QuantitativeRange
     range: decimal value
     multivalued: false
   standard:
@@ -500,9 +500,9 @@ slots:
     - NCIT:C14298
     - wikidata:Q1271511
     slot_uri: data:standard
-    owner: Quantitative Measure
+    owner: QuantitativeMeasure
     domain_of:
-    - Quantitative Measure
+    - QuantitativeMeasure
     range: uriorcurie
   unit:
     name: unit
@@ -515,10 +515,10 @@ slots:
     - unit of measure
     is_a: standard
     slot_uri: data:unit
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Measure
-    - Quantitative Range
+    - QuantitativeMeasure
+    - QuantitativeRange
     range: unit value
   vocabulary:
     name: vocabulary
@@ -659,8 +659,8 @@ slots:
     usage_slot_name: value
     range: integer value
     required: true
-  Quantitative Measure_unit:
-    name: Quantitative Measure_unit
+  QuantitativeMeasure_unit:
+    name: QuantitativeMeasure_unit
     definition_uri: http://linked.data.gov.au/def/datatype/unit
     description: Measurement scale
     from_schema: https://w3id.org/lmodel/datatype
@@ -669,18 +669,18 @@ slots:
     aliases:
     - unit of measure
     is_a: unit
-    domain: Quantitative Measure
+    domain: QuantitativeMeasure
     slot_uri: data:unit
     alias: unit
-    owner: Quantitative Measure
+    owner: QuantitativeMeasure
     domain_of:
-    - Quantitative Measure
+    - QuantitativeMeasure
     is_usage_slot: true
     usage_slot_name: unit
     range: unit value
     required: true
-  Quantitative Measure_value:
-    name: Quantitative Measure_value
+  QuantitativeMeasure_value:
+    name: QuantitativeMeasure_value
     definition_uri: http://linked.data.gov.au/def/datatype/value
     description: simple value (a literal)
     from_schema: https://w3id.org/lmodel/datatype
@@ -692,18 +692,18 @@ slots:
     - NCIT:C25712
     - prov:Value
     is_a: value
-    domain: Quantitative Measure
+    domain: QuantitativeMeasure
     slot_uri: data:value
     alias: value
-    owner: Quantitative Measure
+    owner: QuantitativeMeasure
     domain_of:
-    - Quantitative Measure
+    - QuantitativeMeasure
     is_usage_slot: true
     usage_slot_name: value
     range: decimal value
     required: true
-  Quantitative Range_unit:
-    name: Quantitative Range_unit
+  QuantitativeRange_unit:
+    name: QuantitativeRange_unit
     definition_uri: http://linked.data.gov.au/def/datatype/unit
     description: Measurement scale
     from_schema: https://w3id.org/lmodel/datatype
@@ -712,18 +712,18 @@ slots:
     aliases:
     - unit of measure
     is_a: unit
-    domain: Quantitative Range
+    domain: QuantitativeRange
     slot_uri: data:unit
     alias: unit
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Range
+    - QuantitativeRange
     is_usage_slot: true
     usage_slot_name: unit
     range: unit value
     required: true
-  Quantitative Range_min:
-    name: Quantitative Range_min
+  QuantitativeRange_min:
+    name: QuantitativeRange_min
     definition_uri: http://linked.data.gov.au/def/datatype/min
     description: Minimum value of range
     from_schema: https://w3id.org/lmodel/datatype
@@ -734,18 +734,18 @@ slots:
     close_mappings:
     - wikidata:Q10585806
     is_a: min
-    domain: Quantitative Range
+    domain: QuantitativeRange
     slot_uri: data:min
     alias: min
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Range
+    - QuantitativeRange
     is_usage_slot: true
     usage_slot_name: min
     range: decimal value
     required: true
-  Quantitative Range_max:
-    name: Quantitative Range_max
+  QuantitativeRange_max:
+    name: QuantitativeRange_max
     definition_uri: http://linked.data.gov.au/def/datatype/max
     description: Maximum value of a range
     from_schema: https://w3id.org/lmodel/datatype
@@ -758,12 +758,12 @@ slots:
     - STATO:0000666
     - STATO:0000151
     is_a: max
-    domain: Quantitative Range
+    domain: QuantitativeRange
     slot_uri: data:max
     alias: max
-    owner: Quantitative Range
+    owner: QuantitativeRange
     domain_of:
-    - Quantitative Range
+    - QuantitativeRange
     is_usage_slot: true
     usage_slot_name: max
     range: decimal value
@@ -781,7 +781,7 @@ slots:
     - qudt:PERCENT
     broad_mappings:
     - wikidata:Q1196827
-    is_a: Quantitative Measure_unit
+    is_a: QuantitativeMeasure_unit
     domain: Percent
     slot_uri: qudt:PERCENT
     alias: unit
@@ -792,8 +792,8 @@ slots:
     usage_slot_name: unit
     range: percent value
     required: true
-  Percent Range_unit:
-    name: Percent Range_unit
+  PercentRange_unit:
+    name: PercentRange_unit
     definition_uri: http://linked.data.gov.au/def/datatype/unit
     description: Measurement scale
     from_schema: https://w3id.org/lmodel/datatype
@@ -803,13 +803,13 @@ slots:
     - unit of measure
     mappings:
     - qudt:PERCENT
-    is_a: Quantitative Range_unit
-    domain: Percent Range
+    is_a: QuantitativeRange_unit
+    domain: PercentRange
     slot_uri: qudt:PERCENT
     alias: unit
-    owner: Percent Range
+    owner: PercentRange
     domain_of:
-    - Percent Range
+    - PercentRange
     is_usage_slot: true
     usage_slot_name: unit
     range: percent value
@@ -901,8 +901,8 @@ classes:
         range: integer value
         required: true
     class_uri: data:Count
-  Quantitative Measure:
-    name: Quantitative Measure
+  QuantitativeMeasure:
+    name: QuantitativeMeasure
     definition_uri: http://linked.data.gov.au/def/datatype/QuantitativeMeasure
     description: Class to encapsulate a quantitative measure value
     from_schema: https://w3id.org/lmodel/datatype
@@ -912,8 +912,8 @@ classes:
     - schema:QuantitativeValue
     - wikidata:Q309314
     slots:
-    - Quantitative Measure_value
-    - Quantitative Measure_unit
+    - QuantitativeMeasure_value
+    - QuantitativeMeasure_unit
     - uncertainty
     - standard
     slot_usage:
@@ -925,8 +925,8 @@ classes:
         range: decimal value
         required: true
     class_uri: data:QuantitativeMeasure
-  Quantitative Range:
-    name: Quantitative Range
+  QuantitativeRange:
+    name: QuantitativeRange
     definition_uri: http://linked.data.gov.au/def/datatype/QuantitativeRange
     description: Class to encapsulate a quantitative range
     from_schema: https://w3id.org/lmodel/datatype
@@ -935,9 +935,9 @@ classes:
     related_mappings:
     - wikidata:Q1165839
     slots:
-    - Quantitative Range_min
-    - Quantitative Range_max
-    - Quantitative Range_unit
+    - QuantitativeRange_min
+    - QuantitativeRange_max
+    - QuantitativeRange_unit
     - uncertainty
     slot_usage:
       unit:
@@ -964,9 +964,9 @@ classes:
     - NCIT:C48570
     - UO:0000187
     - wikidata:Q11229
-    is_a: Quantitative Measure
+    is_a: QuantitativeMeasure
     slots:
-    - Quantitative Measure_value
+    - QuantitativeMeasure_value
     - uncertainty
     - standard
     - Percent_unit
@@ -978,20 +978,20 @@ classes:
         slot_uri: qudt:PERCENT
         range: percent value
     class_uri: data:Percent
-  Percent Range:
-    name: Percent Range
+  PercentRange:
+    name: PercentRange
     definition_uri: http://linked.data.gov.au/def/datatype/PercentRange
     description: Class to encapsulate a quantitative range expressed as in percent
       values
     from_schema: https://w3id.org/lmodel/datatype
     see_also:
     - http://linked.data.gov.au/def/datatype/PercentRange
-    is_a: Quantitative Range
+    is_a: QuantitativeRange
     slots:
-    - Quantitative Range_min
-    - Quantitative Range_max
+    - QuantitativeRange_min
+    - QuantitativeRange_max
     - uncertainty
-    - Percent Range_unit
+    - PercentRange_unit
     slot_usage:
       unit:
         name: unit
@@ -1000,7 +1000,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-10T20:47:22'
-source_file_size: 8283
-generation_date: '2025-12-10T20:47:32'
+source_file_date: '2025-12-10T20:59:35'
+source_file_size: 8288
+generation_date: '2025-12-10T20:59:44'
 
