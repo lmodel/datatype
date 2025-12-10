@@ -1,5 +1,5 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-10T22:56:26
+# Generation date: 2025-12-10T23:07:07
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
@@ -75,6 +75,7 @@ NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
 OBCS = CurieNamespace('OBCS', 'http://purl.obolibrary.org/obo/OBCS_')
 STATO = CurieNamespace('STATO', 'http://purl.obolibrary.org/obo/STATO_')
 UO = CurieNamespace('UO', 'http://purl.obolibrary.org/obo/UO_')
+BIBO = CurieNamespace('bibo', 'http://purl.org/ontology/bibo/')
 DATA = CurieNamespace('data', 'http://linked.data.gov.au/def/datatype/')
 DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')

@@ -27,13 +27,16 @@ contributors:
 - https://ror.org/03qn8fb07
 - https://www.csiro.au
 created_on: '2019-03-25T00:00:00+00:00'
-status: xx
+status: bibo:status/published
 id: https://w3id.org/lmodel/datatype
 version: '1.0'
 imports:
 - linkml:types
 license: http://creativecommons.org/publicdomain/zero/1.0/
 prefixes:
+  bibo:
+    prefix_prefix: bibo
+    prefix_reference: http://purl.org/ontology/bibo/
   data:
     prefix_prefix: data
     prefix_reference: http://linked.data.gov.au/def/datatype/
@@ -1004,7 +1007,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-10T22:56:08'
-source_file_size: 8455
-generation_date: '2025-12-10T22:56:31'
+source_file_date: '2025-12-10T23:07:04'
+source_file_size: 8513
+generation_date: '2025-12-10T23:07:14'
 

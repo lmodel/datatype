@@ -3,6 +3,7 @@
    "OBCS": "http://purl.obolibrary.org/obo/OBCS_",
    "STATO": "http://purl.obolibrary.org/obo/STATO_",
    "UO": "http://purl.obolibrary.org/obo/UO_",
+   "bibo": "http://purl.org/ontology/bibo/",
    "data": "http://linked.data.gov.au/def/datatype/",
    "dct": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
