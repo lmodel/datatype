@@ -18,6 +18,7 @@ comments:
 see_also:
   - https://github.com/AGLDWG/datatype-ont
 in_language: EN
+publisher: https://ror.org/03qn8fb07
 contributors:
   - https://orcid.org/0000-0002-3884-3420
   - https://ror.org/03qn8fb07
@@ -52,6 +53,11 @@ default_range: string
 
 imports:
   - linkml:types
+  - linkml:mappings
+  - linkml:extensions
+  - linkml:annotations
+#  - linkml:validation
+  - linkml:units
 
 # simple scalar types
 types:
