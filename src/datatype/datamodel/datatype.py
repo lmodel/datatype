@@ -1,5 +1,5 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-10T00:08:17
+# Generation date: 2025-12-10T20:45:45
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
@@ -68,7 +68,7 @@ from linkml_runtime.linkml_model.types import Boolean, Double, Uriorcurie
 from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE
 
 metamodel_version = "1.7.0"
-version = None
+version = "1.0"
 
 # Namespaces
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')

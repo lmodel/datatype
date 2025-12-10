@@ -22,6 +22,10 @@ contributors:
 created_on: "2019-03-25"
 license: http://creativecommons.org/publicdomain/zero/1.0/
 
+# Version should be kept in sync with primary Git repository release tag
+
+version: "1.0"
+
 prefixes:
   data: http://linked.data.gov.au/def/datatype/
   dct: 'http://purl.org/dc/terms/'

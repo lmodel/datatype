@@ -1,6 +1,7 @@
  syntax="proto3";
  package
 // metamodel_version: 1.7.0
+// version: 1.0
 // Class to encapsulate a true-or-false value
 message Boolean
  {
