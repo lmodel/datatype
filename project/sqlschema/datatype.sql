@@ -12,13 +12,13 @@
 --     * Slot: id
 --     * Slot: value Description: simple value (a literal)
 --     * Slot: uncertainty Description: Uncertainty for a quantitative value
--- # Class: Quantitative Measure Description: Class to encapsulate a quantitative measure value
+-- # Class: QuantitativeMeasure Description: Class to encapsulate a quantitative measure value
 --     * Slot: id
 --     * Slot: value Description: simple value (a literal)
 --     * Slot: unit Description: Measurement scale
 --     * Slot: uncertainty Description: Uncertainty for a quantitative value
 --     * Slot: standard Description: Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc
--- # Class: Quantitative Range Description: Class to encapsulate a quantitative range
+-- # Class: QuantitativeRange Description: Class to encapsulate a quantitative range
 --     * Slot: id
 --     * Slot: min Description: Minimum value of range
 --     * Slot: max Description: Maximum value of a range
@@ -30,7 +30,7 @@
 --     * Slot: unit Description: Measurement scale
 --     * Slot: uncertainty Description: Uncertainty for a quantitative value
 --     * Slot: standard Description: Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc
--- # Class: Percent Range Description: Class to encapsulate a quantitative range expressed as in percent values
+-- # Class: PercentRange Description: Class to encapsulate a quantitative range expressed as in percent values
 --     * Slot: id
 --     * Slot: min Description: Minimum value of range
 --     * Slot: max Description: Maximum value of a range
@@ -59,22 +59,22 @@ CREATE TABLE "Count" (
 	uncertainty FLOAT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Count_id" ON "Count" (id);
-CREATE TABLE "Quantitative Measure" (
+CREATE TABLE "QuantitativeMeasure" (
 	id INTEGER NOT NULL,
 	value FLOAT NOT NULL,
 	unit TEXT NOT NULL,
 	uncertainty FLOAT,
 	standard TEXT,
 	PRIMARY KEY (id)
-);CREATE INDEX "ix_Quantitative Measure_id" ON "Quantitative Measure" (id);
-CREATE TABLE "Quantitative Range" (
+);CREATE INDEX "ix_QuantitativeMeasure_id" ON "QuantitativeMeasure" (id);
+CREATE TABLE "QuantitativeRange" (
 	id INTEGER NOT NULL,
 	min FLOAT NOT NULL,
 	max FLOAT NOT NULL,
 	unit TEXT NOT NULL,
 	uncertainty FLOAT,
 	PRIMARY KEY (id)
-);CREATE INDEX "ix_Quantitative Range_id" ON "Quantitative Range" (id);
+);CREATE INDEX "ix_QuantitativeRange_id" ON "QuantitativeRange" (id);
 CREATE TABLE "Percent" (
 	id INTEGER NOT NULL,
 	value FLOAT NOT NULL,
@@ -83,11 +83,11 @@ CREATE TABLE "Percent" (
 	standard TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_Percent_id" ON "Percent" (id);
-CREATE TABLE "Percent Range" (
+CREATE TABLE "PercentRange" (
 	id INTEGER NOT NULL,
 	min FLOAT NOT NULL,
 	max FLOAT NOT NULL,
 	unit FLOAT NOT NULL,
 	uncertainty FLOAT,
 	PRIMARY KEY (id)
-);CREATE INDEX "ix_Percent Range_id" ON "Percent Range" (id);
+);CREATE INDEX "ix_PercentRange_id" ON "PercentRange" (id);

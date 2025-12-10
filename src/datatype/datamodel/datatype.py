@@ -1,5 +1,5 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-10T20:45:45
+# Generation date: 2025-12-10T20:57:45
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
@@ -262,7 +262,7 @@ class QuantitativeMeasure(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = DATA["QuantitativeMeasure"]
     class_class_curie: ClassVar[str] = "data:QuantitativeMeasure"
-    class_name: ClassVar[str] = "Quantitative Measure"
+    class_name: ClassVar[str] = "QuantitativeMeasure"
     class_model_uri: ClassVar[URIRef] = DATA.QuantitativeMeasure
 
     value: float = None
@@ -299,7 +299,7 @@ class QuantitativeRange(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = DATA["QuantitativeRange"]
     class_class_curie: ClassVar[str] = "data:QuantitativeRange"
-    class_name: ClassVar[str] = "Quantitative Range"
+    class_name: ClassVar[str] = "QuantitativeRange"
     class_model_uri: ClassVar[URIRef] = DATA.QuantitativeRange
 
     min: float = None
@@ -362,7 +362,7 @@ class PercentRange(QuantitativeRange):
 
     class_class_uri: ClassVar[URIRef] = DATA["PercentRange"]
     class_class_curie: ClassVar[str] = "data:PercentRange"
-    class_name: ClassVar[str] = "Percent Range"
+    class_name: ClassVar[str] = "PercentRange"
     class_model_uri: ClassVar[URIRef] = DATA.PercentRange
 
     min: float = None
@@ -421,23 +421,23 @@ slots.Concept_vocabulary = Slot(uri=DATA.vocabulary, name="Concept_vocabulary", 
 slots.Count_value = Slot(uri=DATA.value, name="Count_value", curie=DATA.curie('value'),
                    model_uri=DATA.Count_value, domain=Count, range=int)
 
-slots.Quantitative_Measure_unit = Slot(uri=DATA.unit, name="Quantitative Measure_unit", curie=DATA.curie('unit'),
-                   model_uri=DATA.Quantitative_Measure_unit, domain=QuantitativeMeasure, range=Union[str, UnitValue])
+slots.QuantitativeMeasure_unit = Slot(uri=DATA.unit, name="QuantitativeMeasure_unit", curie=DATA.curie('unit'),
+                   model_uri=DATA.QuantitativeMeasure_unit, domain=QuantitativeMeasure, range=Union[str, UnitValue])
 
-slots.Quantitative_Measure_value = Slot(uri=DATA.value, name="Quantitative Measure_value", curie=DATA.curie('value'),
-                   model_uri=DATA.Quantitative_Measure_value, domain=QuantitativeMeasure, range=float)
+slots.QuantitativeMeasure_value = Slot(uri=DATA.value, name="QuantitativeMeasure_value", curie=DATA.curie('value'),
+                   model_uri=DATA.QuantitativeMeasure_value, domain=QuantitativeMeasure, range=float)
 
-slots.Quantitative_Range_unit = Slot(uri=DATA.unit, name="Quantitative Range_unit", curie=DATA.curie('unit'),
-                   model_uri=DATA.Quantitative_Range_unit, domain=QuantitativeRange, range=Union[str, UnitValue])
+slots.QuantitativeRange_unit = Slot(uri=DATA.unit, name="QuantitativeRange_unit", curie=DATA.curie('unit'),
+                   model_uri=DATA.QuantitativeRange_unit, domain=QuantitativeRange, range=Union[str, UnitValue])
 
-slots.Quantitative_Range_min = Slot(uri=DATA.min, name="Quantitative Range_min", curie=DATA.curie('min'),
-                   model_uri=DATA.Quantitative_Range_min, domain=QuantitativeRange, range=float)
+slots.QuantitativeRange_min = Slot(uri=DATA.min, name="QuantitativeRange_min", curie=DATA.curie('min'),
+                   model_uri=DATA.QuantitativeRange_min, domain=QuantitativeRange, range=float)
 
-slots.Quantitative_Range_max = Slot(uri=DATA.max, name="Quantitative Range_max", curie=DATA.curie('max'),
-                   model_uri=DATA.Quantitative_Range_max, domain=QuantitativeRange, range=float)
+slots.QuantitativeRange_max = Slot(uri=DATA.max, name="QuantitativeRange_max", curie=DATA.curie('max'),
+                   model_uri=DATA.QuantitativeRange_max, domain=QuantitativeRange, range=float)
 
 slots.Percent_unit = Slot(uri=QUDT.PERCENT, name="Percent_unit", curie=QUDT.curie('PERCENT'),
                    model_uri=DATA.Percent_unit, domain=Percent, range=Union[float, PercentValue])
 
-slots.Percent_Range_unit = Slot(uri=QUDT.PERCENT, name="Percent Range_unit", curie=QUDT.curie('PERCENT'),
-                   model_uri=DATA.Percent_Range_unit, domain=PercentRange, range=Union[float, PercentValue])
+slots.PercentRange_unit = Slot(uri=QUDT.PERCENT, name="PercentRange_unit", curie=QUDT.curie('PERCENT'),
+                   model_uri=DATA.PercentRange_unit, domain=PercentRange, range=Union[float, PercentValue])

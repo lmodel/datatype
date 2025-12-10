@@ -81,7 +81,7 @@ class LinkMLMeta(RootModel):
 linkml_meta = LinkMLMeta({'contributors': ['https://orcid.org/0000-0002-3884-3420',
                       'https://ror.org/03qn8fb07',
                       'https://www.csiro.au'],
-     'created_on': '2019-03-25T00:00:00',
+     'created_on': '2019-03-25T00:00:00+00:00',
      'default_prefix': 'data',
      'default_range': 'string',
      'description': 'LinkML schema of AGLDWG Datatypes '
@@ -197,7 +197,7 @@ class Text(ConfiguredBaseModel):
                                   'required': True,
                                   'slot_uri': 'xsd:string'}}})
 
-    value: str = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: str = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value'],
@@ -217,7 +217,7 @@ class Boolean(ConfiguredBaseModel):
                                   'required': True,
                                   'slot_uri': 'xsd:boolean'}}})
 
-    value: bool = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: bool = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value'],
@@ -236,7 +236,7 @@ class Concept(ConfiguredBaseModel):
                                   'required': True},
                         'vocabulary': {'name': 'vocabulary', 'required': True}}})
 
-    value: str = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: str = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
@@ -259,13 +259,13 @@ class Count(ConfiguredBaseModel):
                                   'range': 'integer value',
                                   'required': True}}})
 
-    value: int = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: int = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
     uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
-         'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'value',
          'narrow_mappings': ['OBCS:0000340'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Uncertainty']} })
@@ -283,22 +283,22 @@ class QuantitativeMeasure(ConfiguredBaseModel):
                                   'range': 'decimal value',
                                   'required': True}}})
 
-    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
     unit: str = Field(default=..., description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'aliases': ['unit of measure'],
-         'domain_of': ['Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit']} })
     uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
-         'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'value',
          'narrow_mappings': ['OBCS:0000340'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Uncertainty']} })
     standard: Optional[str] = Field(default=None, description="""Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc""", json_schema_extra = { "linkml_meta": {'aliases': ['data standard'],
-         'domain_of': ['Quantitative Measure'],
+         'domain_of': ['QuantitativeMeasure'],
          'exact_mappings': ['NCIT:C14298', 'wikidata:Q1271511'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Standard']} })
 
@@ -320,21 +320,21 @@ class QuantitativeRange(ConfiguredBaseModel):
 
     min: float = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
          'close_mappings': ['wikidata:Q10585806'],
-         'domain_of': ['Quantitative Range'],
+         'domain_of': ['QuantitativeRange'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Min']} })
     max: float = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
          'close_mappings': ['wikidata:Q10578722', 'STATO:0000666', 'STATO:0000151'],
-         'domain_of': ['Quantitative Range'],
+         'domain_of': ['QuantitativeRange'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Max']} })
     unit: str = Field(default=..., description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'aliases': ['unit of measure'],
-         'domain_of': ['Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit']} })
     uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
-         'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'value',
          'narrow_mappings': ['OBCS:0000340'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Uncertainty']} })
@@ -352,24 +352,24 @@ class Percent(QuantitativeMeasure):
                                  'range': 'percent value',
                                  'slot_uri': 'qudt:PERCENT'}}})
 
-    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'Quantitative Measure'],
+    value: float = Field(default=..., description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Text', 'Boolean', 'Concept', 'Count', 'QuantitativeMeasure'],
          'exact_mappings': ['schema:Value'],
          'narrow_mappings': ['NCIT:C25712', 'prov:Value'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Value']} })
     unit: float = Field(default=..., description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'aliases': ['unit of measure'],
          'broad_mappings': ['wikidata:Q1196827'],
-         'domain_of': ['Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit'],
          'slot_uri': 'qudt:PERCENT'} })
     uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
-         'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'value',
          'narrow_mappings': ['OBCS:0000340'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Uncertainty']} })
     standard: Optional[str] = Field(default=None, description="""Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc""", json_schema_extra = { "linkml_meta": {'aliases': ['data standard'],
-         'domain_of': ['Quantitative Measure'],
+         'domain_of': ['QuantitativeMeasure'],
          'exact_mappings': ['NCIT:C14298', 'wikidata:Q1271511'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Standard']} })
 
@@ -386,22 +386,22 @@ class PercentRange(QuantitativeRange):
 
     min: float = Field(default=..., description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'aliases': ['data minimum'],
          'close_mappings': ['wikidata:Q10585806'],
-         'domain_of': ['Quantitative Range'],
+         'domain_of': ['QuantitativeRange'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Min']} })
     max: float = Field(default=..., description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'aliases': ['data maximum'],
          'close_mappings': ['wikidata:Q10578722', 'STATO:0000666', 'STATO:0000151'],
-         'domain_of': ['Quantitative Range'],
+         'domain_of': ['QuantitativeRange'],
          'is_a': 'value',
          'see_also': ['http://linked.data.gov.au/def/datatype/Max']} })
     unit: float = Field(default=..., description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'aliases': ['unit of measure'],
-         'domain_of': ['Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'see_also': ['http://linked.data.gov.au/def/datatype/Unit'],
          'slot_uri': 'qudt:PERCENT'} })
     uncertainty: Optional[float] = Field(default=None, description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'aliases': ['data uncertainty'],
          'close_mappings': ['wikidata:Q1403517'],
-         'domain_of': ['Count', 'Quantitative Measure', 'Quantitative Range'],
+         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'value',
          'narrow_mappings': ['OBCS:0000340'],
          'see_also': ['http://linked.data.gov.au/def/datatype/Uncertainty']} })

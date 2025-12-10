@@ -19,7 +19,7 @@ contributors:
   - https://orcid.org/0000-0002-3884-3420
   - https://ror.org/03qn8fb07
   - https://www.csiro.au
-created_on: "2019-03-25"
+created_on: "2019-03-25T00:00:00Z"
 license: http://creativecommons.org/publicdomain/zero/1.0/
 
 # Version should be kept in sync with primary Git repository release tag
@@ -172,7 +172,7 @@ classes:
     see_also:
       - http://linked.data.gov.au/def/datatype/Count
 
-  Quantitative Measure:
+  QuantitativeMeasure:
     description: Class to encapsulate a quantitative measure value
     slots:
       - value
@@ -191,7 +191,7 @@ classes:
     see_also:
       - http://linked.data.gov.au/def/datatype/QuantitativeMeasure
 
-  Quantitative Range:
+  QuantitativeRange:
     description: Class to encapsulate a quantitative range
     slots:
       - min
@@ -215,7 +215,7 @@ classes:
   Percent:
     description: >-
       Class to encapsulate a quantitative measure expressed as a percent value
-    is_a: Quantitative Measure
+    is_a: QuantitativeMeasure
     slot_usage:
       unit:
         slot_uri: qudt:PERCENT
@@ -229,10 +229,10 @@ classes:
     see_also:
       - http://linked.data.gov.au/def/datatype/Percent
 
-  Percent Range:
+  PercentRange:
     description: >-
       Class to encapsulate a quantitative range expressed as in percent values
-    is_a: Quantitative Range
+    is_a: QuantitativeRange
     slot_usage:
       unit:
         slot_uri: qudt:PERCENT

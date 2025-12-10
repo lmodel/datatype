@@ -23,85 +23,78 @@ data:Concept a sh:NodeShape ;
     sh:closed true ;
     sh:description "Class to encapsulate a classifier, usually a values from a controlled vocabulary" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:anyURI ;
-            sh:description "controlled vocabulary, taxonomy etc" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path data:vocabulary ],
-        [ sh:datatype skos:Concept ;
-            sh:description "simple value (a literal)" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path data:value ] ;
-    sh:targetClass data:Concept .
-
-data:Count a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "Class to encapsulate an integer value" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype skos:Concept ;
             sh:description "simple value (a literal)" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path data:value ],
-        [ sh:datatype xsd:decimal ;
-            sh:description "Uncertainty for a quantitative value" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path data:uncertainty ] ;
-    sh:targetClass data:Count .
-
-data:Percent a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "Class to encapsulate a quantitative measure expressed as a percent value" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype UO:0000187 ;
-            sh:description "Measurement scale" ;
+        [ sh:datatype xsd:anyURI ;
+            sh:description "controlled vocabulary, taxonomy etc" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path qudt:PERCENT ],
-        [ sh:datatype xsd:decimal ;
+            sh:path data:vocabulary ] ;
+    sh:targetClass data:Concept .
+
+data:Count a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Class to encapsulate an integer value" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:decimal ;
             sh:description "Uncertainty for a quantitative value" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
+            sh:order 1 ;
             sh:path data:uncertainty ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path data:standard ],
-        [ sh:datatype xsd:decimal ;
+        [ sh:datatype xsd:integer ;
             sh:description "simple value (a literal)" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path data:value ] ;
+    sh:targetClass data:Count .
+
+data:Percent a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Class to encapsulate a quantitative measure expressed as a percent value" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:description "Uncertainty for a quantitative value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path data:uncertainty ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "simple value (a literal)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path data:value ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path data:standard ],
+        [ sh:datatype UO:0000187 ;
+            sh:description "Measurement scale" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path qudt:PERCENT ] ;
     sh:targetClass data:Percent .
 
 data:PercentRange a sh:NodeShape ;
     sh:closed true ;
     sh:description "Class to encapsulate a quantitative range expressed as in percent values" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype UO:0000187 ;
-            sh:description "Measurement scale" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path qudt:PERCENT ],
-        [ sh:datatype xsd:decimal ;
+    sh:property [ sh:datatype xsd:decimal ;
             sh:description "Minimum value of range" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -109,37 +102,44 @@ data:PercentRange a sh:NodeShape ;
             sh:order 0 ;
             sh:path data:min ],
         [ sh:datatype xsd:decimal ;
-            sh:description "Uncertainty for a quantitative value" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path data:uncertainty ],
-        [ sh:datatype xsd:decimal ;
             sh:description "Maximum value of a range" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
-            sh:path data:max ] ;
+            sh:path data:max ],
+        [ sh:datatype UO:0000187 ;
+            sh:description "Measurement scale" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path qudt:PERCENT ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "Uncertainty for a quantitative value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path data:uncertainty ] ;
     sh:targetClass data:PercentRange .
 
 data:QuantitativeMeasure a sh:NodeShape ;
     sh:closed true ;
     sh:description "Class to encapsulate a quantitative measure value" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype UO:0000000 ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:description "Uncertainty for a quantitative value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path data:uncertainty ],
+        [ sh:datatype UO:0000000 ;
             sh:description "Measurement scale" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path data:unit ],
-        [ sh:datatype xsd:decimal ;
-            sh:description "Uncertainty for a quantitative value" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path data:uncertainty ],
         [ sh:datatype xsd:decimal ;
             sh:description "simple value (a literal)" ;
             sh:maxCount 1 ;

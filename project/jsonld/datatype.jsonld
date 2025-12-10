@@ -12,7 +12,7 @@
     "https://ror.org/03qn8fb07",
     "https://www.csiro.au"
   ],
-  "created_on": "2019-03-25T00:00:00",
+  "created_on": "2019-03-25T00:00:00+00:00",
   "id": "https://w3id.org/lmodel/datatype",
   "version": "1.0",
   "imports": [
@@ -796,7 +796,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Quantitative_Measure_unit",
+      "name": "QuantitativeMeasure_unit",
       "definition_uri": "http://linked.data.gov.au/def/datatype/unit",
       "description": "Measurement scale",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -821,7 +821,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Quantitative_Measure_value",
+      "name": "QuantitativeMeasure_value",
       "definition_uri": "http://linked.data.gov.au/def/datatype/value",
       "description": "simple value (a literal)",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -850,7 +850,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Quantitative_Range_unit",
+      "name": "QuantitativeRange_unit",
       "definition_uri": "http://linked.data.gov.au/def/datatype/unit",
       "description": "Measurement scale",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -875,7 +875,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Quantitative_Range_min",
+      "name": "QuantitativeRange_min",
       "definition_uri": "http://linked.data.gov.au/def/datatype/min",
       "description": "Minimum value of range",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -903,7 +903,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Quantitative_Range_max",
+      "name": "QuantitativeRange_max",
       "definition_uri": "http://linked.data.gov.au/def/datatype/max",
       "description": "Maximum value of a range",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -949,7 +949,7 @@
       "broad_mappings": [
         "https://www.wikidata.org/wiki/Q1196827"
       ],
-      "is_a": "Quantitative_Measure_unit",
+      "is_a": "QuantitativeMeasure_unit",
       "domain": "Percent",
       "slot_uri": "http://qudt.org/schema/qudt/PERCENT",
       "alias": "unit",
@@ -964,7 +964,7 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Percent_Range_unit",
+      "name": "PercentRange_unit",
       "definition_uri": "http://linked.data.gov.au/def/datatype/unit",
       "description": "Measurement scale",
       "from_schema": "https://w3id.org/lmodel/datatype",
@@ -977,7 +977,7 @@
       "mappings": [
         "http://qudt.org/schema/qudt/PERCENT"
       ],
-      "is_a": "Quantitative_Range_unit",
+      "is_a": "QuantitativeRange_unit",
       "domain": "PercentRange",
       "slot_uri": "http://qudt.org/schema/qudt/PERCENT",
       "alias": "unit",
@@ -1091,8 +1091,8 @@
         "wikidata:Q309314"
       ],
       "slots": [
-        "Quantitative_Measure_value",
-        "Quantitative_Measure_unit",
+        "QuantitativeMeasure_value",
+        "QuantitativeMeasure_unit",
         "uncertainty",
         "standard"
       ],
@@ -1112,9 +1112,9 @@
         "wikidata:Q1165839"
       ],
       "slots": [
-        "Quantitative_Range_min",
-        "Quantitative_Range_max",
-        "Quantitative_Range_unit",
+        "QuantitativeRange_min",
+        "QuantitativeRange_max",
+        "QuantitativeRange_unit",
         "uncertainty"
       ],
       "slot_usage": {},
@@ -1136,7 +1136,7 @@
       ],
       "is_a": "QuantitativeMeasure",
       "slots": [
-        "Quantitative_Measure_value",
+        "QuantitativeMeasure_value",
         "uncertainty",
         "standard",
         "Percent_unit"
@@ -1155,10 +1155,10 @@
       ],
       "is_a": "QuantitativeRange",
       "slots": [
-        "Quantitative_Range_min",
-        "Quantitative_Range_max",
+        "QuantitativeRange_min",
+        "QuantitativeRange_max",
         "uncertainty",
-        "Percent_Range_unit"
+        "PercentRange_unit"
       ],
       "slot_usage": {},
       "class_uri": "http://linked.data.gov.au/def/datatype/PercentRange",
@@ -1167,9 +1167,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "datatype.yaml",
-  "source_file_date": "2025-12-10T20:45:22",
-  "source_file_size": 8283,
-  "generation_date": "2025-12-10T20:45:45",
+  "source_file_date": "2025-12-10T20:57:28",
+  "source_file_size": 8288,
+  "generation_date": "2025-12-10T20:57:44",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/datatype.context.jsonld",
