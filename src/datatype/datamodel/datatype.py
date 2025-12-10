@@ -1,5 +1,5 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-10T21:03:33
+# Generation date: 2025-12-10T22:56:26
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype

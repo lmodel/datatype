@@ -141,6 +141,7 @@ linkml_meta = LinkMLMeta({'comments': ['This LinkML schema is based on AGLDWG Da
      'see_also': ['https://github.com/AGLDWG/datatype-ont'],
      'source': 'http://linked.data.gov.au/def/datatype',
      'source_file': 'src/datatype/schema/datatype.yaml',
+     'status': 'xx',
      'title': 'AGLDWG Datatype Ontology (LinkML rendering)',
      'types': {'concept value': {'base': 'str',
                                  'description': 'Idea or notion; a unit of thought',

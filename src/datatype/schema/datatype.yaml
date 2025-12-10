@@ -12,13 +12,13 @@ description: |-
   result (sosa:hasResult) in the context of the TERN-plot ontology. However,
   objects from these classes may appear in many contexts.
 source: http://linked.data.gov.au/def/datatype
+status: xx
 comments:
   - This LinkML schema is based on AGLDWG Datatype ontology and auto-generated
     OWL artifact may not capture all details of original ontology.
 see_also:
   - https://github.com/AGLDWG/datatype-ont
 in_language: EN
-publisher: https://ror.org/03qn8fb07
 contributors:
   - https://orcid.org/0000-0002-3884-3420
   - https://ror.org/03qn8fb07
@@ -53,11 +53,6 @@ default_range: string
 
 imports:
   - linkml:types
-  - linkml:mappings
-  - linkml:extensions
-  - linkml:annotations
-#  - linkml:validation
-  - linkml:units
 
 # simple scalar types
 types:
