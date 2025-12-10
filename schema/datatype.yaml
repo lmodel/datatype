@@ -27,6 +27,7 @@ contributors:
 - https://ror.org/03qn8fb07
 - https://www.csiro.au
 created_on: '2019-03-25T00:00:00+00:00'
+status: xx
 id: https://w3id.org/lmodel/datatype
 version: '1.0'
 imports:
@@ -1003,7 +1004,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-10T21:04:30'
-source_file_size: 8444
-generation_date: '2025-12-10T21:04:39'
+source_file_date: '2025-12-10T22:57:26'
+source_file_size: 8455
+generation_date: '2025-12-10T22:57:34'
 
