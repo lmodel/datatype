@@ -78,12 +78,25 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'comments': ['This LinkML schema is based on AGLDWG Datatype ontology and '
+linkml_meta = LinkMLMeta({'annotations': {'creator_affiliation_organization_identifier': {'tag': 'creator_affiliation_organization_identifier',
+                                                                     'value': 'http://catalogue.linked.data.gov.au/def/csiro'},
+                     'creator_affiliation_organization_mainEntityOfPage': {'tag': 'creator_affiliation_organization_mainEntityOfPage',
+                                                                           'value': 'https://www.csiro.au'},
+                     'creator_affiliationorganization_name': {'tag': 'creator_affiliationorganization_name',
+                                                              'value': 'CSIRO'},
+                     'creator_person_email': {'tag': 'creator_person_email',
+                                              'value': 'simon.cox@csiro.au'},
+                     'creator_person_identifier': {'tag': 'creator_person_identifier',
+                                                   'value': 'https://orcid.org/0000-0002-3884-3420'},
+                     'creator_person_mainEntityOfPage': {'tag': 'creator_person_mainEntityOfPage',
+                                                         'value': 'https://people.csiro.au/C/S/simon-cox'},
+                     'creator_person_name': {'tag': 'creator_person_name',
+                                             'value': 'Simon J.D.Cox'}},
+     'comments': ['This LinkML schema is based on AGLDWG Datatype ontology and '
                   'auto-generated OWL artifact may not capture all details of '
                   'original ontology.'],
      'contributors': ['https://orcid.org/0000-0002-3884-3420',
-                      'https://ror.org/03qn8fb07',
-                      'https://www.csiro.au'],
+                      'https://ror.org/03qn8fb07'],
      'created_on': '2019-03-25T00:00:00+00:00',
      'default_prefix': 'data',
      'default_range': 'string',

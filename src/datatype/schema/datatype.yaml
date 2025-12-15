@@ -25,13 +25,10 @@ contributors:
 created_on: "2019-03-25T00:00:00Z"
 license: http://creativecommons.org/publicdomain/zero/1.0/
 annotations:
-  creator_affiliation_organization_identifiers:
-    - http://catalogue.linked.data.gov.au/def/csiro
-    - https://ror.org/03qn8fb07
+  creator_affiliation_organization_identifier: http://catalogue.linked.data.gov.au/def/csiro
   creator_affiliation_organization_mainEntityOfPage: https://www.csiro.au
   creator_affiliationorganization_name: "CSIRO"
-  creator_person_identifiers:
-    - https://orcid.org/0000-0002-3884-3420
+  creator_person_identifier: https://orcid.org/0000-0002-3884-3420
   creator_person_name: "Simon J.D.Cox"
   creator_person_email: "simon.cox@csiro.au"
   creator_person_mainEntityOfPage: https://people.csiro.au/C/S/simon-cox
