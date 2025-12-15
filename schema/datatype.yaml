@@ -1,4 +1,26 @@
 name: datatype
+annotations:
+  creator_affiliation_organization_identifier:
+    tag: creator_affiliation_organization_identifier
+    value: http://catalogue.linked.data.gov.au/def/csiro
+  creator_affiliation_organization_mainEntityOfPage:
+    tag: creator_affiliation_organization_mainEntityOfPage
+    value: https://www.csiro.au
+  creator_affiliationorganization_name:
+    tag: creator_affiliationorganization_name
+    value: CSIRO
+  creator_person_identifier:
+    tag: creator_person_identifier
+    value: https://orcid.org/0000-0002-3884-3420
+  creator_person_name:
+    tag: creator_person_name
+    value: Simon J.D.Cox
+  creator_person_email:
+    tag: creator_person_email
+    value: simon.cox@csiro.au
+  creator_person_mainEntityOfPage:
+    tag: creator_person_mainEntityOfPage
+    value: https://people.csiro.au/C/S/simon-cox
 description: 'LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
 
 
@@ -25,7 +47,6 @@ see_also:
 contributors:
 - https://orcid.org/0000-0002-3884-3420
 - https://ror.org/03qn8fb07
-- https://www.csiro.au
 created_on: '2019-03-25T00:00:00+00:00'
 status: bibo:status/published
 id: https://w3id.org/lmodel/datatype
@@ -1007,7 +1028,7 @@ classes:
     class_uri: data:PercentRange
 metamodel_version: 1.7.0
 source_file: datatype.yaml
-source_file_date: '2025-12-10T23:08:19'
-source_file_size: 8513
-generation_date: '2025-12-10T23:08:29'
+source_file_date: '2025-12-15T23:14:13'
+source_file_size: 8940
+generation_date: '2025-12-15T23:14:24'
 

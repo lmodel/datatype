@@ -2,178 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://lmodel.github.io/datatype/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/about/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Boolean/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Concept/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/ConceptValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Count/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Curie/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/DataValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Date/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/DateOrDatetime/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Datetime/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Decimal/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/DecimalValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Double/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Float/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Integer/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/IntegerValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Jsonpath/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Jsonpointer/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Ncname/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Nodeidentifier/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Objectidentifier/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Percent/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/PercentRange/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/PercentValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/QuantitativeMeasure/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/QuantitativeRange/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Sparqlpath/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/String/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/StringValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Text/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Time/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/UnitValue/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Uri/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/Uriorcurie/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/datatype/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/max/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/min/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/standard/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/uncertainty/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/unit/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/value/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
     <url>
          <loc>https://lmodel.github.io/datatype/elements/vocabulary/</loc>
-         <lastmod>2025-12-10</lastmod>
+         <lastmod>2025-12-15</lastmod>
     </url>
 </urlset>
