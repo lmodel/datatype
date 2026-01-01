@@ -1,0 +1,1034 @@
+name: datatype
+annotations:
+  creator_affiliation_organization_identifier:
+    tag: creator_affiliation_organization_identifier
+    value: http://catalogue.linked.data.gov.au/def/csiro
+  creator_affiliation_organization_mainEntityOfPage:
+    tag: creator_affiliation_organization_mainEntityOfPage
+    value: https://www.csiro.au
+  creator_affiliationorganization_name:
+    tag: creator_affiliationorganization_name
+    value: CSIRO
+  creator_person_identifier:
+    tag: creator_person_identifier
+    value: https://orcid.org/0000-0002-3884-3420
+  creator_person_name:
+    tag: creator_person_name
+    value: Simon J.D.Cox
+  creator_person_email:
+    tag: creator_person_email
+    value: simon.cox@csiro.au
+  creator_person_mainEntityOfPage:
+    tag: creator_person_mainEntityOfPage
+    value: https://people.csiro.au/C/S/simon-cox
+description: 'LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
+
+
+  A set of classes representing data-types. These may be used for observation
+
+  results, or for the range of specific properties in other applications where
+
+  scaled numbers, ranges, percents, etc, are required.
+
+
+  History Note: Originally developed for use as the value of an observation
+
+  result (sosa:hasResult) in the context of the TERN-plot ontology. However,
+
+  objects from these classes may appear in many contexts.'
+title: AGLDWG Datatype Ontology (LinkML rendering)
+comments:
+- This LinkML schema is based on AGLDWG Datatype ontology and auto-generated OWL artifact
+  may not capture all details of original ontology.
+source: http://linked.data.gov.au/def/datatype
+in_language: EN
+see_also:
+- https://github.com/AGLDWG/datatype-ont
+contributors:
+- https://orcid.org/0000-0002-3884-3420
+- https://ror.org/03qn8fb07
+created_on: '2019-03-25T00:00:00+00:00'
+status: bibo:status/published
+id: https://w3id.org/lmodel/datatype
+version: '1.0'
+imports:
+- linkml:types
+license: http://creativecommons.org/publicdomain/zero/1.0/
+prefixes:
+  bibo:
+    prefix_prefix: bibo
+    prefix_reference: http://purl.org/ontology/bibo/
+  data:
+    prefix_prefix: data
+    prefix_reference: http://linked.data.gov.au/def/datatype/
+  dct:
+    prefix_prefix: dct
+    prefix_reference: http://purl.org/dc/terms/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  NCIT:
+    prefix_prefix: NCIT
+    prefix_reference: http://purl.obolibrary.org/obo/NCIT_
+  OBCS:
+    prefix_prefix: OBCS
+    prefix_reference: http://purl.obolibrary.org/obo/OBCS_
+  owl:
+    prefix_prefix: owl
+    prefix_reference: http://www.w3.org/2002/07/owl#
+  prov:
+    prefix_prefix: prov
+    prefix_reference: http://www.w3.org/ns/prov#
+  qudt:
+    prefix_prefix: qudt
+    prefix_reference: http://qudt.org/schema/qudt/
+  rdf:
+    prefix_prefix: rdf
+    prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs:
+    prefix_prefix: rdfs
+    prefix_reference: http://www.w3.org/2000/01/rdf-schema#
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  skos:
+    prefix_prefix: skos
+    prefix_reference: http://www.w3.org/2004/02/skos/core#
+  STATO:
+    prefix_prefix: STATO
+    prefix_reference: http://purl.obolibrary.org/obo/STATO_
+  UO:
+    prefix_prefix: UO
+    prefix_reference: http://purl.obolibrary.org/obo/UO_
+  wikidata:
+    prefix_prefix: wikidata
+    prefix_reference: https://www.wikidata.org/wiki/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+default_prefix: data
+default_range: string
+types:
+  decimal value:
+    name: decimal value
+    definition_uri: http://linked.data.gov.au/def/datatype/DecimalValue
+    description: Generic decimal value used for quantitative measures
+    from_schema: https://w3id.org/lmodel/datatype
+    base: float
+    uri: xsd:decimal
+  integer value:
+    name: integer value
+    definition_uri: http://linked.data.gov.au/def/datatype/IntegerValue
+    description: Integer count value
+    from_schema: https://w3id.org/lmodel/datatype
+    base: int
+    uri: xsd:integer
+  string value:
+    name: string value
+    definition_uri: http://linked.data.gov.au/def/datatype/StringValue
+    description: Generic string value
+    from_schema: https://w3id.org/lmodel/datatype
+    base: str
+    uri: xsd:string
+  percent value:
+    name: percent value
+    definition_uri: http://linked.data.gov.au/def/datatype/PercentValue
+    description: Percentage value
+    from_schema: https://w3id.org/lmodel/datatype
+    typeof: double
+    base: float
+    uri: UO:0000187
+  concept value:
+    name: concept value
+    definition_uri: http://linked.data.gov.au/def/datatype/ConceptValue
+    description: Idea or notion; a unit of thought
+    from_schema: https://w3id.org/lmodel/datatype
+    typeof: string value
+    base: str
+    uri: skos:Concept
+  data value:
+    name: data value
+    definition_uri: http://linked.data.gov.au/def/datatype/DataValue
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    typeof: string value
+    base: str
+    uri: xsd:nonNegativeInteger
+  unit value:
+    name: unit value
+    id_prefixes:
+    - UO
+    definition_uri: http://linked.data.gov.au/def/datatype/UnitValue
+    description: Unit of measure value
+    from_schema: https://w3id.org/lmodel/datatype
+    exact_mappings:
+    - qudt:Unit
+    typeof: string value
+    base: str
+    uri: UO:0000000
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
+      referenced with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+slots:
+  value:
+    name: value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    slot_uri: data:value
+    owner: QuantitativeMeasure
+    domain_of:
+    - Text
+    - Boolean
+    - Concept
+    - Count
+    - QuantitativeMeasure
+    range: data value
+  min:
+    name: min
+    definition_uri: http://linked.data.gov.au/def/datatype/min
+    description: Minimum value of range
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Min
+    aliases:
+    - data minimum
+    close_mappings:
+    - wikidata:Q10585806
+    is_a: value
+    slot_uri: data:min
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: decimal value
+  max:
+    name: max
+    definition_uri: http://linked.data.gov.au/def/datatype/max
+    description: Maximum value of a range
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Max
+    aliases:
+    - data maximum
+    close_mappings:
+    - wikidata:Q10578722
+    - STATO:0000666
+    - STATO:0000151
+    is_a: value
+    slot_uri: data:max
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: decimal value
+  uncertainty:
+    name: uncertainty
+    definition_uri: http://linked.data.gov.au/def/datatype/uncertainty
+    description: Uncertainty for a quantitative value
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Uncertainty
+    aliases:
+    - data uncertainty
+    close_mappings:
+    - wikidata:Q1403517
+    narrow_mappings:
+    - OBCS:0000340
+    is_a: value
+    slot_uri: data:uncertainty
+    owner: QuantitativeRange
+    domain_of:
+    - Count
+    - QuantitativeMeasure
+    - QuantitativeRange
+    range: decimal value
+    multivalued: false
+  standard:
+    name: standard
+    definition_uri: http://linked.data.gov.au/def/datatype/standard
+    description: Measurement standard, scale, uom, reference system, controlled vocabulary,
+      taxonomy etc
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Standard
+    aliases:
+    - data standard
+    exact_mappings:
+    - NCIT:C14298
+    - wikidata:Q1271511
+    slot_uri: data:standard
+    owner: QuantitativeMeasure
+    domain_of:
+    - QuantitativeMeasure
+    range: uriorcurie
+  unit:
+    name: unit
+    definition_uri: http://linked.data.gov.au/def/datatype/unit
+    description: Measurement scale
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Unit
+    aliases:
+    - unit of measure
+    is_a: standard
+    slot_uri: data:unit
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeMeasure
+    - QuantitativeRange
+    range: unit value
+  vocabulary:
+    name: vocabulary
+    definition_uri: http://linked.data.gov.au/def/datatype/vocabulary
+    description: controlled vocabulary, taxonomy etc
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Vocabulary
+    exact_mappings:
+    - skos:Concept
+    broad_mappings:
+    - skos:ConceptScheme
+    - skos:Collection
+    - owl:Ontology
+    is_a: standard
+    slot_uri: data:vocabulary
+    owner: Concept
+    domain_of:
+    - Concept
+    range: uriorcurie
+  Text_value:
+    name: Text_value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    mappings:
+    - xsd:string
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    is_a: value
+    domain: Text
+    slot_uri: xsd:string
+    alias: value
+    owner: Text
+    domain_of:
+    - Text
+    is_usage_slot: true
+    usage_slot_name: value
+    range: string value
+    required: true
+  Boolean_value:
+    name: Boolean_value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    mappings:
+    - xsd:boolean
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    is_a: value
+    domain: Boolean
+    slot_uri: xsd:boolean
+    alias: value
+    owner: Boolean
+    domain_of:
+    - Boolean
+    is_usage_slot: true
+    usage_slot_name: value
+    range: boolean
+    required: true
+  Concept_value:
+    name: Concept_value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    is_a: value
+    domain: Concept
+    slot_uri: data:value
+    alias: value
+    owner: Concept
+    domain_of:
+    - Concept
+    is_usage_slot: true
+    usage_slot_name: value
+    range: concept value
+    required: true
+  Concept_vocabulary:
+    name: Concept_vocabulary
+    definition_uri: http://linked.data.gov.au/def/datatype/vocabulary
+    description: controlled vocabulary, taxonomy etc
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Vocabulary
+    exact_mappings:
+    - skos:Concept
+    broad_mappings:
+    - skos:ConceptScheme
+    - skos:Collection
+    - owl:Ontology
+    is_a: vocabulary
+    domain: Concept
+    slot_uri: data:vocabulary
+    alias: vocabulary
+    owner: Concept
+    domain_of:
+    - Concept
+    is_usage_slot: true
+    usage_slot_name: vocabulary
+    range: uriorcurie
+    required: true
+  Count_value:
+    name: Count_value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    is_a: value
+    domain: Count
+    slot_uri: data:value
+    alias: value
+    owner: Count
+    domain_of:
+    - Count
+    is_usage_slot: true
+    usage_slot_name: value
+    range: integer value
+    required: true
+  QuantitativeMeasure_unit:
+    name: QuantitativeMeasure_unit
+    definition_uri: http://linked.data.gov.au/def/datatype/unit
+    description: Measurement scale
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Unit
+    aliases:
+    - unit of measure
+    is_a: unit
+    domain: QuantitativeMeasure
+    slot_uri: data:unit
+    alias: unit
+    owner: QuantitativeMeasure
+    domain_of:
+    - QuantitativeMeasure
+    is_usage_slot: true
+    usage_slot_name: unit
+    range: unit value
+    required: true
+  QuantitativeMeasure_value:
+    name: QuantitativeMeasure_value
+    definition_uri: http://linked.data.gov.au/def/datatype/value
+    description: simple value (a literal)
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Value
+    exact_mappings:
+    - schema:Value
+    narrow_mappings:
+    - NCIT:C25712
+    - prov:Value
+    is_a: value
+    domain: QuantitativeMeasure
+    slot_uri: data:value
+    alias: value
+    owner: QuantitativeMeasure
+    domain_of:
+    - QuantitativeMeasure
+    is_usage_slot: true
+    usage_slot_name: value
+    range: decimal value
+    required: true
+  QuantitativeRange_unit:
+    name: QuantitativeRange_unit
+    definition_uri: http://linked.data.gov.au/def/datatype/unit
+    description: Measurement scale
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Unit
+    aliases:
+    - unit of measure
+    is_a: unit
+    domain: QuantitativeRange
+    slot_uri: data:unit
+    alias: unit
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    is_usage_slot: true
+    usage_slot_name: unit
+    range: unit value
+    required: true
+  QuantitativeRange_min:
+    name: QuantitativeRange_min
+    definition_uri: http://linked.data.gov.au/def/datatype/min
+    description: Minimum value of range
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Min
+    aliases:
+    - data minimum
+    close_mappings:
+    - wikidata:Q10585806
+    is_a: min
+    domain: QuantitativeRange
+    slot_uri: data:min
+    alias: min
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    is_usage_slot: true
+    usage_slot_name: min
+    range: decimal value
+    required: true
+  QuantitativeRange_max:
+    name: QuantitativeRange_max
+    definition_uri: http://linked.data.gov.au/def/datatype/max
+    description: Maximum value of a range
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Max
+    aliases:
+    - data maximum
+    close_mappings:
+    - wikidata:Q10578722
+    - STATO:0000666
+    - STATO:0000151
+    is_a: max
+    domain: QuantitativeRange
+    slot_uri: data:max
+    alias: max
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    is_usage_slot: true
+    usage_slot_name: max
+    range: decimal value
+    required: true
+  Percent_unit:
+    name: Percent_unit
+    definition_uri: http://linked.data.gov.au/def/datatype/unit
+    description: Measurement scale
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Unit
+    aliases:
+    - unit of measure
+    mappings:
+    - qudt:PERCENT
+    broad_mappings:
+    - wikidata:Q1196827
+    is_a: QuantitativeMeasure_unit
+    domain: Percent
+    slot_uri: qudt:PERCENT
+    alias: unit
+    owner: Percent
+    domain_of:
+    - Percent
+    is_usage_slot: true
+    usage_slot_name: unit
+    range: percent value
+    required: true
+  PercentRange_unit:
+    name: PercentRange_unit
+    definition_uri: http://linked.data.gov.au/def/datatype/unit
+    description: Measurement scale
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Unit
+    aliases:
+    - unit of measure
+    mappings:
+    - qudt:PERCENT
+    is_a: QuantitativeRange_unit
+    domain: PercentRange
+    slot_uri: qudt:PERCENT
+    alias: unit
+    owner: PercentRange
+    domain_of:
+    - PercentRange
+    is_usage_slot: true
+    usage_slot_name: unit
+    range: percent value
+    required: true
+classes:
+  Text:
+    name: Text
+    definition_uri: http://linked.data.gov.au/def/datatype/Text
+    description: Class to encapsulate a textual value
+    from_schema: https://w3id.org/lmodel/datatype
+    exact_mappings:
+    - NCIT:C25704
+    - schema:Text
+    - wikidata:Q234460
+    - wikidata:Q1145976
+    slots:
+    - Text_value
+    slot_usage:
+      value:
+        name: value
+        slot_uri: xsd:string
+        range: string value
+        required: true
+    class_uri: data:Text
+  Boolean:
+    name: Boolean
+    definition_uri: http://linked.data.gov.au/def/datatype/Boolean
+    description: Class to encapsulate a true-or-false value
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Boolean
+    exact_mappings:
+    - NCIT:C45254
+    - wikidata:Q520777
+    close_mappings:
+    - wikidata:Q3269980
+    slots:
+    - Boolean_value
+    slot_usage:
+      value:
+        name: value
+        slot_uri: xsd:boolean
+        range: boolean
+        required: true
+    class_uri: data:Boolean
+  Concept:
+    name: Concept
+    definition_uri: http://linked.data.gov.au/def/datatype/Concept
+    description: Class to encapsulate a classifier, usually a values from a controlled
+      vocabulary
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Concept
+    exact_mappings:
+    - NCIT:C45728
+    - skos:Concept
+    - wikidata:Q151885
+    slots:
+    - Concept_value
+    - Concept_vocabulary
+    slot_usage:
+      value:
+        name: value
+        range: concept value
+        required: true
+      vocabulary:
+        name: vocabulary
+        required: true
+    class_uri: data:Concept
+  Count:
+    name: Count
+    definition_uri: http://linked.data.gov.au/def/datatype/Count
+    description: Class to encapsulate an integer value
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Count
+    exact_mappings:
+    - NCIT:Q1520033
+    - wikidata:Q1520033
+    related_mappings:
+    - NCIT:C25463
+    - wikidata:Q729138
+    slots:
+    - Count_value
+    - uncertainty
+    slot_usage:
+      value:
+        name: value
+        range: integer value
+        required: true
+    class_uri: data:Count
+  QuantitativeMeasure:
+    name: QuantitativeMeasure
+    definition_uri: http://linked.data.gov.au/def/datatype/QuantitativeMeasure
+    description: Class to encapsulate a quantitative measure value
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/QuantitativeMeasure
+    related_mappings:
+    - schema:QuantitativeValue
+    - wikidata:Q309314
+    slots:
+    - QuantitativeMeasure_value
+    - QuantitativeMeasure_unit
+    - uncertainty
+    - standard
+    slot_usage:
+      unit:
+        name: unit
+        required: true
+      value:
+        name: value
+        range: decimal value
+        required: true
+    class_uri: data:QuantitativeMeasure
+  QuantitativeRange:
+    name: QuantitativeRange
+    definition_uri: http://linked.data.gov.au/def/datatype/QuantitativeRange
+    description: Class to encapsulate a quantitative range
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/QuantitativeRange
+    related_mappings:
+    - wikidata:Q1165839
+    slots:
+    - QuantitativeRange_min
+    - QuantitativeRange_max
+    - QuantitativeRange_unit
+    - uncertainty
+    slot_usage:
+      unit:
+        name: unit
+        required: true
+      min:
+        name: min
+        range: decimal value
+        required: true
+      max:
+        name: max
+        range: decimal value
+        required: true
+    class_uri: data:QuantitativeRange
+  Percent:
+    name: Percent
+    definition_uri: http://linked.data.gov.au/def/datatype/Percent
+    description: Class to encapsulate a quantitative measure expressed as a percent
+      value
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/Percent
+    exact_mappings:
+    - NCIT:C48570
+    - UO:0000187
+    - wikidata:Q11229
+    is_a: QuantitativeMeasure
+    slots:
+    - QuantitativeMeasure_value
+    - uncertainty
+    - standard
+    - Percent_unit
+    slot_usage:
+      unit:
+        name: unit
+        broad_mappings:
+        - wikidata:Q1196827
+        slot_uri: qudt:PERCENT
+        range: percent value
+    class_uri: data:Percent
+  PercentRange:
+    name: PercentRange
+    definition_uri: http://linked.data.gov.au/def/datatype/PercentRange
+    description: Class to encapsulate a quantitative range expressed as in percent
+      values
+    from_schema: https://w3id.org/lmodel/datatype
+    see_also:
+    - http://linked.data.gov.au/def/datatype/PercentRange
+    is_a: QuantitativeRange
+    slots:
+    - QuantitativeRange_min
+    - QuantitativeRange_max
+    - uncertainty
+    - PercentRange_unit
+    slot_usage:
+      unit:
+        name: unit
+        slot_uri: qudt:PERCENT
+        range: percent value
+    class_uri: data:PercentRange
+metamodel_version: 1.7.0
+source_file: datatype.yaml
+source_file_date: '2026-01-01T16:23:57'
+source_file_size: 8940
+generation_date: '2026-01-01T16:24:05'
+
