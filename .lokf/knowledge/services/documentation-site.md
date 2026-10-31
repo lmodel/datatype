@@ -22,7 +22,14 @@ status: draft
 
 `website/` is an Astro Starlight site from the ktl-website template, for `https://lmodel.github.io/datatype`. `npm run build` syncs the README, the pages of `docs/`, the schema's element pages and the bundle into it, builds it and checks every link.[^website-readme]
 
-Its `REDIRECTS` keep the retired mkdocs site's addresses working. `/elements/` and each element page go to the schema pages, three types of the old schema's own go to the LinkML type that replaced them, four others go to the schema index, and `/about` goes to the docs' about page.[^site-config] The Knowledge website workflow publishes it.
+Its `REDIRECTS` keep the retired mkdocs site's addresses working:
+
+- `/elements/` and each element page go to the schema pages;
+- three types of the old schema's own go to the LinkML type that replaced them;
+- four others go to the schema index;
+- `/about` goes to the docs' about page.[^site-config]
+
+The Knowledge website workflow publishes it.
 
 [^site-config]: website/site.config.mjs, REPO, SITE, BASE, DOCS and REDIRECTS
 [^website-readme]: website/README.md, the build

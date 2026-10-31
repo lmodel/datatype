@@ -17,6 +17,6 @@ status: draft
 
 # Upstream watch (upstream-watch.yaml)
 
-`.github/workflows/upstream-watch.yaml` is the workflow named "Upstream watch". It runs every Monday at 07:00 UTC and by hand, since nothing in a pull request can change what it checks. Its one job, `datatype-copy`, reads the checkout and holds `issues: write`, within 10 minutes. It runs `scripts/check_upstream_release.py` on the runner's Python with the workflow's token, and on a finding `.github/scripts/report-issue.sh` opens the issue titled "Upstream watch: the Datatype Ontology has changed" or comments on the open one.[^upstream-watch.yaml]
+`.github/workflows/upstream-watch.yaml` is the workflow named "Upstream watch". It runs every Monday at 07:00 UTC and by hand, since nothing in a pull request can change what it checks. Its one job, `datatype-copy`, reads the checkout, holds `issues: write` and has 10 minutes to finish. It runs `scripts/check_upstream_release.py` on the runner's Python with the workflow's token, and on a finding `.github/scripts/report-issue.sh` opens the issue titled "Upstream watch: the Datatype Ontology has changed" or comments on the open one.[^upstream-watch.yaml]
 
 [^upstream-watch.yaml]: .github/workflows/upstream-watch.yaml, the header comment, the on key and the jobs

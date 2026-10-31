@@ -2,6 +2,7 @@
 
 ## 2026-10-31
 
+* **Prose**: reworded 12 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: Percent, which no longer names a bound on its value: the schema dropped the bound of 0 to 100, which the ontology does not state.
 * **Changed**: Percent range, which no longer names a bound on its min and max: the schema dropped the bound of 0 to 100, which the ontology does not state.
 * **Changed**: Quantitative Range, which now says the ontology does not state the rule that min is not above max.

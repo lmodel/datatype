@@ -17,7 +17,7 @@ status: draft
 
 # Scope, influences and mappings
 
-The schema renders one publication, the Datatype Ontology, at its edition of 2019-10-03, and its release asset and governance files follow lmodel/slsa.[^readme] It carries no mapping, because the ontology states no alignment to another vocabulary; its one link outward is that `value`, `min`, `max` and `uncertainty` are sub-properties of `rdf:value`.[^readme]
+The schema renders one publication, the Datatype Ontology, at its edition of 2019-10-03, and its release asset and governance files follow lmodel/slsa.[^readme] It carries no mapping, because the ontology states no alignment to another vocabulary. Its one link outward is that `value`, `min`, `max` and `uncertainty` are sub-properties of `rdf:value`.[^readme]
 
 It leaves out:
 

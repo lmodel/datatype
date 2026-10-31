@@ -23,10 +23,10 @@ status: draft
 
 # Cut a release
 
-1. Write `## [Unreleased]` in `CHANGELOG.md` as you go; the release job refuses an empty one.[^contributing]
+1. Write the `## [Unreleased]` section of `CHANGELOG.md` as you go. The release job refuses an empty one.[^contributing]
 2. Type each commit as Conventional Commits say. Only `feat:`, `fix:`, `security:` and a breaking change release, and `.releaserc.json` makes a breaking change a minor release below 1.0.0.[^releaserc]
 3. Before the first releasing merge, push the signed `v0.0.0` tag on `main`, so that the first release is 0.1.0.[^changelog]
-4. Merge the pull request. `semantic-release.yml` promotes the changelog section, tags `vX.Y.Z`, publishes the GitHub release, and dispatches Knowledge Release once `KNOWLEDGE_RELEASE_ENABLED` is `true`, which attaches the bundle and `schema-<tag>-datatype.yaml`.[^contributing]
+4. Merge the pull request. `semantic-release.yml` promotes the changelog section, tags `vX.Y.Z`, publishes the GitHub release, and dispatches Knowledge Release once `KNOWLEDGE_RELEASE_ENABLED` is `true`. Knowledge Release attaches the bundle and `schema-<tag>-datatype.yaml`.[^contributing]
 
 [^contributing]: CONTRIBUTING.md, Releasing (maintainers)
 [^releaserc]: .releaserc.json, the release rules

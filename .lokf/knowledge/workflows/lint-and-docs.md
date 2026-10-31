@@ -17,6 +17,11 @@ status: draft
 
 # Lint & docs (lint-and-docs.yaml)
 
-`.github/workflows/lint-and-docs.yaml` is the workflow named "Lint & docs". It runs on a push to `main`, on every pull request, every Monday at 06:00 UTC and by hand. Its four jobs run read-only, each within 15 minutes: `lint-scripts` runs ShellCheck, `lint-workflows` runs actionlint, `word-budgets` holds `CONTRIBUTING.md` to 1000 words and `SECURITY.md` to 900, and `validate-markdown` runs markdownlint, lychee and codespell over every tracked Markdown file.[^lint-and-docs.yaml]
+`.github/workflows/lint-and-docs.yaml` is the workflow named "Lint & docs". It runs on a push to `main`, on every pull request, every Monday at 06:00 UTC and by hand. Its four jobs run read-only, each within 15 minutes:
+
+- `lint-scripts` runs ShellCheck;
+- `lint-workflows` runs actionlint;
+- `word-budgets` holds `CONTRIBUTING.md` to 1000 words and `SECURITY.md` to 900;
+- `validate-markdown` runs markdownlint, lychee and codespell over every tracked Markdown file.[^lint-and-docs.yaml]
 
 [^lint-and-docs.yaml]: .github/workflows/lint-and-docs.yaml, the header comment, the on key and the jobs

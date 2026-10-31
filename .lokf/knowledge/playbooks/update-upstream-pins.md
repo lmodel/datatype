@@ -28,7 +28,7 @@ status: draft
 - `master` naming another commit, or the repository gaining a tag;
 - a copied file changed or gone at the head of `master`, or a copy that differs from its pins;
 - a licence other than CC-BY-4.0, or none;
-- the namespace redirecting somewhere else, or not at all;
+- the namespace redirecting somewhere else, or no longer redirecting;
 - a check that could not finish.
 
 To move to a new edition, replace `upstream/` from one commit, then move `PINNED_COMMIT`, `PINNED_BLOBS` and `PINNED_EDITION` in the script and the header's `version` and annotations together, since `tests/test_upstream.py` holds them equal.[^contributing] Then regenerate and test.

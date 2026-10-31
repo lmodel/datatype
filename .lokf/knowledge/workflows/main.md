@@ -17,6 +17,6 @@ status: draft
 
 # Build and test (main.yaml)
 
-`.github/workflows/main.yaml` is the workflow named "Build and test". It runs on a push to `main` and on every pull request, with `contents: read`. Its one job, `test`, runs on Python 3.10, 3.11, 3.12, 3.13 and 3.14, within 30 minutes. It installs just 1.47.0, installs with `uv sync --locked --group dev` and runs `just test`. On Python 3.13 it also runs `just lint`, and it syncs the sidecar's environment and runs `just lokf-adapt-check`.[^main.yaml]
+`.github/workflows/main.yaml` is the workflow named "Build and test". It runs on a push to `main` and on every pull request, with `contents: read`. Its one job, `test`, runs on Python 3.10, 3.11, 3.12, 3.13 and 3.14, within 30 minutes. It installs just 1.47.0, syncs the environment with `uv sync --locked --group dev` and runs `just test`. On Python 3.13 it also runs `just lint`, and it syncs the sidecar's environment and runs `just lokf-adapt-check`.[^main.yaml]
 
 [^main.yaml]: .github/workflows/main.yaml, the header comment, the on key and the jobs

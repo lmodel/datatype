@@ -17,6 +17,6 @@ status: draft
 
 # Knowledge website (knowledge-website.yaml)
 
-`.github/workflows/knowledge-website.yaml` is the workflow named "Knowledge website". It is a copy of the ktl-website template. It runs on a push or a pull request that touches `website/`, `.lokf/`, the README, `docs/`, the changelog, `llms.txt`, `.linkml/`, a justfile, a `pyproject.toml` or a `uv.lock`, every Monday at 05:23 UTC and by hand. Its `build` job, read-only, runs `npm ci --ignore-scripts` and `npm run build`, which syncs the pages, builds the site and checks every link. Its `deploy` job holds `pages: write` and `id-token: write` in the `github-pages` Environment, and runs only once the repository variable `KNOWLEDGE_WEBSITE_ENABLED` is `true`.[^knowledge-website.yaml]
+`.github/workflows/knowledge-website.yaml` is the workflow named "Knowledge website". It is a copy of the ktl-website template. It runs every Monday at 05:23 UTC and by hand. It also runs on a push or a pull request that touches `website/`, `.lokf/`, the README, `docs/`, the changelog, `llms.txt`, `.linkml/`, a justfile, a `pyproject.toml` or a `uv.lock`. Its `build` job, read-only, runs `npm ci --ignore-scripts` and `npm run build`, which syncs the pages, builds the site and checks every link. Its `deploy` job holds `pages: write` and `id-token: write` in the `github-pages` Environment, and runs only once the repository variable `KNOWLEDGE_WEBSITE_ENABLED` is `true`.[^knowledge-website.yaml]
 
 [^knowledge-website.yaml]: .github/workflows/knowledge-website.yaml, the header comment, the on key and the jobs
