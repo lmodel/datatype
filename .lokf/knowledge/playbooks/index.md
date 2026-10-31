@@ -1,0 +1,7 @@
+# Playbooks
+
+* [Regenerate and test](regenerate-and-test.md) - The steps after a schema edit: `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt`, then `just test`, committing the regenerated files and `.lokf/datatype.yaml` with the change.
+* [Cut a release](release.md) - How a release is made: Conventional Commits on `main`, an `## [Unreleased]` changelog section, the `v0.0.0` baseline tag that keeps the first release at 0.1.0, and `semantic-release.yml`, which tags the release and dispatches Knowledge Release to attach `schema-<tag>-datatype.yaml` once `KNOWLEDGE_RELEASE_ENABLED` is true.
+* [Update the upstream pins](update-upstream-pins.md) - What to do when the upstream watch opens an issue: a new commit or tag on AGLDWG/datatype-ont, a changed or dropped file, a changed licence, a namespace that redirects elsewhere, or a check that could not finish; and how to move the copy, the pins and the schema header together.
+* [Validate data](validate-data.md) - How to check a file of datatype values: `linkml-validate -s src/datatype/schema/datatype.yaml -C <Class>`, before loading it into the generated dataclasses or Pydantic models, which check less; and the rule no validator checks.
+* [Knowledge sources map](knowledge-sources.md) - The librarian's scrape map: every repository location and external page this bundle derives concepts from, the concepts each yields, how to re-check each on a refresh run, and the paths left out on purpose.
