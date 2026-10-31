@@ -445,3 +445,33 @@ def test_a_head_that_is_no_hash_goes_in_no_url(watch, tmp_path):
     assert "**The copy check could not finish: `" in text
     assert "**The statements check could not finish: `" in text
     assert not [url for url in asked if "../x" in url]
+
+
+def test_a_broken_copy_is_reported(watch, tmp_path, monkeypatch):
+    """A copied file that is missing, edited or not pinned, and a pinned
+    commit whose file is not the pinned blob, are each reported."""
+    copy = tmp_path / "upstream"
+    (copy / "rdf").mkdir(parents=True)
+    (copy / "rdf" / "datatype.ttl").write_bytes(TURTLE + b"# edited\n")
+    (copy / "rdf" / "extra.ttl").write_text("", encoding="utf-8")
+    monkeypatch.setattr(watch, "COPY", copy)
+    answers = _answers(watch)
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "0 of 2 copied files match the pinned commit" in text
+    assert "**3 problem(s) with the copy:**" in text
+    assert "  - `LICENSE` is missing from the copy" in text
+    assert "  - `rdf/datatype.ttl` differs from its file at `dd8f24120cd5`" in text
+    assert "  - `rdf/extra.ttl` is in the copy but not pinned" in text
+
+    tree = answers[f"{watch.API}/git/trees/{watch.PINNED_COMMIT}?recursive=1"]
+    for entry in tree["tree"]:
+        if entry["path"] == "rdf/datatype.ttl":
+            entry["sha"] = "7" * 40
+    watch._tree.cache_clear()
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        "  - `rdf/datatype.ttl` at commit `dd8f24120cd5` is not the pinned blob"
+    ) in text
