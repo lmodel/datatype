@@ -210,9 +210,14 @@ def test_ranges_and_super_properties_are_the_ontologys():
 
 def _restrictions(cls: URIRef) -> dict[str, dict]:
     """Every restriction on a class and its named superclasses, by property:
-    its cardinality, maximum cardinality, allValuesFrom and hasValue."""
+    its cardinality, maximum cardinality, allValuesFrom and hasValue. The
+    class's own restrictions are read before its superclasses', so one it
+    restates wins."""
     found: dict[str, dict] = {}
-    for parent in graph().objects(cls, RDFS.subClassOf):
+    parents = sorted(
+        graph().objects(cls, RDFS.subClassOf), key=lambda p: not isinstance(p, BNode)
+    )
+    for parent in parents:
         if isinstance(parent, BNode):
             prop = str(graph().value(parent, OWL.onProperty))
             for key, predicate in (
@@ -258,7 +263,8 @@ def test_superclasses_are_the_ontologys():
 def test_restrictions_give_the_slots_of_the_class(name):
     """A class's slots are the properties its restrictions name. Exactly one
     is required and single, at most one is single, allValuesFrom is the
-    range, and hasValue the one value a pattern allows."""
+    range, and hasValue the one value a pattern allows. No other slot
+    carries a pattern."""
     cls = URIRef(_iri(view().get_class(name).class_uri))
     restrictions = _restrictions(cls)
     slots = {
@@ -279,6 +285,8 @@ def test_restrictions_give_the_slots_of_the_class(name):
             assert slot.range == _owl_range(facts["only"]), slot.name
         if "value" in facts:
             assert slot.pattern == f"^{re.escape(str(facts['value']))}$", slot.name
+        else:
+            assert slot.pattern is None, slot.name
 
 
 # --------------------------------------------------------------------------
