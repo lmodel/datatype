@@ -47,8 +47,10 @@ taken from, is reported for information only.
 Text a server chose, such as a tag name, a redirect target, a date the
 Turtle file states or an error message, is quoted as code on one line in
 the report, so the issue the workflow opens from it cannot mention anyone.
-Set ``GITHUB_TOKEN`` to raise the API rate limit. The token goes to api.github.com alone, never on to a redirect or to
-the namespace's host. Usage::
+A request to the API follows a redirect only to an https address on
+api.github.com. Set ``GITHUB_TOKEN`` to raise the API rate limit. The
+token goes to api.github.com alone, never on to a redirect or to the
+namespace's host. Usage::
 
     python scripts/check_upstream_release.py [--report FILE]
 """
@@ -64,6 +66,7 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from functools import cache
 from pathlib import Path
@@ -72,6 +75,9 @@ ROOT = Path(__file__).resolve().parent.parent
 COPY = ROOT / "upstream"
 API = "https://api.github.com/repos/AGLDWG/datatype-ont"
 USER_AGENT = "lmodel-datatype-watch"
+# The hosts a redirect of an API request may lead to. The watch reads the
+# Turtle file as a blob through the API, so it needs no other GitHub host.
+HOSTS = frozenset({"api.github.com"})
 
 # The most the script reads of one answer. The largest, the Turtle file's
 # blob when master changes it, is about 11 kB.
@@ -149,6 +155,20 @@ def _read(resp) -> bytes:
     return body
 
 
+class _GitHubRedirect(urllib.request.HTTPRedirectHandler):
+    """Follow a redirect only to an https address on one of HOSTS."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        parts = urllib.parse.urlsplit(newurl)
+        if parts.scheme != "https" or parts.hostname not in HOSTS:
+            raise ValueError(f"a redirect leads off the API, to {newurl}")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+# An opener in place of urlopen's, whose redirect handler follows any address.
+_open = urllib.request.build_opener(_GitHubRedirect).open
+
+
 def _get(url: str) -> bytes:
     req = urllib.request.Request(
         url,
@@ -159,7 +179,7 @@ def _get(url: str) -> bytes:
         # urllib copies ordinary headers onto a redirect, so the token goes in
         # an unredirected one and reaches api.github.com alone.
         req.add_unredirected_header("Authorization", f"Bearer {token}")
-    with urllib.request.urlopen(req, timeout=60) as resp:
+    with _open(req, timeout=60) as resp:
         return _read(resp)
 
 

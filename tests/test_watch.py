@@ -281,7 +281,7 @@ def test_an_answer_over_the_cap_is_refused(watch, monkeypatch):
         def read(self, size):
             return b"x" * size
 
-    monkeypatch.setattr(watch.urllib.request, "urlopen", lambda req, timeout: Answer())
+    monkeypatch.setattr(watch, "_open", lambda req, timeout: Answer())
     with pytest.raises(ValueError, match="larger than"):
         watch._get(f"{watch.API}/tags?per_page=100")
 
@@ -320,7 +320,7 @@ def test_the_token_never_follows_a_redirect(watch, monkeypatch):
         return Answer()
 
     monkeypatch.setenv("GITHUB_TOKEN", "secret")
-    monkeypatch.setattr(watch.urllib.request, "urlopen", urlopen)
+    monkeypatch.setattr(watch, "_open", urlopen)
     watch._get(f"{watch.API}/tags?per_page=100")
     watch._get("https://api.github.com/repos/AGLDWG/datatype-ont-elsewhere/tags")
     assert seen[0].unredirected_hdrs == {"Authorization": "Bearer secret"}
@@ -485,3 +485,32 @@ def test_server_text_stays_on_one_line(watch, tmp_path):
     assert code == 1
     assert "**AGLDWG/datatype-ont now has the tags `v1 @someone 'x'`." in text
     assert "\n@someone" not in text
+
+
+def test_a_redirect_off_the_api_is_refused(watch):
+    """An API request follows a redirect to api.github.com over https, and
+    to no other address."""
+    handler = watch._GitHubRedirect()
+    req = urllib.request.Request(f"{watch.API}/license")
+    for newurl in (
+        "https://example.org/license",
+        "http://api.github.com/repos/x",
+        "https://api.github.com.example.org/repos/x",
+        "https://raw.githubusercontent.com/AGLDWG/datatype-ont/master/LICENSE",
+    ):
+        with pytest.raises(ValueError, match="leads off the API"):
+            handler.redirect_request(req, None, 302, "Found", {}, newurl)
+    moved = "https://api.github.com/repositories/1/license"
+    assert (
+        handler.redirect_request(req, None, 301, "Moved", {}, moved).full_url == moved
+    )
+
+
+def test_the_api_requests_use_the_guarded_opener(watch):
+    """_get opens through the opener that holds the redirect guard, not
+    through urlopen's, which follows any address."""
+    handlers = watch._open.__self__.handlers
+    assert any(isinstance(h, watch._GitHubRedirect) for h in handlers)
+    assert not any(
+        type(h) is watch.urllib.request.HTTPRedirectHandler for h in handlers
+    )
