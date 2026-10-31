@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-31
+
 ### Added
 
 - **A LinkML rendering of the Datatype Ontology of 3 October 2019**, from the Australian Government Linked Data Working Group (AGLDWG). Each class and property keeps the ontology's local name and IRI, and tests hold the schema to a copy of the ontology's Turtle file.
