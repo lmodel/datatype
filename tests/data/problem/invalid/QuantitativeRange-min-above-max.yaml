@@ -1,7 +1,0 @@
-# Fails at: /min
-# Invalid, by this project's rule, which the ontology does not state: min is
-# not above max. The validator cannot compare two slots, so it accepts this
-# range, and tests/test_data.py checks the rule over this file.
-min: 18.5
-max: 12.0
-unit: http://qudt.org/vocab/unit/DEG_C

@@ -1,15 +1,11 @@
 """Checks the example data against the schema.
 
 Each valid example under tests/data/valid/ must load into the generated
-dataclasses, pass the validator and keep the rule no validator checks. Each
-counter-example under tests/data/invalid/ must fail the validator at the
-place its first line names, as `# Fails at: <JSON pointer>`, and nowhere
-else. A counter-example to the rule no validator checks sits under
-tests/data/problem/invalid/, the template's folder for invalid data the
-schema does not reject, since the template's example runner fails any
-counter-example the validator accepts; it must break the rule at the place
-its first line names, and pass the validator. The class an example is
-checked against is the part of its file name before the first `-`.
+dataclasses and pass the validator. Each counter-example under
+tests/data/invalid/ must fail the validator at the place its first line
+names, as `# Fails at: <JSON pointer>`, and nowhere else. The class an
+example is checked against is the part of its file name before the first
+`-`.
 """
 
 import functools
@@ -29,10 +25,8 @@ SCHEMA = ROOT / "src" / "datatype" / "schema" / "datatype.yaml"
 GENERATED_JSON_SCHEMA = ROOT / "project" / "jsonschema" / "datatype.schema.json"
 DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
 DATA_DIR_INVALID = Path(__file__).parent / "data" / "invalid"
-DATA_DIR_RULES = Path(__file__).parent / "data" / "problem" / "invalid"
 VALID_EXAMPLE_FILES = sorted(DATA_DIR_VALID.glob("*.yaml"))
 INVALID_EXAMPLE_FILES = sorted(DATA_DIR_INVALID.glob("*.yaml"))
-RULE_EXAMPLE_FILES = sorted(DATA_DIR_RULES.glob("*.yaml"))
 
 
 def _target(path: Path) -> str:
@@ -47,35 +41,10 @@ def _pointer(text: str, name: str) -> str:
     return first.removeprefix("# Fails at: ").strip()
 
 
-# The rule the schema's comments name as beyond the validator: no validator
-# can compare two slots of one object. Each problem is a message in the
-# validator's own form, ending in the place it is at.
-RANGES = ("QuantitativeRange", "PercentRange")
-
-
-def rule_problems(target: str, data: dict) -> list[str]:
-    """Each break of the rule no validator checks: a range's min is not
-    above its max."""
-    problems = []
-    if target in RANGES and isinstance(data, dict):
-        low, high = data.get("min"), data.get("max")
-        if (
-            isinstance(low, (int, float))
-            and isinstance(high, (int, float))
-            and low > high
-        ):
-            problems.append(f"min {low} is above max {high} in /min")
-    return problems
-
-
-def _validator_messages(data, target: str) -> list[str]:
-    return [r.message for r in validate(data, str(SCHEMA), target).results]
-
-
 def _messages(text: str, target: str) -> list[str]:
-    """Every message the validator gives, and every rule problem."""
+    """Every message the validator gives."""
     data = yaml.safe_load(text)
-    return _validator_messages(data, target) + rule_problems(target, data)
+    return [r.message for r in validate(data, str(SCHEMA), target).results]
 
 
 @pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
@@ -87,7 +56,7 @@ def test_valid_data_files(filepath):
 
 @pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
 def test_valid_data_files_validate(filepath):
-    """Each valid example passes the validator and keeps the rule."""
+    """Each valid example passes the validator."""
     messages = _messages(filepath.read_text(), _target(filepath))
     assert not messages, messages
 
@@ -104,27 +73,18 @@ def test_invalid_data_files_fail(filepath):
     assert all(m.endswith(f" in {pointer}") for m in messages), messages
 
 
-@pytest.mark.parametrize("filepath", RULE_EXAMPLE_FILES, ids=lambda p: p.name)
-def test_rule_counter_examples_break_the_rule_only(filepath):
-    """Each counter-example to the rule passes the validator and breaks the
-    rule at the place its first line names, and at no other."""
-    text = filepath.read_text()
-    pointer = _pointer(text, filepath.name)
-    data = yaml.safe_load(text)
-    assert not _validator_messages(data, _target(filepath))
-    problems = rule_problems(_target(filepath), data)
-    assert problems, f"{filepath.name} keeps the rule"
-    assert all(m.endswith(f" in {pointer}") for m in problems), problems
-
-
 def test_every_class_has_an_example():
-    """Each class has a valid example, each counter-example names a class
-    of the schema, and the rule has a counter-example."""
+    """Each class has a valid example and a counter-example, and each file
+    names a class of the schema, so no parametrized test above runs over an
+    empty folder and passes for want of files."""
     classes = set(yaml.safe_load(SCHEMA.read_text())["classes"])
     examples = {_target(f) for f in VALID_EXAMPLE_FILES}
+    counter_examples = {_target(f) for f in INVALID_EXAMPLE_FILES}
     assert classes <= examples, sorted(classes - examples)
-    assert {_target(f) for f in INVALID_EXAMPLE_FILES + RULE_EXAMPLE_FILES} <= classes
-    assert {_target(f) for f in RULE_EXAMPLE_FILES} == {"QuantitativeRange"}
+    assert classes <= counter_examples, sorted(classes - counter_examples)
+    assert examples | counter_examples <= classes
+    problems = Path(__file__).parent / "data" / "problem"
+    assert not list(problems.rglob("*.yaml")), "every example is checked here"
 
 
 # The committed project/jsonschema file is what a host that validates with

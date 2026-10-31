@@ -94,12 +94,7 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_branch': {'tag': 'upstream_b
                   'The classes are closed: a value carries only the properties the '
                   "ontology's restrictions on its class name. OWL leaves a class "
                   'open to other properties, so data that adds, say, a standard to '
-                  'a QuantitativeMeasure is valid OWL but not valid here.',
-                  "One rule is this project's, not the ontology's: a range's min "
-                  'is not above its max. The ontology does not state it, and no '
-                  'validator can compare two slots, so the validator accepts such '
-                  'a range and tests/test_data.py checks the rule over the '
-                  'examples only.'],
+                  'a QuantitativeMeasure is valid OWL but not valid here.'],
      'default_prefix': 'datatype_linkml',
      'default_range': 'string',
      'description': 'A LinkML rendering of the Datatype Ontology ("Datatypes") of '
@@ -224,9 +219,6 @@ class QuantitativeRange(ConfiguredBaseModel):
     Class to encapsulate a quantitative range
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'data:QuantitativeRange',
-         'comments': ["This project's rule, which the ontology does not state: min is "
-                      'not above max. No validator can compare two slots, so '
-                      'tests/test_data.py checks it over the examples.'],
          'from_schema': 'https://w3id.org/lmodel/datatype',
          'slot_usage': {'max': {'name': 'max', 'required': True},
                         'min': {'name': 'min', 'required': True},

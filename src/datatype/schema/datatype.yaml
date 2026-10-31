@@ -41,11 +41,6 @@ comments:
     ontology's restrictions on its class name. OWL leaves a class open to
     other properties, so data that adds, say, a standard to a
     QuantitativeMeasure is valid OWL but not valid here.
-  - >-
-    One rule is this project's, not the ontology's: a range's min is not
-    above its max. The ontology does not state it, and no validator can
-    compare two slots, so the validator accepts such a range and
-    tests/test_data.py checks the rule over the examples only.
 
 prefixes:
   datatype_linkml: https://w3id.org/lmodel/datatype/
@@ -208,11 +203,6 @@ classes:
         required: true
       unit:
         required: true
-    comments:
-      - >-
-        This project's rule, which the ontology does not state: min is not
-        above max. No validator can compare two slots, so tests/test_data.py
-        checks it over the examples.
 
   Percent:
     title: Percent

@@ -15,7 +15,7 @@
 	rdfs:label "datatype" ;
 	rdfs:seeAlso <https://github.com/AGLDWG/datatype-ont/tree/dd8f24120cd59f686086f58175de37807c569e18> , <https://lmodel.github.io/datatype> ;
 	skos:definition "A LinkML rendering of the Datatype Ontology (\"Datatypes\") of the Australian Government Linked Data Working Group (AGLDWG), by Simon Cox of CSIRO. In its own words: a set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required. Each class and property keeps the ontology's local name and IRI." ;
-	skos:note "One rule is this project's, not the ontology's: a range's min is not above its max. The ontology does not state it, and no validator can compare two slots, so the validator accepts such a range and tests/test_data.py checks the rule over the examples only." , "The classes are closed: a value carries only the properties the ontology's restrictions on its class name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure is valid OWL but not valid here." , "The ontology states no owl:versionInfo or owl:versionIRI, and its repository has no tag or release, so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch moves." , "The ontology's own dcterms:license is CC0 1.0, and the repository's LICENSE, added later, is CC BY 4.0. Each description is the ontology's skos:definition of the term, used with the attribution NOTICE gives." ;
+	skos:note "The classes are closed: a value carries only the properties the ontology's restrictions on its class name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure is valid OWL but not valid here." , "The ontology states no owl:versionInfo or owl:versionIRI, and its repository has no tag or release, so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch moves." , "The ontology's own dcterms:license is CC0 1.0, and the repository's LICENSE, added later, is CC BY 4.0. Each description is the ontology's skos:definition of the term, used with the attribution NOTICE gives." ;
 	datatype_linkml:upstream_branch "master" ;
 	datatype_linkml:upstream_commit "dd8f24120cd59f686086f58175de37807c569e18" ;
 	datatype_linkml:upstream_created "2019-03-25" ;
@@ -70,8 +70,7 @@ datatype_linkml:QuantitativeRange dcterms:title "Quantitative Range" ;
 	rdfs:subClassOf _:c14n10 , _:c14n13 , _:c14n14 , _:c14n2 , _:c14n27 , _:c14n34 , _:c14n35 , _:c14n36 , _:c14n4 , _:c14n40 , _:c14n41 , _:c14n7 ;
 	skos:definition "Class to encapsulate a quantitative range" ;
 	skos:exactMatch data:QuantitativeRange ;
-	skos:inScheme <https://w3id.org/lmodel/datatype> ;
-	skos:note "This project's rule, which the ontology does not state: min is not above max. No validator can compare two slots, so tests/test_data.py checks it over the examples." .
+	skos:inScheme <https://w3id.org/lmodel/datatype> .
 datatype_linkml:Text dcterms:title "Text" ;
 	a owl:Class ;
 	rdfs:label "Text" ;
