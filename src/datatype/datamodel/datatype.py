@@ -1,18 +1,9 @@
 # Auto generated from datatype.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-15T23:09:34
 # Schema: datatype
 #
 # id: https://w3id.org/lmodel/datatype
-# description: LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
-#
-#   A set of classes representing data-types. These may be used for observation
-#   results, or for the range of specific properties in other applications where
-#   scaled numbers, ranges, percents, etc, are required.
-#
-#   History Note: Originally developed for use as the value of an observation
-#   result (sosa:hasResult) in the context of the TERN-plot ontology. However,
-#   objects from these classes may appear in many contexts.
-# license: http://creativecommons.org/publicdomain/zero/1.0/
+# description: A LinkML rendering of the Datatype Ontology ("Datatypes") of the Australian Government Linked Data Working Group (AGLDWG), by Simon Cox of CSIRO. In its own words: a set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required. Each class and property keeps the ontology's local name and IRI.
+# license: Apache-2.0
 
 import dataclasses
 import re
@@ -64,115 +55,25 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Boolean, Double, Uriorcurie
-from linkml_runtime.utils.metamodelcore import Bool, URIorCURIE
+from linkml_runtime.linkml_model.types import Boolean, Decimal, Integer, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import Bool, Decimal, URIorCURIE
 
-metamodel_version = "1.7.0"
-version = "1.0"
+metamodel_version = "1.12.0"
+version = "2019-10-03"
 
 # Namespaces
-NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
-OBCS = CurieNamespace('OBCS', 'http://purl.obolibrary.org/obo/OBCS_')
-STATO = CurieNamespace('STATO', 'http://purl.obolibrary.org/obo/STATO_')
-UO = CurieNamespace('UO', 'http://purl.obolibrary.org/obo/UO_')
-BIBO = CurieNamespace('bibo', 'http://purl.org/ontology/bibo/')
 DATA = CurieNamespace('data', 'http://linked.data.gov.au/def/datatype/')
-DCT = CurieNamespace('dct', 'http://purl.org/dc/terms/')
+DATATYPE_LINKML = CurieNamespace('datatype_linkml', 'https://w3id.org/lmodel/datatype/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OWL = CurieNamespace('owl', 'http://www.w3.org/2002/07/owl#')
-PROV = CurieNamespace('prov', 'http://www.w3.org/ns/prov#')
-QUDT = CurieNamespace('qudt', 'http://qudt.org/schema/qudt/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
-RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
-SCHEMA = CurieNamespace('schema', 'http://schema.org/')
-SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
-WIKIDATA = CurieNamespace('wikidata', 'https://www.wikidata.org/wiki/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
-DEFAULT_ = DATA
+DEFAULT_ = DATATYPE_LINKML
 
 
 # Types
-class DecimalValue(float):
-    """ Generic decimal value used for quantitative measures """
-    type_class_uri = XSD["decimal"]
-    type_class_curie = "xsd:decimal"
-    type_name = "decimal value"
-    type_model_uri = DATA.DecimalValue
-
-
-class IntegerValue(int):
-    """ Integer count value """
-    type_class_uri = XSD["integer"]
-    type_class_curie = "xsd:integer"
-    type_name = "integer value"
-    type_model_uri = DATA.IntegerValue
-
-
-class StringValue(str):
-    """ Generic string value """
-    type_class_uri = XSD["string"]
-    type_class_curie = "xsd:string"
-    type_name = "string value"
-    type_model_uri = DATA.StringValue
-
-
-class PercentValue(Double):
-    """ Percentage value """
-    type_class_uri = UO["0000187"]
-    type_class_curie = "UO:0000187"
-    type_name = "percent value"
-    type_model_uri = DATA.PercentValue
-
-
-class ConceptValue(StringValue):
-    """ Idea or notion; a unit of thought """
-    type_class_uri = SKOS["Concept"]
-    type_class_curie = "skos:Concept"
-    type_name = "concept value"
-    type_model_uri = DATA.ConceptValue
-
-
-class DataValue(StringValue):
-    """ simple value (a literal) """
-    type_class_uri = XSD["nonNegativeInteger"]
-    type_class_curie = "xsd:nonNegativeInteger"
-    type_name = "data value"
-    type_model_uri = DATA.DataValue
-
-
-class UnitValue(StringValue):
-    """ Unit of measure value """
-    type_class_uri = UO["0000000"]
-    type_class_curie = "UO:0000000"
-    type_name = "unit value"
-    type_model_uri = DATA.UnitValue
-
 
 # Class references
 
-
-
-@dataclass(repr=False)
-class Text(YAMLRoot):
-    """
-    Class to encapsulate a textual value
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = DATA["Text"]
-    class_class_curie: ClassVar[str] = "data:Text"
-    class_name: ClassVar[str] = "Text"
-    class_model_uri: ClassVar[URIRef] = DATA.Text
-
-    value: str = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.value):
-            self.MissingRequiredField("value")
-        if not isinstance(self.value, str):
-            self.value = str(self.value)
-
-        super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
@@ -185,7 +86,7 @@ class Boolean(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DATA["Boolean"]
     class_class_curie: ClassVar[str] = "data:Boolean"
     class_name: ClassVar[str] = "Boolean"
-    class_model_uri: ClassVar[URIRef] = DATA.Boolean
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Boolean
 
     value: Union[bool, Bool] = None
 
@@ -208,16 +109,16 @@ class Concept(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DATA["Concept"]
     class_class_curie: ClassVar[str] = "data:Concept"
     class_name: ClassVar[str] = "Concept"
-    class_model_uri: ClassVar[URIRef] = DATA.Concept
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Concept
 
-    value: Union[str, ConceptValue] = None
+    rdf_value: Union[str, URIorCURIE] = None
     vocabulary: Union[str, URIorCURIE] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.value):
-            self.MissingRequiredField("value")
-        if not isinstance(self.value, ConceptValue):
-            self.value = ConceptValue(self.value)
+        if self._is_empty(self.rdf_value):
+            self.MissingRequiredField("rdf_value")
+        if not isinstance(self.rdf_value, URIorCURIE):
+            self.rdf_value = URIorCURIE(self.rdf_value)
 
         if self._is_empty(self.vocabulary):
             self.MissingRequiredField("vocabulary")
@@ -237,10 +138,10 @@ class Count(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DATA["Count"]
     class_class_curie: ClassVar[str] = "data:Count"
     class_name: ClassVar[str] = "Count"
-    class_model_uri: ClassVar[URIRef] = DATA.Count
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Count
 
     value: int = None
-    uncertainty: Optional[float] = None
+    uncertainty: Optional[Decimal] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
@@ -248,8 +149,8 @@ class Count(YAMLRoot):
         if not isinstance(self.value, int):
             self.value = int(self.value)
 
-        if self.uncertainty is not None and not isinstance(self.uncertainty, float):
-            self.uncertainty = float(self.uncertainty)
+        if self.uncertainty is not None and not isinstance(self.uncertainty, Decimal):
+            self.uncertainty = Decimal(self.uncertainty)
 
         super().__post_init__(**kwargs)
 
@@ -264,29 +165,25 @@ class QuantitativeMeasure(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DATA["QuantitativeMeasure"]
     class_class_curie: ClassVar[str] = "data:QuantitativeMeasure"
     class_name: ClassVar[str] = "QuantitativeMeasure"
-    class_model_uri: ClassVar[URIRef] = DATA.QuantitativeMeasure
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.QuantitativeMeasure
 
-    value: float = None
-    unit: Union[str, UnitValue] = None
-    uncertainty: Optional[float] = None
-    standard: Optional[Union[str, URIorCURIE]] = None
+    value: Decimal = None
+    unit: Union[str, URIorCURIE] = None
+    uncertainty: Optional[Decimal] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.value):
             self.MissingRequiredField("value")
-        if not isinstance(self.value, float):
-            self.value = float(self.value)
+        if not isinstance(self.value, Decimal):
+            self.value = Decimal(self.value)
 
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
-        if not isinstance(self.unit, UnitValue):
-            self.unit = UnitValue(self.unit)
+        if not isinstance(self.unit, URIorCURIE):
+            self.unit = URIorCURIE(self.unit)
 
-        if self.uncertainty is not None and not isinstance(self.uncertainty, float):
-            self.uncertainty = float(self.uncertainty)
-
-        if self.standard is not None and not isinstance(self.standard, URIorCURIE):
-            self.standard = URIorCURIE(self.standard)
+        if self.uncertainty is not None and not isinstance(self.uncertainty, Decimal):
+            self.uncertainty = Decimal(self.uncertainty)
 
         super().__post_init__(**kwargs)
 
@@ -301,31 +198,31 @@ class QuantitativeRange(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DATA["QuantitativeRange"]
     class_class_curie: ClassVar[str] = "data:QuantitativeRange"
     class_name: ClassVar[str] = "QuantitativeRange"
-    class_model_uri: ClassVar[URIRef] = DATA.QuantitativeRange
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.QuantitativeRange
 
-    min: float = None
-    max: float = None
-    unit: Union[str, UnitValue] = None
-    uncertainty: Optional[float] = None
+    min: Decimal = None
+    max: Decimal = None
+    unit: Union[str, URIorCURIE] = None
+    uncertainty: Optional[Decimal] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.min):
             self.MissingRequiredField("min")
-        if not isinstance(self.min, float):
-            self.min = float(self.min)
+        if not isinstance(self.min, Decimal):
+            self.min = Decimal(self.min)
 
         if self._is_empty(self.max):
             self.MissingRequiredField("max")
-        if not isinstance(self.max, float):
-            self.max = float(self.max)
+        if not isinstance(self.max, Decimal):
+            self.max = Decimal(self.max)
 
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
-        if not isinstance(self.unit, UnitValue):
-            self.unit = UnitValue(self.unit)
+        if not isinstance(self.unit, URIorCURIE):
+            self.unit = URIorCURIE(self.unit)
 
-        if self.uncertainty is not None and not isinstance(self.uncertainty, float):
-            self.uncertainty = float(self.uncertainty)
+        if self.uncertainty is not None and not isinstance(self.uncertainty, Decimal):
+            self.uncertainty = Decimal(self.uncertainty)
 
         super().__post_init__(**kwargs)
 
@@ -340,16 +237,21 @@ class Percent(QuantitativeMeasure):
     class_class_uri: ClassVar[URIRef] = DATA["Percent"]
     class_class_curie: ClassVar[str] = "data:Percent"
     class_name: ClassVar[str] = "Percent"
-    class_model_uri: ClassVar[URIRef] = DATA.Percent
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Percent
 
-    value: float = None
-    unit: Union[float, PercentValue] = None
+    unit: Union[str, URIorCURIE] = None
+    value: Decimal = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
-        if not isinstance(self.unit, PercentValue):
-            self.unit = PercentValue(self.unit)
+        if not isinstance(self.unit, URIorCURIE):
+            self.unit = URIorCURIE(self.unit)
+
+        if self._is_empty(self.value):
+            self.MissingRequiredField("value")
+        if not isinstance(self.value, Decimal):
+            self.value = Decimal(self.value)
 
         super().__post_init__(**kwargs)
 
@@ -364,17 +266,50 @@ class PercentRange(QuantitativeRange):
     class_class_uri: ClassVar[URIRef] = DATA["PercentRange"]
     class_class_curie: ClassVar[str] = "data:PercentRange"
     class_name: ClassVar[str] = "PercentRange"
-    class_model_uri: ClassVar[URIRef] = DATA.PercentRange
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.PercentRange
 
-    min: float = None
-    max: float = None
-    unit: Union[float, PercentValue] = None
+    unit: Union[str, URIorCURIE] = None
+    min: Decimal = None
+    max: Decimal = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
-        if not isinstance(self.unit, PercentValue):
-            self.unit = PercentValue(self.unit)
+        if not isinstance(self.unit, URIorCURIE):
+            self.unit = URIorCURIE(self.unit)
+
+        if self._is_empty(self.min):
+            self.MissingRequiredField("min")
+        if not isinstance(self.min, Decimal):
+            self.min = Decimal(self.min)
+
+        if self._is_empty(self.max):
+            self.MissingRequiredField("max")
+        if not isinstance(self.max, Decimal):
+            self.max = Decimal(self.max)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Text(YAMLRoot):
+    """
+    Class to encapsulate a textual value
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = DATA["Text"]
+    class_class_curie: ClassVar[str] = "data:Text"
+    class_name: ClassVar[str] = "Text"
+    class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Text
+
+    value: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.value):
+            self.MissingRequiredField("value")
+        if not isinstance(self.value, str):
+            self.value = str(self.value)
 
         super().__post_init__(**kwargs)
 
@@ -386,59 +321,73 @@ class PercentRange(QuantitativeRange):
 class slots:
     pass
 
+slots.rdf_value = Slot(uri=RDF.value, name="rdf_value", curie=RDF.curie('value'),
+                   model_uri=DATATYPE_LINKML.rdf_value, domain=None, range=Optional[str])
+
 slots.value = Slot(uri=DATA.value, name="value", curie=DATA.curie('value'),
-                   model_uri=DATA.value, domain=None, range=Optional[Union[str, DataValue]])
+                   model_uri=DATATYPE_LINKML.value, domain=None, range=Optional[str])
 
 slots.min = Slot(uri=DATA.min, name="min", curie=DATA.curie('min'),
-                   model_uri=DATA.min, domain=None, range=Optional[float])
+                   model_uri=DATATYPE_LINKML.min, domain=None, range=Optional[Decimal])
 
 slots.max = Slot(uri=DATA.max, name="max", curie=DATA.curie('max'),
-                   model_uri=DATA.max, domain=None, range=Optional[float])
+                   model_uri=DATATYPE_LINKML.max, domain=None, range=Optional[Decimal])
 
 slots.uncertainty = Slot(uri=DATA.uncertainty, name="uncertainty", curie=DATA.curie('uncertainty'),
-                   model_uri=DATA.uncertainty, domain=None, range=Optional[float])
+                   model_uri=DATATYPE_LINKML.uncertainty, domain=None, range=Optional[Decimal])
 
 slots.standard = Slot(uri=DATA.standard, name="standard", curie=DATA.curie('standard'),
-                   model_uri=DATA.standard, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=DATATYPE_LINKML.standard, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.unit = Slot(uri=DATA.unit, name="unit", curie=DATA.curie('unit'),
-                   model_uri=DATA.unit, domain=None, range=Optional[Union[str, UnitValue]])
+                   model_uri=DATATYPE_LINKML.unit, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.vocabulary = Slot(uri=DATA.vocabulary, name="vocabulary", curie=DATA.curie('vocabulary'),
-                   model_uri=DATA.vocabulary, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=DATATYPE_LINKML.vocabulary, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.Text_value = Slot(uri=XSD.string, name="Text_value", curie=XSD.curie('string'),
-                   model_uri=DATA.Text_value, domain=Text, range=str)
+slots.Boolean_value = Slot(uri=DATA.value, name="Boolean_value", curie=DATA.curie('value'),
+                   model_uri=DATATYPE_LINKML.Boolean_value, domain=Boolean, range=Union[bool, Bool])
 
-slots.Boolean_value = Slot(uri=XSD.boolean, name="Boolean_value", curie=XSD.curie('boolean'),
-                   model_uri=DATA.Boolean_value, domain=Boolean, range=Union[bool, Bool])
-
-slots.Concept_value = Slot(uri=DATA.value, name="Concept_value", curie=DATA.curie('value'),
-                   model_uri=DATA.Concept_value, domain=Concept, range=Union[str, ConceptValue])
+slots.Concept_rdf_value = Slot(uri=RDF.value, name="Concept_rdf_value", curie=RDF.curie('value'),
+                   model_uri=DATATYPE_LINKML.Concept_rdf_value, domain=Concept, range=Union[str, URIorCURIE])
 
 slots.Concept_vocabulary = Slot(uri=DATA.vocabulary, name="Concept_vocabulary", curie=DATA.curie('vocabulary'),
-                   model_uri=DATA.Concept_vocabulary, domain=Concept, range=Union[str, URIorCURIE])
+                   model_uri=DATATYPE_LINKML.Concept_vocabulary, domain=Concept, range=Union[str, URIorCURIE])
 
 slots.Count_value = Slot(uri=DATA.value, name="Count_value", curie=DATA.curie('value'),
-                   model_uri=DATA.Count_value, domain=Count, range=int)
-
-slots.QuantitativeMeasure_unit = Slot(uri=DATA.unit, name="QuantitativeMeasure_unit", curie=DATA.curie('unit'),
-                   model_uri=DATA.QuantitativeMeasure_unit, domain=QuantitativeMeasure, range=Union[str, UnitValue])
+                   model_uri=DATATYPE_LINKML.Count_value, domain=Count, range=int)
 
 slots.QuantitativeMeasure_value = Slot(uri=DATA.value, name="QuantitativeMeasure_value", curie=DATA.curie('value'),
-                   model_uri=DATA.QuantitativeMeasure_value, domain=QuantitativeMeasure, range=float)
+                   model_uri=DATATYPE_LINKML.QuantitativeMeasure_value, domain=QuantitativeMeasure, range=Decimal)
 
-slots.QuantitativeRange_unit = Slot(uri=DATA.unit, name="QuantitativeRange_unit", curie=DATA.curie('unit'),
-                   model_uri=DATA.QuantitativeRange_unit, domain=QuantitativeRange, range=Union[str, UnitValue])
+slots.QuantitativeMeasure_unit = Slot(uri=DATA.unit, name="QuantitativeMeasure_unit", curie=DATA.curie('unit'),
+                   model_uri=DATATYPE_LINKML.QuantitativeMeasure_unit, domain=QuantitativeMeasure, range=Union[str, URIorCURIE])
 
 slots.QuantitativeRange_min = Slot(uri=DATA.min, name="QuantitativeRange_min", curie=DATA.curie('min'),
-                   model_uri=DATA.QuantitativeRange_min, domain=QuantitativeRange, range=float)
+                   model_uri=DATATYPE_LINKML.QuantitativeRange_min, domain=QuantitativeRange, range=Decimal)
 
 slots.QuantitativeRange_max = Slot(uri=DATA.max, name="QuantitativeRange_max", curie=DATA.curie('max'),
-                   model_uri=DATA.QuantitativeRange_max, domain=QuantitativeRange, range=float)
+                   model_uri=DATATYPE_LINKML.QuantitativeRange_max, domain=QuantitativeRange, range=Decimal)
 
-slots.Percent_unit = Slot(uri=QUDT.PERCENT, name="Percent_unit", curie=QUDT.curie('PERCENT'),
-                   model_uri=DATA.Percent_unit, domain=Percent, range=Union[float, PercentValue])
+slots.QuantitativeRange_unit = Slot(uri=DATA.unit, name="QuantitativeRange_unit", curie=DATA.curie('unit'),
+                   model_uri=DATATYPE_LINKML.QuantitativeRange_unit, domain=QuantitativeRange, range=Union[str, URIorCURIE])
 
-slots.PercentRange_unit = Slot(uri=QUDT.PERCENT, name="PercentRange_unit", curie=QUDT.curie('PERCENT'),
-                   model_uri=DATA.PercentRange_unit, domain=PercentRange, range=Union[float, PercentValue])
+slots.Percent_unit = Slot(uri=DATA.unit, name="Percent_unit", curie=DATA.curie('unit'),
+                   model_uri=DATATYPE_LINKML.Percent_unit, domain=Percent, range=Union[str, URIorCURIE],
+                   pattern=re.compile(r'^http://qudt\.org/vocab/unit/PERCENT$'))
+
+slots.Percent_value = Slot(uri=DATA.value, name="Percent_value", curie=DATA.curie('value'),
+                   model_uri=DATATYPE_LINKML.Percent_value, domain=Percent, range=Decimal)
+
+slots.PercentRange_unit = Slot(uri=DATA.unit, name="PercentRange_unit", curie=DATA.curie('unit'),
+                   model_uri=DATATYPE_LINKML.PercentRange_unit, domain=PercentRange, range=Union[str, URIorCURIE],
+                   pattern=re.compile(r'^http://qudt\.org/vocab/unit/PERCENT$'))
+
+slots.PercentRange_min = Slot(uri=DATA.min, name="PercentRange_min", curie=DATA.curie('min'),
+                   model_uri=DATATYPE_LINKML.PercentRange_min, domain=PercentRange, range=Decimal)
+
+slots.PercentRange_max = Slot(uri=DATA.max, name="PercentRange_max", curie=DATA.curie('max'),
+                   model_uri=DATATYPE_LINKML.PercentRange_max, domain=PercentRange, range=Decimal)
+
+slots.Text_value = Slot(uri=DATA.value, name="Text_value", curie=DATA.curie('value'),
+                   model_uri=DATATYPE_LINKML.Text_value, domain=Text, range=str)

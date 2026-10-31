@@ -1,58 +1,68 @@
- syntax="proto3";
- package
-// metamodel_version: 1.7.0
-// version: 1.0
+syntax = "proto3";
+package datatype;
+// metamodel_version: 1.12.0
+// version: 2019-10-03
 // Class to encapsulate a true-or-false value
-message Boolean
- {
-  boolean value = 0
- }
+message Boolean {
+  // simple value (a literal)
+  bool value = 1;
+}
 // Class to encapsulate a classifier, usually a values from a controlled vocabulary
-message Concept
- {
-  conceptValue value = 0
-  uriorcurie vocabulary = 0
- }
+message Concept {
+  // The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties.
+  string rdf_value = 1;
+  // controlled vocabulary, taxonomy etc
+  string vocabulary = 2;
+}
 // Class to encapsulate an integer value
-message Count
- {
-  integerValue value = 0
-  decimalValue uncertainty = 0
- }
+message Count {
+  // simple value (a literal)
+  int32 value = 1;
+  // Uncertainty for a quantitative value
+  string uncertainty = 2;
+}
 // Class to encapsulate a quantitative measure expressed as a percent value
-message Percent
- {
-  decimalValue value = 0
-  decimalValue uncertainty = 0
-  uriorcurie standard = 0
-  percentValue unit = 0
- }
+message Percent {
+  // Uncertainty for a quantitative value
+  string uncertainty = 1;
+  // Measurement scale
+  string unit = 2;
+  // simple value (a literal)
+  string value = 3;
+}
 // Class to encapsulate a quantitative range expressed as in percent values
-message PercentRange
- {
-  decimalValue min = 0
-  decimalValue max = 0
-  decimalValue uncertainty = 0
-  percentValue unit = 0
- }
+message PercentRange {
+  // Uncertainty for a quantitative value
+  string uncertainty = 1;
+  // Measurement scale
+  string unit = 2;
+  // Minimum value of range
+  string min = 3;
+  // Maximum value of a range
+  string max = 4;
+}
 // Class to encapsulate a quantitative measure value
-message QuantitativeMeasure
- {
-  decimalValue value = 0
-  unitValue unit = 0
-  decimalValue uncertainty = 0
-  uriorcurie standard = 0
- }
+message QuantitativeMeasure {
+  // simple value (a literal)
+  string value = 1;
+  // Measurement scale
+  string unit = 2;
+  // Uncertainty for a quantitative value
+  string uncertainty = 3;
+}
 // Class to encapsulate a quantitative range
-message QuantitativeRange
- {
-  decimalValue min = 0
-  decimalValue max = 0
-  unitValue unit = 0
-  decimalValue uncertainty = 0
- }
+message QuantitativeRange {
+  // Minimum value of range
+  string min = 1;
+  // Maximum value of a range
+  string max = 2;
+  // Measurement scale
+  string unit = 3;
+  // Uncertainty for a quantitative value
+  string uncertainty = 4;
+}
 // Class to encapsulate a textual value
-message Text
- {
-  stringValue value = 0
- }
+message Text {
+  // simple value (a literal)
+  string value = 1;
+}

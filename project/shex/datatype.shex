@@ -1,26 +1,11 @@
-# metamodel_version: 1.7.0
-# version: 1.0
-BASE <http://linked.data.gov.au/def/datatype/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+# metamodel_version: 1.12.0
+# version: 2019-10-03
+BASE <https://w3id.org/lmodel/datatype/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX data: <http://linked.data.gov.au/def/datatype/>
 PREFIX linkml: <https://w3id.org/linkml/>
-PREFIX qudt: <http://qudt.org/schema/qudt/>
 
-
-<DecimalValue> xsd:decimal
-
-<IntegerValue> xsd:integer
-
-<StringValue> xsd:string
-
-<PercentValue> <http://purl.obolibrary.org/obo/UO_0000187>
-
-<ConceptValue> skos:Concept
-
-<DataValue> xsd:nonNegativeInteger
-
-<UnitValue> <http://purl.obolibrary.org/obo/UO_0000000>
 
 linkml:String xsd:string
 
@@ -61,71 +46,73 @@ linkml:Jsonpath xsd:string
 linkml:Sparqlpath xsd:string
 
 <Boolean> CLOSED {
-    (  $<Boolean_tes> xsd:boolean @linkml:Boolean ;
-       rdf:type [ <Boolean> ] ?
+    (  $<Boolean_tes> data:value @linkml:Boolean ;
+       rdf:type [ data:Boolean ] ?
     )
 }
 
 <Concept> CLOSED {
-    (  $<Concept_tes> (  <value> @<ConceptValue> ;
-          <vocabulary> @linkml:Uriorcurie
+    (  $<Concept_tes> (  rdf:value @linkml:Uriorcurie ;
+          data:vocabulary @linkml:Uriorcurie
        ) ;
-       rdf:type [ <Concept> ] ?
+       rdf:type [ data:Concept ] ?
     )
 }
 
 <Count> CLOSED {
-    (  $<Count_tes> (  <value> @<IntegerValue> ;
-          <uncertainty> @<DecimalValue> ?
+    (  $<Count_tes> (  data:value @linkml:Integer ;
+          data:uncertainty @linkml:Decimal ?
        ) ;
-       rdf:type [ <Count> ] ?
+       rdf:type [ data:Count ] ?
     )
 }
 
 <Percent> CLOSED {
     (  $<Percent_tes> (  &<QuantitativeMeasure_tes> ;
-          rdf:type [ <QuantitativeMeasure> ] ? ;
-          qudt:PERCENT @<PercentValue>
+          rdf:type [ data:QuantitativeMeasure ] ? ;
+          data:unit @linkml:Uriorcurie ;
+          data:value @linkml:Decimal
        ) ;
-       rdf:type [ <Percent> ] ?
+       rdf:type [ data:Percent ] ?
     )
 }
 
 <PercentRange> CLOSED {
     (  $<PercentRange_tes> (  &<QuantitativeRange_tes> ;
-          rdf:type [ <QuantitativeRange> ] ? ;
-          qudt:PERCENT @<PercentValue>
+          rdf:type [ data:QuantitativeRange ] ? ;
+          data:unit @linkml:Uriorcurie ;
+          data:min @linkml:Decimal ;
+          data:max @linkml:Decimal
        ) ;
-       rdf:type [ <PercentRange> ] ?
+       rdf:type [ data:PercentRange ] ?
     )
 }
 
 <QuantitativeMeasure>  (
     CLOSED {
-       (  $<QuantitativeMeasure_tes> (  <value> @<DecimalValue> ;
-             <unit> @<UnitValue> ;
-             <uncertainty> @<DecimalValue> ? ;
-             <standard> @linkml:Uriorcurie ?
+       (  $<QuantitativeMeasure_tes> (  data:value @linkml:Decimal ;
+             data:unit @linkml:Uriorcurie ;
+             data:uncertainty @linkml:Decimal ?
           ) ;
-          rdf:type [ <QuantitativeMeasure> ] ?
+          rdf:type [ data:QuantitativeMeasure ] ?
        )
     } OR @<Percent>
 )
 
 <QuantitativeRange>  (
     CLOSED {
-       (  $<QuantitativeRange_tes> (  <min> @<DecimalValue> ;
-             <max> @<DecimalValue> ;
-             <unit> @<UnitValue> ;
-             <uncertainty> @<DecimalValue> ?
+       (  $<QuantitativeRange_tes> (  data:min @linkml:Decimal ;
+             data:max @linkml:Decimal ;
+             data:unit @linkml:Uriorcurie ;
+             data:uncertainty @linkml:Decimal ?
           ) ;
-          rdf:type [ <QuantitativeRange> ] ?
+          rdf:type [ data:QuantitativeRange ] ?
        )
     } OR @<PercentRange>
 )
 
 <Text> CLOSED {
-    (  $<Text_tes> xsd:string @<StringValue> ;
-       rdf:type [ <Text> ] ?
+    (  $<Text_tes> data:value @linkml:String ;
+       rdf:type [ data:Text ] ?
     )
 }

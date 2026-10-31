@@ -1,12 +1,13 @@
-package None;
+package example;
 
+/* metamodel_version: 1.12.0 */
+/* version: 2019-10-03 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
-
-
-
-/* version: 1.0 */
-
 
 /**
   Class to encapsulate a quantitative range
@@ -17,7 +18,8 @@ public class QuantitativeRange  {
 
   private BigDecimal min;
   private BigDecimal max;
-  private String unit;
+  private URI unit;
   private BigDecimal uncertainty;
+
 
 }

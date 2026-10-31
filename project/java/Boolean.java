@@ -1,12 +1,13 @@
-package None;
+package example;
 
+/* metamodel_version: 1.12.0 */
+/* version: 2019-10-03 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
-
-
-
-/* version: 1.0 */
-
 
 /**
   Class to encapsulate a true-or-false value
@@ -16,5 +17,6 @@ import lombok.*;
 public class Boolean  {
 
   private boolean value;
+
 
 }

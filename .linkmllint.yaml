@@ -1,0 +1,14 @@
+# linkml-lint reads this file from the directory `just lint` runs in.
+# The recommended rules apply, with one setting changed. The schema binds
+# the ontology's namespace under data:, the prefix the ontology itself uses,
+# so its CURIEs read as the ontology's do. canonical_prefixes reads the
+# merged context by default, and prefix.cc, the crowd-sourced list inside
+# it, gives data: to an unrelated site. So the rule reads the Bioregistry
+# and the linked-data context, which hold every other prefix the schema
+# binds and do not claim data:.
+extends: recommended
+rules:
+  canonical_prefixes:
+    prefixmaps_contexts:
+      - bioregistry
+      - linked_data
