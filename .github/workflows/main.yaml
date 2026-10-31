@@ -47,7 +47,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
-          cache-dependency-glob: "uv.lock"
+          # Both locks, since the adapt check below syncs .lokf/ too.
+          cache-dependency-glob: |
+            uv.lock
+            .lokf/uv.lock
 
       # https://github.com/actions/setup-python
       - name: Set up Python ${{ matrix.python-version }}
@@ -69,7 +72,6 @@ jobs:
 
       - name: Run test suite
         run: just test
-
 
       # .lokf/datatype.yaml is the copy the knowledge bundle validates
       # against and the release attaches, so it must match the schema and
