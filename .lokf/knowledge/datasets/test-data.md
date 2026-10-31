@@ -24,7 +24,7 @@ status: draft
 
 `tests/data/valid/` holds 14 examples, at least one per class, and `tests/data/invalid/` holds 21 counter-examples, at least one per class. Each file is named after its class, and each counter-example's first line, `# Fails at: <JSON pointer>`, names the one place it fails.[^data]
 
-`tests/test_data.py` holds the examples to the validator and to the committed JSON Schema. It also makes counter-examples from each slot of each valid example, a list, and a word where the slot takes a number or a truth value, and checks that each fails at that slot. `tests/test_upstream.py` holds the schema to the ontology copy, and the schema header to the watch's pins. `tests/test_schema_rules.py` holds the adapt copy apart from LOKF and from the thirteen released copies in `tests/neighbours/`. `tests/test_watch.py` runs the upstream watch against stubbed answers.[^test_data]
+`tests/test_data.py` holds the examples to the validator and to the committed JSON Schema. It also turns each slot of each valid example into a list, and into a word where the slot takes a number or a truth value, and checks that each such counter-example fails at that slot. `tests/test_upstream.py` holds the schema to the ontology copy, and the schema header to the watch's pins. `tests/test_schema_rules.py` holds the adapt copy apart from LOKF and from the thirteen released copies in `tests/neighbours/`. `tests/test_watch.py` runs the upstream watch against stubbed answers.[^test_data]
 
 [^data]: tests/data, the valid and invalid folders
 [^test_data]: tests, the four test files

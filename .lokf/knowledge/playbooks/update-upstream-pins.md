@@ -23,7 +23,7 @@ status: draft
 
 # Update the upstream pins
 
-`upstream-watch.yaml` runs `scripts/check_upstream_release.py` every Monday and opens an issue on a finding.[^workflow] The script reports, and exits 1 on:[^watch]
+`upstream-watch.yaml` runs `scripts/check_upstream_release.py` every Monday and opens an issue on a finding.[^workflow] The script reports each of these and exits 1:[^watch]
 
 - `master` naming another commit, or the repository gaining a tag;
 - a copied file changed or gone at the head of `master`, or a copy that differs from its pins;
@@ -32,7 +32,7 @@ status: draft
 - the namespace redirecting somewhere else, or no longer redirecting;
 - a check that could not finish.
 
-To move to a new edition, replace `upstream/` from one commit, then move `PINNED_COMMIT`, `PINNED_BLOBS`, `PINNED_EDITION` and, for a new licence, `PINNED_ONTOLOGY_LICENSE` in the script and the header's `version` and annotations together, since `tests/test_upstream.py` holds them equal.[^contributing] Then regenerate and test.
+To move to a new edition, replace `upstream/` from one commit. Move `PINNED_COMMIT`, `PINNED_BLOBS`, `PINNED_EDITION` and, for a new licence, `PINNED_ONTOLOGY_LICENSE` in the script together with the header's `version` and annotations, because `tests/test_upstream.py` holds them equal.[^contributing] Then regenerate and test.
 
 [^workflow]: .github/workflows/upstream-watch.yaml, the schedule and the steps
 [^watch]: scripts/check_upstream_release.py, the module docstring and the pins

@@ -19,6 +19,6 @@ status: draft
 
 `AI_COVENANT.md` says that whoever submits a contribution is its author, whatever tools helped, and must understand and defend it.[^covenant]
 
-Its note for this project names the failure mode it guards against: a class, property, constraint or mapping a model produced, presented as what the ontology says. So every element renders a term of the copied Turtle file and a change cites the triple it rests on. A rule of this project's own is marked, no mapping is guessed, the copy in `upstream/` is never edited, and every element keeps its IRI under `data:`. Disclosure is required for an element, constraint or mapping an AI drafted.[^covenant]
+Its note for this project names the failure mode it guards against: a class, property, constraint or mapping a model produced, presented as what the ontology says. So every element renders a term of the copied Turtle file and a change cites the triple it rests on. A rule of this project's own is marked, no mapping is guessed, the copy in `upstream/` is never edited, and every element keeps its IRI under `data:`. A contributor must disclose an element, constraint or mapping an AI drafted.[^covenant]
 
 [^covenant]: AI_COVENANT.md, Core Principle and A note specific to this project

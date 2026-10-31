@@ -105,4 +105,4 @@ This map lists where the bundle's concepts come from, so that a refresh run know
 | `website/` | the documentation site | `npm run build` in `website/` |
 | <http://linked.data.gov.au/def/datatype> | the ontology reference | the upstream watch's namespace check |
 
-The exclusions list the tracked paths left out on purpose, each with its reason.
+The exclusions list the tracked paths the map leaves out, each with its reason.

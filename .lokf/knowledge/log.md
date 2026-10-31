@@ -2,6 +2,7 @@
 
 ## 2026-10-31
 
+* **Prose**: reworded 12 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: Test data and tests, which says that the data test makes a word counter-example only for a number or a truth value.
 * **Changed**: How the schema departs from OWL, which drops the rule that a range's min is not above its max, since the schema no longer states it.
 * **Changed**: Quantitative Range, which drops the rule on min and max that the schema no longer states.

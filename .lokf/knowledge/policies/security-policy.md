@@ -20,9 +20,9 @@ status: draft
 
 # Security policy
 
-`SECURITY.md` asks for a vulnerability to be reported through GitHub's private vulnerability reporting, not in a public issue. It says that one person maintains the repository, so a first reply takes days and there is no bounty, and that only the latest release receives fixes.[^security]
+`SECURITY.md` asks for a vulnerability to be reported through GitHub's private vulnerability reporting, not in a public issue. It says that one person maintains the repository, so a first reply takes days and there is no bounty. It also says that only the latest release receives fixes.[^security]
 
-The repository releases the schema and the Python models generated from it. Nothing is published to PyPI. A release carries three assets, each with its `.sha256` and an attestation: the adapt copy, the bundle zip and a Copilot skill zip. The upstream watch reads the GitHub API's listings of AGLDWG/datatype-ont, and the ontology's Turtle file only when `master` changes it, checked against the hash the listing gives. It sends its token to api.github.com alone. The policy's table names each workflow and what holds it.[^security]
+The repository releases the schema and the Python models generated from it. Nothing is published to PyPI. A release carries three assets, each with its `.sha256` and an attestation: the adapt copy, the bundle zip and a Copilot skill zip. The upstream watch reads the GitHub API's listings of AGLDWG/datatype-ont. It reads the ontology's Turtle file only when `master` changes it, and checks that file against the hash the listing gives. It sends its token to api.github.com alone. The policy's table names each workflow and what holds it.[^security]
 
 Every workflow declares `permissions: {}` at the top, pins its actions to commit hashes and runs harden-runner in audit mode. Dependabot keeps the action pins, the package's lock, the sidecar's lock, the website's npm packages and the release tools' npm lock current, each monthly.[^dependabot] A ruleset on `main` blocks deletion and force-pushes and keeps the history linear. Two settings are not yet in force: required reviewers on the `release` Environment, and secret scanning with push protection.[^security]
 

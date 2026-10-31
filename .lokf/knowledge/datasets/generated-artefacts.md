@@ -27,7 +27,7 @@ status: draft
 
 `just gen-project` runs LinkML's generators over the schema with the settings in `.linkml/generators.yaml`, moves the Python dataclasses into `src/datatype/datamodel/`, and writes the Pydantic models beside them.[^justfile] `project/` holds the output: JSON Schema, OWL, SHACL, ShEx, the JSON-LD context and document, GraphQL, protobuf, SQL, TypeScript, an Excel workbook, a prefix map and a Java class for each of the eight classes.[^project]
 
-`just gen-doc` writes `docs/schema/datatype.yaml`, the merged schema, and the element pages under `docs/elements/`, which git ignores. Both are run again after a schema change, and the pre-commit hooks leave their output alone.[^precommit]
+`just gen-doc` writes `docs/schema/datatype.yaml`, the merged schema, and the element pages under `docs/elements/`, which git ignores. Run both again after a schema change. The pre-commit hooks leave their output alone.[^precommit]
 
 [^justfile]: justfile, the gen-project and gen-doc recipes
 [^project]: project, the folders

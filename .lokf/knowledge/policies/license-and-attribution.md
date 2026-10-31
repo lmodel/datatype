@@ -22,7 +22,7 @@ status: draft
 
 The schema and the code are under the Apache License 2.0, and the knowledge bundle under CC BY 4.0, as its `index.md` declares.[^readme]
 
-The ontology's own `dcterms:license` is CC0 1.0, and its repository's `LICENSE`, added later, is CC BY 4.0. `NOTICE` follows the stricter of the two: it attributes the ontology to Simon J.D. Cox of CSIRO and the AGLDWG, names the licence, links to the material and says what was changed. Each description in the schema is the ontology's `skos:definition`.[^notice] It also names the MIT licence of the linkml-project-copier template and the Apache-2.0 licence of the KTL templates.[^notice]
+The ontology's own `dcterms:license` is CC0 1.0, and its repository's `LICENSE`, added later, is CC BY 4.0. `NOTICE` follows the stricter of the two: it attributes the ontology to Simon J.D. Cox of CSIRO and the AGLDWG, names the licence, links to the material and says what was changed. Each description in the schema is the ontology's `skos:definition`.[^notice] `NOTICE` also names the MIT licence of the linkml-project-copier template and the Apache-2.0 licence of the KTL templates.[^notice]
 
 [^readme]: README.md, License
 [^notice]: NOTICE, every section
