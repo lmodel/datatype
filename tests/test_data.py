@@ -1,26 +1,178 @@
-"""Data test."""
-import os
-import glob
-import pytest
+"""Checks the example data against the schema.
+
+Each valid example under tests/data/valid/ must load into the generated
+dataclasses and pass the validator. Each counter-example under
+tests/data/invalid/ must fail the validator at the place its first line
+names, as `# Fails at: <JSON pointer>`, and nowhere else. Each slot of a
+valid example also gives counter-examples made from it, which fail at that
+slot: a list, and a word where the slot takes a number or a truth value.
+The class an example is checked against is the part of its file name
+before the first `-`.
+"""
+
+import functools
+import json
 from pathlib import Path
 
-import datatype.datamodel.datatype
+import jsonschema
+import pytest
+import yaml
+from linkml.validator import validate
+from linkml_runtime import SchemaView
 from linkml_runtime.loaders import yaml_loader
 
+import datatype.datamodel.datatype
+
+ROOT = Path(__file__).parent.parent
+SCHEMA = ROOT / "src" / "datatype" / "schema" / "datatype.yaml"
+GENERATED_JSON_SCHEMA = ROOT / "project" / "jsonschema" / "datatype.schema.json"
 DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
 DATA_DIR_INVALID = Path(__file__).parent / "data" / "invalid"
+VALID_EXAMPLE_FILES = sorted(DATA_DIR_VALID.glob("*.yaml"))
+INVALID_EXAMPLE_FILES = sorted(DATA_DIR_INVALID.glob("*.yaml"))
 
-VALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_VALID, '*.yaml'))
-INVALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_INVALID, '*.yaml'))
+
+def _target(path: Path) -> str:
+    return path.stem.split("-")[0]
 
 
-@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
-def test_valid_data_files(filepath):
-    """Test loading of all valid data files."""
-    target_class_name = Path(filepath).stem.split("-")[0]
-    tgt_class = getattr(
-        datatype.datamodel.datatype,
-        target_class_name,
+def _pointer(text: str, name: str) -> str:
+    first = text.splitlines()[0]
+    assert first.startswith("# Fails at: "), (
+        f"{name}: the first line names where it fails"
     )
-    obj = yaml_loader.load(filepath, target_class=tgt_class)
-    assert obj
+    return first.removeprefix("# Fails at: ").strip()
+
+
+def _messages(text: str, target: str) -> list[str]:
+    """Every message the validator gives."""
+    data = yaml.safe_load(text)
+    return [r.message for r in validate(data, str(SCHEMA), target).results]
+
+
+@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
+def test_valid_data_files(filepath):
+    """Each valid example loads into the generated dataclasses."""
+    target = getattr(datatype.datamodel.datatype, _target(filepath))
+    assert yaml_loader.load(str(filepath), target_class=target)
+
+
+@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
+def test_valid_data_files_validate(filepath):
+    """Each valid example passes the validator."""
+    messages = _messages(filepath.read_text(), _target(filepath))
+    assert not messages, messages
+
+
+@pytest.mark.parametrize("filepath", INVALID_EXAMPLE_FILES, ids=lambda p: p.name)
+def test_invalid_data_files_fail(filepath):
+    """Each counter-example fails the validator at the place its first line
+    names, and at no other, so a file that starts failing for another
+    reason fails this test."""
+    text = filepath.read_text()
+    pointer = _pointer(text, filepath.name)
+    messages = _messages(text, _target(filepath))
+    assert messages, f"{filepath.name} passes"
+    assert all(m.endswith(f" in {pointer}") for m in messages), messages
+
+
+def test_every_class_has_an_example():
+    """Each class has a valid example and a counter-example, and each file
+    names a class of the schema, so no parametrized test above runs over an
+    empty folder and passes for want of files."""
+    classes = set(yaml.safe_load(SCHEMA.read_text())["classes"])
+    examples = {_target(f) for f in VALID_EXAMPLE_FILES}
+    counter_examples = {_target(f) for f in INVALID_EXAMPLE_FILES}
+    assert classes <= examples, sorted(classes - examples)
+    assert classes <= counter_examples, sorted(classes - counter_examples)
+    assert examples | counter_examples <= classes
+    problems = Path(__file__).parent / "data" / "problem"
+    assert not list(problems.rglob("*.yaml")), "every example is checked here"
+
+
+# The committed project/jsonschema file is what a host that validates with
+# JSON Schema alone reads, so the examples hold it to the same results.
+
+
+@functools.cache
+def _generated() -> dict:
+    return json.loads(GENERATED_JSON_SCHEMA.read_text())
+
+
+def _generated_failures(data, target: str) -> list[str]:
+    schema = {**_generated(), "$ref": f"#/$defs/{target}"}
+    cls = jsonschema.validators.validator_for(schema)
+    return [
+        "/" + "/".join(str(p) for p in e.absolute_path)
+        for e in cls(schema, format_checker=cls.FORMAT_CHECKER).iter_errors(data)
+    ]
+
+
+@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
+def test_valid_data_files_pass_the_generated_json_schema(filepath):
+    """Each valid example passes the committed JSON Schema."""
+    failures = _generated_failures(
+        yaml.safe_load(filepath.read_text()), _target(filepath)
+    )
+    assert not failures, failures
+
+
+@pytest.mark.parametrize("filepath", INVALID_EXAMPLE_FILES, ids=lambda p: p.name)
+def test_invalid_data_files_fail_the_generated_json_schema(filepath):
+    """Each counter-example fails the committed JSON Schema at the same
+    place as the validator."""
+    text = filepath.read_text()
+    pointer = _pointer(text, filepath.name)
+    failures = _generated_failures(yaml.safe_load(text), _target(filepath))
+    assert failures and all(f == pointer for f in failures), failures
+
+
+# The files above give each class a counter-example. These give each slot
+# of each valid example two more, made from the example: a list where the
+# ontology allows one value, and a word where it gives a number or a truth
+# value. Each must fail the validator and the committed JSON Schema at that
+# slot alone.
+NOT_A_WORD = {"boolean", "decimal", "integer"}
+
+
+@functools.cache
+def _view() -> SchemaView:
+    return SchemaView(str(SCHEMA))
+
+
+def _variants():
+    for path in VALID_EXAMPLE_FILES:
+        target, data = _target(path), yaml.safe_load(path.read_text())
+        for key, value in data.items():
+            yield path.stem, key, target, {**data, key: [value, value]}
+            if _view().induced_slot(key, target).range in NOT_A_WORD:
+                yield path.stem, key, target, {**data, key: "many"}
+
+
+VARIANTS = list(_variants())
+
+
+@pytest.mark.parametrize(
+    ("stem", "key", "target", "data"),
+    VARIANTS,
+    ids=[
+        f"{s}-{k}-{'list' if isinstance(d[k], list) else 'word'}"
+        for s, k, _, d in VARIANTS
+    ],
+)
+def test_each_slot_takes_one_value_of_its_datatype(stem, key, target, data):
+    """A list in a single-valued slot, or a word in a number or truth-value
+    slot, fails at that slot and nowhere else."""
+    messages = [r.message for r in validate(data, str(SCHEMA), target).results]
+    assert messages and all(m.endswith(f" in /{key}") for m in messages), messages
+    failures = _generated_failures(data, target)
+    assert failures and all(f == f"/{key}" for f in failures), failures
+
+
+def test_every_slot_has_a_variant():
+    """Every slot a class carries appears in one of its valid examples, so
+    the variants above reach it."""
+    seen = {(target, key) for _, key, target, _ in VARIANTS}
+    for name in _view().all_classes():
+        for slot in _view().class_slots(name):
+            assert (name, slot) in seen, (name, slot)

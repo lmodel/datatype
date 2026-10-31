@@ -1,0 +1,3 @@
+# The ontology bounds no measure, so a temperature may be below zero.
+value: -4.5
+unit: http://qudt.org/vocab/unit/DEG_C

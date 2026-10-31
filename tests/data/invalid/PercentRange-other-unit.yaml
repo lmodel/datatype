@@ -1,0 +1,5 @@
+# Fails at: /unit
+# Invalid: a PercentRange's unit is QUDT's PERCENT, and no other.
+min: 10
+max: 25
+unit: http://qudt.org/vocab/unit/M

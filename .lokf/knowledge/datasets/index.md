@@ -1,0 +1,7 @@
+# Datasets
+
+* [Datatype LinkML schema](datatype-linkml-schema.md) - The LinkML schema `src/datatype/schema/datatype.yaml`: the Datatype Ontology's eight classes and seven properties, and `rdf_value` for RDF's `rdf:value`, each with the ontology's local name and IRI under `data:`, at the ontology's edition of 2019-10-03.
+* [Copy of the Datatype Ontology](ontology-copy.md) - `upstream/`: the ontology's Turtle file `rdf/datatype.ttl` and the repository's `LICENSE`, copied from AGLDWG/datatype-ont at commit `dd8f24120cd5` and pinned by git object hash. The schema's tests read the copy, and the upstream watch checks it.
+* [Generated artefacts](generated-artefacts.md) - What the LinkML generators write from the schema: `project/` (JSON Schema, OWL, SHACL, ShEx, JSON-LD, GraphQL, protobuf, SQL, TypeScript, Excel, a prefix map and eight Java classes), the Python dataclasses and Pydantic models in `src/datatype/datamodel/`, and `docs/schema/datatype.yaml`. None is edited by hand.
+* [Test data and tests](test-data.md) - The examples under `tests/data/` (14 valid examples and 21 counter-examples the validator rejects) and the four test files under `tests/` that hold the examples, the ontology copy, the adapt copy and the upstream watch.
+* [The adapt copy (.lokf/datatype.yaml)](lokf-adapt-copy.md) - `.lokf/datatype.yaml`, the copy `lokf adapt` writes from the schema for knowledge bundles: rooted on no class, with `Concept` renamed `DatatypeConcept` and `unit` renamed `datatype_unit`, keeping their IRIs. A release attaches it as `schema-<tag>-datatype.yaml`.

@@ -1,0 +1,6 @@
+# Fails at: /uncertainty
+# Invalid: a Count has at most one uncertainty, not a list.
+value: 37
+uncertainty:
+  - 1
+  - 2

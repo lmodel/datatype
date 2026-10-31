@@ -1,0 +1,3 @@
+# Fails at: /value
+# Invalid: a count is an xsd:integer.
+value: 2.5

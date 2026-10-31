@@ -1,0 +1,4 @@
+# A range whose min equals its max.
+min: 3
+max: 3
+unit: http://qudt.org/vocab/unit/M

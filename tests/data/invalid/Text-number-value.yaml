@@ -1,0 +1,3 @@
+# Fails at: /value
+# Invalid: a Text's value is an xsd:string.
+value: 42

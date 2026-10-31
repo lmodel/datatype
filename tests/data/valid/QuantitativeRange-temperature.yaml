@@ -1,0 +1,5 @@
+# A range of air temperatures over a day.
+min: 12.0
+max: 18.5
+unit: http://qudt.org/vocab/unit/DEG_C
+uncertainty: 0.5

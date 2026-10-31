@@ -1,0 +1,4 @@
+# Fails at: /
+# Invalid: a range has exactly one max.
+min: 12.0
+unit: http://qudt.org/vocab/unit/DEG_C

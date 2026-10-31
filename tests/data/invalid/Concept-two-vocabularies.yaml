@@ -1,0 +1,6 @@
+# Fails at: /vocabulary
+# Invalid: a Concept names exactly one vocabulary, not a list.
+rdf_value: https://example.org/vocab/soil-texture/clay-loam
+vocabulary:
+  - https://example.org/vocab/soil-texture
+  - https://example.org/vocab/soil-colour

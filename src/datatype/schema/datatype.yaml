@@ -1,347 +1,249 @@
+---
 id: https://w3id.org/lmodel/datatype
 name: datatype
-title: AGLDWG Datatype Ontology (LinkML rendering)
-description: |-
-  LinkML schema of AGLDWG Datatypes (http://linked.data.gov.au/def/datatype).
-
-  A set of classes representing data-types. These may be used for observation
-  results, or for the range of specific properties in other applications where
-  scaled numbers, ranges, percents, etc, are required.
-
-  History Note: Originally developed for use as the value of an observation
-  result (sosa:hasResult) in the context of the TERN-plot ontology. However,
-  objects from these classes may appear in many contexts.
+title: Datatype Ontology
+description: >-
+  A LinkML rendering of the Datatype Ontology ("Datatypes") of the
+  Australian Government Linked Data Working Group (AGLDWG), by Simon Cox of
+  CSIRO. In its own words: a set of classes representing data-types. These
+  may be used for observation results, or for the range of specific
+  properties in other applications where scaled numbers, ranges, percents
+  etc are required. Each class and property keeps the ontology's local name
+  and IRI.
+version: "2019-10-03"
 source: http://linked.data.gov.au/def/datatype
-status: bibo:status/published
-comments:
-  - This LinkML schema is based on AGLDWG Datatype ontology and auto-generated
-    OWL artifact may not capture all details of original ontology.
+license: Apache-2.0
 see_also:
-  - https://github.com/AGLDWG/datatype-ont
-in_language: EN
-contributors:
-  - https://orcid.org/0000-0002-3884-3420
-  - https://ror.org/03qn8fb07
-created_on: "2019-03-25T00:00:00Z"
-license: http://creativecommons.org/publicdomain/zero/1.0/
+  - https://lmodel.github.io/datatype
+  - https://github.com/AGLDWG/datatype-ont/tree/dd8f24120cd59f686086f58175de37807c569e18
 annotations:
-  creator_affiliation_organization_identifier: http://catalogue.linked.data.gov.au/def/csiro
-  creator_affiliation_organization_mainEntityOfPage: https://www.csiro.au
-  creator_affiliationorganization_name: "CSIRO"
-  creator_person_identifier: https://orcid.org/0000-0002-3884-3420
-  creator_person_name: "Simon J.D.Cox"
-  creator_person_email: "simon.cox@csiro.au"
-  creator_person_mainEntityOfPage: https://people.csiro.au/C/S/simon-cox
-
-# Version should be kept in sync with primary Git repository release tag
-
-version: "1.0"
+  upstream_repository: https://github.com/AGLDWG/datatype-ont
+  upstream_branch: master
+  upstream_commit: dd8f24120cd59f686086f58175de37807c569e18
+  upstream_created: "2019-03-25"
+  upstream_creator: Simon J.D. Cox, CSIRO, https://orcid.org/0000-0002-3884-3420
+  upstream_licence: >-
+    CC0-1.0 in the ontology's dcterms:license; CC-BY-4.0 in the repository's
+    LICENSE
+comments:
+  - >-
+    The ontology states no owl:versionInfo or owl:versionIRI, and its
+    repository has no tag or release, so the version is the ontology's
+    dcterms:modified date. upstream/ copies its Turtle file and licence at the
+    commit in the annotations, and scripts/check_upstream_release.py reports
+    when the master branch moves.
+  - >-
+    The title and description of each of the ontology's terms are its
+    rdfs:label and skos:definition. The ontology states CC0 1.0 as its
+    dcterms:license, and the repository's LICENSE, added later, is CC BY 4.0
+    (https://creativecommons.org/licenses/by/4.0/). This rendering follows
+    CC BY 4.0, is provided as is, and carries the attribution that
+    https://github.com/lmodel/datatype/blob/main/NOTICE gives.
+  - >-
+    The classes are closed: a value carries only the properties the
+    ontology's restrictions on its class name. OWL leaves a class open to
+    other properties, so data that adds, say, a standard to a
+    QuantitativeMeasure is valid OWL but not valid here.
 
 prefixes:
-  bibo: http://purl.org/ontology/bibo/
+  datatype_linkml: https://w3id.org/lmodel/datatype/
   data: http://linked.data.gov.au/def/datatype/
-  dct: 'http://purl.org/dc/terms/'
   linkml: https://w3id.org/linkml/
-  NCIT: http://purl.obolibrary.org/obo/NCIT_
-  OBCS: http://purl.obolibrary.org/obo/OBCS_
-  owl: "http://www.w3.org/2002/07/owl#"
-  prov: "http://www.w3.org/ns/prov#"
-  qudt: http://qudt.org/schema/qudt/
-  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  rdfs: "http://www.w3.org/2000/01/rdf-schema#"
-  schema: http://schema.org/
-  skos: "http://www.w3.org/2004/02/skos/core#"
-  STATO: http://purl.obolibrary.org/obo/STATO_
-  UO: http://purl.obolibrary.org/obo/UO_
-  wikidata: https://www.wikidata.org/wiki/
-  xsd: "http://www.w3.org/2001/XMLSchema#"
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  xsd: http://www.w3.org/2001/XMLSchema#
 
-default_prefix: data
+default_prefix: datatype_linkml
 default_range: string
 
 imports:
   - linkml:types
 
-# simple scalar types
-types:
+slots:
 
-  decimal value:
-    uri: xsd:decimal
-    base: float
-    description: Generic decimal value used for quantitative measures
+  rdf_value:
+    title: value
+    description: >-
+      The main value of a structured value, as RDF's own rdf:value property
+      names it. The ontology restricts it on Concept and makes value, min,
+      max and uncertainty its sub-properties.
+    slot_uri: rdf:value
 
-  integer value:
-    uri: xsd:integer
-    base: int
-    description: Integer count value
-
-  string value:
-    uri: xsd:string
-    base: str
-    description: Generic string value
-
-  percent value:
-    typeof: double
-    base: float
-    uri: UO:0000187
-    description: Percentage value
-
-  concept value:
-    typeof: string value
-    base: str
-    uri: skos:Concept
-    description: Idea or notion; a unit of thought
-
-  data value:
-    typeof: string value
-    base: str
-    uri: xsd:nonNegativeInteger
+  value:
+    title: data value
     description: simple value (a literal)
+    slot_uri: data:value
+    is_a: rdf_value
 
-  unit value:
-    typeof: string value
-    base: str
-    uri: UO:0000000
-    description: Unit of measure value
-    id_prefixes:
-      - UO
-    exact_mappings:
-      - qudt:Unit
+  min:
+    title: data minimum
+    description: Minimum value of range
+    slot_uri: data:min
+    is_a: rdf_value
+    range: decimal
 
-###############
-### Classes ###
-###############
+  max:
+    title: data maximum
+    description: Maximum value of a range
+    slot_uri: data:max
+    is_a: rdf_value
+    range: decimal
+
+  uncertainty:
+    title: data uncertainty
+    description: Uncertainty for a quantitative value
+    slot_uri: data:uncertainty
+    is_a: rdf_value
+    range: decimal
+
+  standard:
+    title: data standard
+    description: >-
+      Measurement standard, scale, uom, reference system, controlled
+      vocabulary, taxonomy etc
+    slot_uri: data:standard
+    range: uriorcurie
+    comments:
+      - >-
+        No class of the ontology restricts this property; it is the parent
+        of unit and vocabulary.
+
+  unit:
+    title: unit of measure
+    description: Measurement scale
+    slot_uri: data:unit
+    is_a: standard
+    range: uriorcurie
+    comments:
+      - >-
+        The unit by its IRI, such as http://qudt.org/vocab/unit/M from the
+        QUDT units vocabulary. The ontology states no range.
+
+  vocabulary:
+    title: vocabulary
+    description: controlled vocabulary, taxonomy etc
+    slot_uri: data:vocabulary
+    is_a: standard
+    range: uriorcurie
+    comments:
+      - >-
+        The vocabulary by its IRI. The ontology's range is a skos:ConceptScheme,
+        a skos:Collection or an owl:Ontology, which the validator cannot check
+        of an IRI.
 
 classes:
 
-  Text:
-    description: Class to encapsulate a textual value
-    slots:
-      - value
-    slot_usage:
-      value:
-        range: string value
-        required: true
-        slot_uri: xsd:string
-    exact_mappings:
-      - NCIT:C25704
-      - schema:Text
-      - wikidata:Q234460
-      - wikidata:Q1145976   # plain text
-
   Boolean:
+    title: Boolean
     description: Class to encapsulate a true-or-false value
+    class_uri: data:Boolean
     slots:
       - value
     slot_usage:
       value:
         range: boolean
-        slot_uri: xsd:boolean
         required: true
-    exact_mappings:
-      - NCIT:C45254
-      - wikidata:Q520777  # boolean data type
-    close_mappings:
-      - wikidata:Q3269980  # boolean domain
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Boolean
 
   Concept:
+    title: Concept
     description: >-
       Class to encapsulate a classifier, usually a values from a controlled
       vocabulary
+    class_uri: data:Concept
     slots:
-      - value
+      - rdf_value
       - vocabulary
     slot_usage:
-      value:
-        range: concept value
+      rdf_value:
+        range: uriorcurie
         required: true
+        comments:
+          - >-
+            The concept by its IRI. The ontology's range is a skos:Concept,
+            which the validator cannot check of an IRI.
       vocabulary:
         required: true
-    exact_mappings:
-      - NCIT:C45728
-      - skos:Concept
-      - wikidata:Q151885
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Concept
 
   Count:
+    title: Count
     description: Class to encapsulate an integer value
+    class_uri: data:Count
     slots:
       - value
       - uncertainty
     slot_usage:
       value:
-        range: integer value
+        range: integer
         required: true
-    exact_mappings:
-      - NCIT:Q1520033  # Count noun
-      - wikidata:Q1520033  # Count noun
-    related_mappings:
-      - NCIT:C25463  # Count
-      - wikidata:Q729138  # integer
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Count
 
   QuantitativeMeasure:
+    title: Quantitative Measure
     description: Class to encapsulate a quantitative measure value
+    class_uri: data:QuantitativeMeasure
     slots:
       - value
       - unit
       - uncertainty
-      - standard
     slot_usage:
+      value:
+        range: decimal
+        required: true
       unit:
         required: true
-      value:
-        range: decimal value
-        required: true
-    related_mappings:
-      - schema:QuantitativeValue
-      - wikidata:Q309314  # quantity
-    see_also:
-      - http://linked.data.gov.au/def/datatype/QuantitativeMeasure
 
   QuantitativeRange:
+    title: Quantitative Range
     description: Class to encapsulate a quantitative range
+    class_uri: data:QuantitativeRange
     slots:
       - min
       - max
       - unit
       - uncertainty
     slot_usage:
-      unit:
-        required: true
       min:
-        range: decimal value
         required: true
       max:
-        range: decimal value
         required: true
-    related_mappings:
-      - wikidata:Q1165839  # range
-    see_also:
-      - http://linked.data.gov.au/def/datatype/QuantitativeRange
+      unit:
+        required: true
 
   Percent:
+    title: Percent
     description: >-
       Class to encapsulate a quantitative measure expressed as a percent value
+    class_uri: data:Percent
     is_a: QuantitativeMeasure
     slot_usage:
       unit:
-        slot_uri: qudt:PERCENT
-        broad_mappings:
-          - wikidata:Q1196827  # value
-        range: percent value
-    exact_mappings:
-      - NCIT:C48570  # Percent unit
-      - UO:0000187  # percent
-      - wikidata:Q11229  # percent
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Percent
+        pattern: '^http://qudt\.org/vocab/unit/PERCENT$'
+        comments:
+          - >-
+            The ontology's owl:hasValue: the unit is QUDT's PERCENT and no
+            other. A pattern states it, since equals_string needs a string
+            range.
 
   PercentRange:
+    title: Percent range
     description: >-
       Class to encapsulate a quantitative range expressed as in percent values
+    class_uri: data:PercentRange
     is_a: QuantitativeRange
     slot_usage:
       unit:
-        slot_uri: qudt:PERCENT
-        range: percent value
-    see_also:
-      - http://linked.data.gov.au/def/datatype/PercentRange
+        pattern: '^http://qudt\.org/vocab/unit/PERCENT$'
+        comments:
+          - >-
+            The ontology's owl:hasValue: the unit is QUDT's PERCENT and no
+            other. A pattern states it, since equals_string needs a string
+            range.
 
-##############
-### SLOTS ###
-##############
-
-slots:
-
-  ### Datatype Properties ###
-
-  value:
-    range: data value
-    description: simple value (a literal)
-    narrow_mappings:
-      - NCIT:C25712  # Value
-      - prov:Value
-    exact_mappings:
-      - schema:Value
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Value
-
-  min:
-    aliases:
-      - "data minimum"
-    is_a: value
-    range: decimal value
-    description: Minimum value of range
-    close_mappings:
-      - wikidata:Q10585806  # minimum
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Min
-
-  max:
-    aliases:
-      - "data maximum"
-    is_a: value
-    range: decimal value
-    description: Maximum value of a range
-    close_mappings:
-      - wikidata:Q10578722  # maximum
-      - STATO:0000666  # maximum possible value
-      - STATO:0000151  # maximum observed value
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Max
-
-  uncertainty:
-    aliases:
-      - "data uncertainty"
-    is_a: value
-    range: decimal value
-    description: Uncertainty for a quantitative value
-    multivalued: false
-    close_mappings:
-      - wikidata:Q1403517  # measurement uncertainty
-    narrow_mappings:
-      - OBCS:0000340  # measurement uncertainty
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Uncertainty
-
-  ### Object Properties ###
-
-  standard:
-    aliases:
-      - "data standard"
-    description: >-
-      Measurement standard, scale, uom, reference system, controlled vocabulary,
-      taxonomy etc
-    range: uriorcurie
-    exact_mappings:
-      - NCIT:C14298  # Measurement Standard
-      - wikidata:Q1271511  # measurement standard
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Standard
-
-  unit:
-    range: unit value
-    aliases:
-      - "unit of measure"
-    is_a: standard
-    description: Measurement scale
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Unit
-
-  vocabulary:
-    range: uriorcurie
-    is_a: standard
-    description: controlled vocabulary, taxonomy etc
-    broad_mappings:
-      - skos:ConceptScheme
-      - skos:Collection
-      - owl:Ontology
-    exact_mappings:
-      - skos:Concept
-    see_also:
-      - http://linked.data.gov.au/def/datatype/Vocabulary
+  Text:
+    title: Text
+    description: Class to encapsulate a textual value
+    class_uri: data:Text
+    slots:
+      - value
+    slot_usage:
+      value:
+        range: string
+        required: true

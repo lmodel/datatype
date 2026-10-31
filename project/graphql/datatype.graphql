@@ -1,5 +1,5 @@
-# metamodel_version: 1.7.0
-# version: 1.0
+# metamodel_version: 1.12.0
+# version: 2019-10-03
 type Boolean
   {
     value: Boolean!
@@ -7,49 +7,47 @@ type Boolean
 
 type Concept
   {
-    value: ConceptValue!
+    rdfValue: String!
     vocabulary: String!
   }
 
 type Count
   {
-    value: IntegerValue!
-    uncertainty: DecimalValue
+    value: Int!
+    uncertainty: Float
   }
 
 type Percent
   {
-    value: DecimalValue!
-    uncertainty: DecimalValue
-    standard: String
-    unit: PercentValue!
+    value: Float!
+    uncertainty: Float
+    unit: String!
   }
 
 type PercentRange
   {
-    min: DecimalValue!
-    max: DecimalValue!
-    uncertainty: DecimalValue
-    unit: PercentValue!
+    min: Float!
+    max: Float!
+    uncertainty: Float
+    unit: String!
   }
 
 type QuantitativeMeasure
   {
-    value: DecimalValue!
-    unit: UnitValue!
-    uncertainty: DecimalValue
-    standard: String
+    value: Float!
+    unit: String!
+    uncertainty: Float
   }
 
 type QuantitativeRange
   {
-    min: DecimalValue!
-    max: DecimalValue!
-    unit: UnitValue!
-    uncertainty: DecimalValue
+    min: Float!
+    max: Float!
+    unit: String!
+    uncertainty: Float
   }
 
 type Text
   {
-    value: StringValue!
+    value: String!
   }

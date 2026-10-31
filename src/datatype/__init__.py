@@ -1,3 +1,8 @@
+"""datatype.
+
+AGLDWG Datatype Ontology (Linkml Schema)
+"""
+
 try:
     from datatype._version import __version__, __version_tuple__
 except ImportError:  # pragma: no cover

@@ -1,0 +1,6 @@
+# Fails at: /
+# Invalid: a Concept holds its concept in rdf_value; data:value is a literal
+# the ontology does not give a Concept.
+value: clay loam
+rdf_value: https://example.org/vocab/soil-texture/clay-loam
+vocabulary: https://example.org/vocab/soil-texture

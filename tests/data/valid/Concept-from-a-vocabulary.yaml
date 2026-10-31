@@ -1,0 +1,3 @@
+# A classifier, named by its IRI, from the vocabulary named beside it.
+rdf_value: https://example.org/vocab/soil-texture/clay-loam
+vocabulary: https://example.org/vocab/soil-texture

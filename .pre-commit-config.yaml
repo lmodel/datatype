@@ -1,36 +1,56 @@
 ---
 # https://pre-commit.com/
+# No hook may rewrite a file this repository does not write by hand: what
+# the LinkML generators and `lokf adapt` write, which the next run would
+# rewrite back; the ontology's files under upstream/ and the neighbours'
+# released copies, which tests hold to their hashes and checksums; npm's
+# lockfile for the release tools; and the KTL sidecar's scripts, which the
+# weekly sync replaces.
+exclude: >-
+  (?x)^(
+    src/datatype/datamodel/|
+    project/|
+    docs/schema/|
+    upstream/|
+    \.lokf/(scripts|m365)/|
+    \.lokf/(lokf|datatype)\.yaml$|
+    \.github/release/package-lock\.json$|
+    tests/neighbours/
+  )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-toml
       - id: check-yaml
       - id: end-of-file-fixer
+        exclude: ^\.copier-answers\.yml$
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.37.0
+    rev: v1.38.0
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yaml]
+        exclude: ^\.copier-answers\.yml$
+        verbose: true  # Show warnings.
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.2
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.31.1
+    rev: v1.46.3
     hooks:
       - id: typos
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.11.3
+    rev: v0.15.14
     hooks:
       # Run the linter.
       - id: ruff
@@ -40,6 +60,6 @@ repos:
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.6.12
+    rev: 0.11.16
     hooks:
       - id: uv-lock

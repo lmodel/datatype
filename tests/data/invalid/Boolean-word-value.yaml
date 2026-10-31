@@ -1,0 +1,3 @@
+# Fails at: /value
+# Invalid: the value is an xsd:boolean, not a word.
+value: "yes"

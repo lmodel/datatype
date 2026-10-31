@@ -1,0 +1,4 @@
+# A cover class that spans the whole scale.
+min: 0
+max: 100
+unit: http://qudt.org/vocab/unit/PERCENT

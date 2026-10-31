@@ -1,15 +1,6 @@
 
 
 /**
- * Class to encapsulate a textual value
- */
-export interface Text {
-    /** simple value (a literal) */
-    value: string,
-}
-
-
-/**
  * Class to encapsulate a true-or-false value
  */
 export interface Boolean {
@@ -22,8 +13,8 @@ export interface Boolean {
  * Class to encapsulate a classifier, usually a values from a controlled vocabulary
  */
 export interface Concept {
-    /** simple value (a literal) */
-    value: string,
+    /** The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties. */
+    rdf_value: string,
     /** controlled vocabulary, taxonomy etc */
     vocabulary: string,
 }
@@ -36,7 +27,7 @@ export interface Count {
     /** simple value (a literal) */
     value: number,
     /** Uncertainty for a quantitative value */
-    uncertainty?: number,
+    uncertainty?: string,
 }
 
 
@@ -45,13 +36,11 @@ export interface Count {
  */
 export interface QuantitativeMeasure {
     /** simple value (a literal) */
-    value: number,
+    value: string,
     /** Measurement scale */
     unit: string,
     /** Uncertainty for a quantitative value */
-    uncertainty?: number,
-    /** Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc */
-    standard?: string,
+    uncertainty?: string,
 }
 
 
@@ -60,13 +49,13 @@ export interface QuantitativeMeasure {
  */
 export interface QuantitativeRange {
     /** Minimum value of range */
-    min: number,
+    min: string,
     /** Maximum value of a range */
-    max: number,
+    max: string,
     /** Measurement scale */
     unit: string,
     /** Uncertainty for a quantitative value */
-    uncertainty?: number,
+    uncertainty?: string,
 }
 
 
@@ -81,6 +70,15 @@ export interface Percent extends QuantitativeMeasure {
  * Class to encapsulate a quantitative range expressed as in percent values
  */
 export interface PercentRange extends QuantitativeRange {
+}
+
+
+/**
+ * Class to encapsulate a textual value
+ */
+export interface Text {
+    /** simple value (a literal) */
+    value: string,
 }
 
 
