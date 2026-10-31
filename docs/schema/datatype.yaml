@@ -37,10 +37,10 @@ comments:
 - 'The classes are closed: a value carries only the properties the ontology''s restrictions
   on its class name. OWL leaves a class open to other properties, so data that adds,
   say, a standard to a QuantitativeMeasure is valid OWL but not valid here.'
-- 'Three rules are this project''s, not the ontology''s, each marked where it is stated:
-  a percent lies between 0 and 100, an uncertainty is not negative, and a range''s
-  min is not above its max. The validator checks the first two; no validator can compare
-  two slots, so tests/test_data.py checks the third over the examples.'
+- 'One rule is this project''s, not the ontology''s: a range''s min is not above its
+  max. The ontology does not state it, and no validator can compare two slots, so
+  the validator accepts such a range and tests/test_data.py checks the rule over the
+  examples only.'
 source: http://linked.data.gov.au/def/datatype
 see_also:
 - https://lmodel.github.io/datatype
@@ -403,9 +403,6 @@ slots:
     definition_uri: https://w3id.org/lmodel/datatype/uncertainty
     description: Uncertainty for a quantitative value
     title: data uncertainty
-    comments:
-    - 'This project''s rule: an uncertainty is not negative. The ontology states no
-      bound.'
     from_schema: https://w3id.org/lmodel/datatype
     mappings:
     - data:uncertainty
@@ -417,7 +414,6 @@ slots:
     - QuantitativeMeasure
     - QuantitativeRange
     range: decimal
-    minimum_value: 0
   standard:
     name: standard
     definition_uri: https://w3id.org/lmodel/datatype/standard
@@ -675,30 +671,6 @@ slots:
     range: uriorcurie
     required: true
     pattern: ^http://qudt\.org/vocab/unit/PERCENT$
-  Percent_value:
-    name: Percent_value
-    definition_uri: https://w3id.org/lmodel/datatype/value
-    description: simple value (a literal)
-    title: data value
-    comments:
-    - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-      no bound.'
-    from_schema: https://w3id.org/lmodel/datatype
-    mappings:
-    - data:value
-    is_a: QuantitativeMeasure_value
-    domain: Percent
-    slot_uri: data:value
-    alias: value
-    owner: Percent
-    domain_of:
-    - Percent
-    is_usage_slot: true
-    usage_slot_name: value
-    range: decimal
-    required: true
-    minimum_value: 0
-    maximum_value: 100
   PercentRange_unit:
     name: PercentRange_unit
     definition_uri: https://w3id.org/lmodel/datatype/unit
@@ -722,54 +694,6 @@ slots:
     range: uriorcurie
     required: true
     pattern: ^http://qudt\.org/vocab/unit/PERCENT$
-  PercentRange_min:
-    name: PercentRange_min
-    definition_uri: https://w3id.org/lmodel/datatype/min
-    description: Minimum value of range
-    title: data minimum
-    comments:
-    - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-      no bound.'
-    from_schema: https://w3id.org/lmodel/datatype
-    mappings:
-    - data:min
-    is_a: QuantitativeRange_min
-    domain: PercentRange
-    slot_uri: data:min
-    alias: min
-    owner: PercentRange
-    domain_of:
-    - PercentRange
-    is_usage_slot: true
-    usage_slot_name: min
-    range: decimal
-    required: true
-    minimum_value: 0
-    maximum_value: 100
-  PercentRange_max:
-    name: PercentRange_max
-    definition_uri: https://w3id.org/lmodel/datatype/max
-    description: Maximum value of a range
-    title: data maximum
-    comments:
-    - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-      no bound.'
-    from_schema: https://w3id.org/lmodel/datatype
-    mappings:
-    - data:max
-    is_a: QuantitativeRange_max
-    domain: PercentRange
-    slot_uri: data:max
-    alias: max
-    owner: PercentRange
-    domain_of:
-    - PercentRange
-    is_usage_slot: true
-    usage_slot_name: max
-    range: decimal
-    required: true
-    minimum_value: 0
-    maximum_value: 100
   Text_value:
     name: Text_value
     definition_uri: https://w3id.org/lmodel/datatype/value
@@ -874,8 +798,9 @@ classes:
     description: Class to encapsulate a quantitative range
     title: Quantitative Range
     comments:
-    - 'This project''s rule: min is not above max. No validator can compare two slots,
-      so tests/test_data.py checks it over the examples.'
+    - 'This project''s rule, which the ontology does not state: min is not above max.
+      No validator can compare two slots, so tests/test_data.py checks it over the
+      examples.'
     from_schema: https://w3id.org/lmodel/datatype
     exact_mappings:
     - data:QuantitativeRange
@@ -906,9 +831,9 @@ classes:
     - data:Percent
     is_a: QuantitativeMeasure
     slots:
+    - QuantitativeMeasure_value
     - uncertainty
     - Percent_unit
-    - Percent_value
     slot_usage:
       unit:
         name: unit
@@ -916,13 +841,6 @@ classes:
         - 'The ontology''s owl:hasValue: the unit is QUDT''s PERCENT and no other.
           A pattern states it, since equals_string needs a string range.'
         pattern: ^http://qudt\.org/vocab/unit/PERCENT$
-      value:
-        name: value
-        comments:
-        - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-          no bound.'
-        minimum_value: 0
-        maximum_value: 100
     class_uri: data:Percent
   PercentRange:
     name: PercentRange
@@ -935,10 +853,10 @@ classes:
     - data:PercentRange
     is_a: QuantitativeRange
     slots:
+    - QuantitativeRange_min
+    - QuantitativeRange_max
     - uncertainty
     - PercentRange_unit
-    - PercentRange_min
-    - PercentRange_max
     slot_usage:
       unit:
         name: unit
@@ -946,20 +864,6 @@ classes:
         - 'The ontology''s owl:hasValue: the unit is QUDT''s PERCENT and no other.
           A pattern states it, since equals_string needs a string range.'
         pattern: ^http://qudt\.org/vocab/unit/PERCENT$
-      min:
-        name: min
-        comments:
-        - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-          no bound.'
-        minimum_value: 0
-        maximum_value: 100
-      max:
-        name: max
-        comments:
-        - 'This project''s rule: a percent lies between 0 and 100. The ontology states
-          no bound.'
-        minimum_value: 0
-        maximum_value: 100
     class_uri: data:PercentRange
   Text:
     name: Text
@@ -979,6 +883,6 @@ classes:
     class_uri: data:Text
 metamodel_version: 1.12.0
 source_file: datatype.yaml
-source_file_date: '2026-10-31T12:18:42'
-source_file_size: 8221
+source_file_date: '2026-10-31T12:50:09'
+source_file_size: 7435
 

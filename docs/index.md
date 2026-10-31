@@ -22,24 +22,19 @@ The validator checks the ontology's restrictions: the one value of a `Text`,
 `Boolean`, `Count` or `QuantitativeMeasure` and its datatype, the one unit of
 a measure or range, the one `min` and `max` of a range, at most one
 `uncertainty`, the one concept and vocabulary of a `Concept`, and QUDT's
-PERCENT as the only unit of a `Percent` or `PercentRange`. It also checks two
-rules that are this project's, not the ontology's:
-
-- a percent lies between 0 and 100;
-- an uncertainty is not negative.
+PERCENT as the only unit of a `Percent` or `PercentRange`. It checks no
+bound, since the ontology states none, so it accepts a percent above 100
+and a negative uncertainty.
 
 Validate a file before loading it into either model in
 `src/datatype/datamodel/`. LinkML 1.12.1 generates models that check less:
 
-- The dataclasses check required fields, but no bound and no pattern. They
-  turn a number or a list given as a `Text` into a string, and cut a `Count`
-  of 2.5 to 2.
-- The Pydantic models check bounds and patterns, but read a word such as
-  `"yes"` as a true `Boolean`.
+- The dataclasses check required fields, but no pattern. They turn a number
+  or a list given as a `Text` into a string, and cut a `Count` of 2.5 to 2.
+- The Pydantic models check patterns, but read a word such as `"yes"` as a
+  true `Boolean`.
 
-No validator checks this rule, also this project's:
-
-- that a range's `min` is not above its `max`.
-
-`tests/test_data.py` checks it over every example, and
-`tests/data/problem/invalid/` holds its counter-example.
+One rule is this project's, and the ontology does not state it: a range's
+`min` is not above its `max`. No validator checks it, so the validator
+accepts such a range. `tests/test_data.py` checks the rule over every
+example, and `tests/data/problem/invalid/` holds its counter-example.

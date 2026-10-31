@@ -1,5 +1,0 @@
-# Fails at: /max
-# Invalid, by this project's rule: a percent lies between 0 and 100.
-min: 10
-max: 125
-unit: http://qudt.org/vocab/unit/PERCENT

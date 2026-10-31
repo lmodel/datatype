@@ -27,8 +27,9 @@ and `uncertainty`. What the schema adds sits under `datatype_linkml:`,
 - **A pattern for a fixed value.** The ontology fixes a percent's unit with
   `owl:hasValue`. The schema states it as a pattern that admits that one IRI,
   `http://qudt.org/vocab/unit/PERCENT`.
-- **Three rules of this project's own**, which [the home page](index.md)
-  lists.
+- **One rule of this project's own**: a range's `min` is not above its
+  `max`. The ontology does not state it, and no validator checks it, so the
+  tests check it over the examples only, as [the home page](index.md) says.
 
 ## Licence
 

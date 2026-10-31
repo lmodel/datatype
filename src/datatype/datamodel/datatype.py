@@ -239,19 +239,14 @@ class Percent(QuantitativeMeasure):
     class_name: ClassVar[str] = "Percent"
     class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.Percent
 
-    unit: Union[str, URIorCURIE] = None
     value: Decimal = None
+    unit: Union[str, URIorCURIE] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
         if not isinstance(self.unit, URIorCURIE):
             self.unit = URIorCURIE(self.unit)
-
-        if self._is_empty(self.value):
-            self.MissingRequiredField("value")
-        if not isinstance(self.value, Decimal):
-            self.value = Decimal(self.value)
 
         super().__post_init__(**kwargs)
 
@@ -268,25 +263,15 @@ class PercentRange(QuantitativeRange):
     class_name: ClassVar[str] = "PercentRange"
     class_model_uri: ClassVar[URIRef] = DATATYPE_LINKML.PercentRange
 
-    unit: Union[str, URIorCURIE] = None
     min: Decimal = None
     max: Decimal = None
+    unit: Union[str, URIorCURIE] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.unit):
             self.MissingRequiredField("unit")
         if not isinstance(self.unit, URIorCURIE):
             self.unit = URIorCURIE(self.unit)
-
-        if self._is_empty(self.min):
-            self.MissingRequiredField("min")
-        if not isinstance(self.min, Decimal):
-            self.min = Decimal(self.min)
-
-        if self._is_empty(self.max):
-            self.MissingRequiredField("max")
-        if not isinstance(self.max, Decimal):
-            self.max = Decimal(self.max)
 
         super().__post_init__(**kwargs)
 
@@ -376,18 +361,9 @@ slots.Percent_unit = Slot(uri=DATA.unit, name="Percent_unit", curie=DATA.curie('
                    model_uri=DATATYPE_LINKML.Percent_unit, domain=Percent, range=Union[str, URIorCURIE],
                    pattern=re.compile(r'^http://qudt\.org/vocab/unit/PERCENT$'))
 
-slots.Percent_value = Slot(uri=DATA.value, name="Percent_value", curie=DATA.curie('value'),
-                   model_uri=DATATYPE_LINKML.Percent_value, domain=Percent, range=Decimal)
-
 slots.PercentRange_unit = Slot(uri=DATA.unit, name="PercentRange_unit", curie=DATA.curie('unit'),
                    model_uri=DATATYPE_LINKML.PercentRange_unit, domain=PercentRange, range=Union[str, URIorCURIE],
                    pattern=re.compile(r'^http://qudt\.org/vocab/unit/PERCENT$'))
-
-slots.PercentRange_min = Slot(uri=DATA.min, name="PercentRange_min", curie=DATA.curie('min'),
-                   model_uri=DATATYPE_LINKML.PercentRange_min, domain=PercentRange, range=Decimal)
-
-slots.PercentRange_max = Slot(uri=DATA.max, name="PercentRange_max", curie=DATA.curie('max'),
-                   model_uri=DATATYPE_LINKML.PercentRange_max, domain=PercentRange, range=Decimal)
 
 slots.Text_value = Slot(uri=DATA.value, name="Text_value", curie=DATA.curie('value'),
                    model_uri=DATATYPE_LINKML.Text_value, domain=Text, range=str)

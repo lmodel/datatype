@@ -56,7 +56,8 @@ None. The ontology states no alignment to another vocabulary, so the schema carr
 * Properties a class's restrictions do not name. OWL leaves each class open to them, but LinkML's classes are closed, so a `standard` on a `QuantitativeMeasure` is not valid here.
 * What an IRI names: the ontology says a `Concept`'s value is a `skos:Concept` and a vocabulary a SKOS scheme, a SKOS collection or an OWL ontology, which no validator can check of an IRI.
 * The ontology's RDF/XML, JSON-LD and HTML forms, which hold the same terms as the Turtle file.
-* The rules [docs/index.md](docs/index.md) lists, three of them this project's own and one beyond the validator.
+* Bounds on a value, which the ontology does not state: the validator accepts a percent above 100.
+* The one rule of this project's own, that a range's `min` is not above its `max`, which is beyond the validator. [docs/index.md](docs/index.md) says how the tests check it.
 
 ## Repository Structure
 

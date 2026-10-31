@@ -70,8 +70,7 @@ linkml:Sparqlpath xsd:string
 <Percent> CLOSED {
     (  $<Percent_tes> (  &<QuantitativeMeasure_tes> ;
           rdf:type [ data:QuantitativeMeasure ] ? ;
-          data:unit @linkml:Uriorcurie ;
-          data:value @linkml:Decimal
+          data:unit @linkml:Uriorcurie
        ) ;
        rdf:type [ data:Percent ] ?
     )
@@ -80,9 +79,7 @@ linkml:Sparqlpath xsd:string
 <PercentRange> CLOSED {
     (  $<PercentRange_tes> (  &<QuantitativeRange_tes> ;
           rdf:type [ data:QuantitativeRange ] ? ;
-          data:unit @linkml:Uriorcurie ;
-          data:min @linkml:Decimal ;
-          data:max @linkml:Decimal
+          data:unit @linkml:Uriorcurie
        ) ;
        rdf:type [ data:PercentRange ] ?
     )

@@ -41,7 +41,6 @@
             "properties": {
                 "uncertainty": {
                     "description": "Uncertainty for a quantitative value",
-                    "minimum": 0,
                     "type": [
                         "number",
                         "null"
@@ -64,7 +63,6 @@
             "properties": {
                 "uncertainty": {
                     "description": "Uncertainty for a quantitative value",
-                    "minimum": 0,
                     "type": [
                         "number",
                         "null"
@@ -77,8 +75,6 @@
                 },
                 "value": {
                     "description": "simple value (a literal)",
-                    "maximum": 100,
-                    "minimum": 0,
                     "type": "number"
                 }
             },
@@ -95,19 +91,14 @@
             "properties": {
                 "max": {
                     "description": "Maximum value of a range",
-                    "maximum": 100,
-                    "minimum": 0,
                     "type": "number"
                 },
                 "min": {
                     "description": "Minimum value of range",
-                    "maximum": 100,
-                    "minimum": 0,
                     "type": "number"
                 },
                 "uncertainty": {
                     "description": "Uncertainty for a quantitative value",
-                    "minimum": 0,
                     "type": [
                         "number",
                         "null"
@@ -133,7 +124,6 @@
             "properties": {
                 "uncertainty": {
                     "description": "Uncertainty for a quantitative value",
-                    "minimum": 0,
                     "type": [
                         "number",
                         "null"
@@ -169,7 +159,6 @@
                 },
                 "uncertainty": {
                     "description": "Uncertainty for a quantitative value",
-                    "minimum": 0,
                     "type": [
                         "number",
                         "null"

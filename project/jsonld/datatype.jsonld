@@ -32,7 +32,7 @@
     "The ontology states no owl:versionInfo or owl:versionIRI, and its repository has no tag or release, so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch moves.",
     "The ontology's own dcterms:license is CC0 1.0, and the repository's LICENSE, added later, is CC BY 4.0. Each description is the ontology's skos:definition of the term, used with the attribution NOTICE gives.",
     "The classes are closed: a value carries only the properties the ontology's restrictions on its class name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure is valid OWL but not valid here.",
-    "Three rules are this project's, not the ontology's, each marked where it is stated: a percent lies between 0 and 100, an uncertainty is not negative, and a range's min is not above its max. The validator checks the first two; no validator can compare two slots, so tests/test_data.py checks the third over the examples."
+    "One rule is this project's, not the ontology's: a range's min is not above its max. The ontology does not state it, and no validator can compare two slots, so the validator accepts such a range and tests/test_data.py checks the rule over the examples only."
   ],
   "source": "http://linked.data.gov.au/def/datatype",
   "see_also": [
@@ -459,9 +459,6 @@
       "definition_uri": "https://w3id.org/lmodel/datatype/uncertainty",
       "description": "Uncertainty for a quantitative value",
       "title": "data uncertainty",
-      "comments": [
-        "This project's rule: an uncertainty is not negative. The ontology states no bound."
-      ],
       "from_schema": "https://w3id.org/lmodel/datatype",
       "mappings": [
         "http://linked.data.gov.au/def/datatype/uncertainty"
@@ -475,7 +472,6 @@
         "QuantitativeRange"
       ],
       "range": "decimal",
-      "minimum_value": 0,
       "@type": "SlotDefinition"
     },
     {
@@ -784,34 +780,6 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "Percent_value",
-      "definition_uri": "https://w3id.org/lmodel/datatype/value",
-      "description": "simple value (a literal)",
-      "title": "data value",
-      "comments": [
-        "This project's rule: a percent lies between 0 and 100. The ontology states no bound."
-      ],
-      "from_schema": "https://w3id.org/lmodel/datatype",
-      "mappings": [
-        "http://linked.data.gov.au/def/datatype/value"
-      ],
-      "is_a": "QuantitativeMeasure_value",
-      "domain": "Percent",
-      "slot_uri": "http://linked.data.gov.au/def/datatype/value",
-      "alias": "value",
-      "owner": "Percent",
-      "domain_of": [
-        "Percent"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "value",
-      "range": "decimal",
-      "required": true,
-      "minimum_value": 0,
-      "maximum_value": 100,
-      "@type": "SlotDefinition"
-    },
-    {
       "name": "PercentRange_unit",
       "definition_uri": "https://w3id.org/lmodel/datatype/unit",
       "description": "Measurement scale",
@@ -836,62 +804,6 @@
       "range": "uriorcurie",
       "required": true,
       "pattern": "^http://qudt\\.org/vocab/unit/PERCENT$",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "PercentRange_min",
-      "definition_uri": "https://w3id.org/lmodel/datatype/min",
-      "description": "Minimum value of range",
-      "title": "data minimum",
-      "comments": [
-        "This project's rule: a percent lies between 0 and 100. The ontology states no bound."
-      ],
-      "from_schema": "https://w3id.org/lmodel/datatype",
-      "mappings": [
-        "http://linked.data.gov.au/def/datatype/min"
-      ],
-      "is_a": "QuantitativeRange_min",
-      "domain": "PercentRange",
-      "slot_uri": "http://linked.data.gov.au/def/datatype/min",
-      "alias": "min",
-      "owner": "PercentRange",
-      "domain_of": [
-        "PercentRange"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "min",
-      "range": "decimal",
-      "required": true,
-      "minimum_value": 0,
-      "maximum_value": 100,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "PercentRange_max",
-      "definition_uri": "https://w3id.org/lmodel/datatype/max",
-      "description": "Maximum value of a range",
-      "title": "data maximum",
-      "comments": [
-        "This project's rule: a percent lies between 0 and 100. The ontology states no bound."
-      ],
-      "from_schema": "https://w3id.org/lmodel/datatype",
-      "mappings": [
-        "http://linked.data.gov.au/def/datatype/max"
-      ],
-      "is_a": "QuantitativeRange_max",
-      "domain": "PercentRange",
-      "slot_uri": "http://linked.data.gov.au/def/datatype/max",
-      "alias": "max",
-      "owner": "PercentRange",
-      "domain_of": [
-        "PercentRange"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "max",
-      "range": "decimal",
-      "required": true,
-      "minimum_value": 0,
-      "maximum_value": 100,
       "@type": "SlotDefinition"
     },
     {
@@ -993,7 +905,7 @@
       "description": "Class to encapsulate a quantitative range",
       "title": "Quantitative Range",
       "comments": [
-        "This project's rule: min is not above max. No validator can compare two slots, so tests/test_data.py checks it over the examples."
+        "This project's rule, which the ontology does not state: min is not above max. No validator can compare two slots, so tests/test_data.py checks it over the examples."
       ],
       "from_schema": "https://w3id.org/lmodel/datatype",
       "exact_mappings": [
@@ -1020,9 +932,9 @@
       ],
       "is_a": "QuantitativeMeasure",
       "slots": [
+        "QuantitativeMeasure_value",
         "uncertainty",
-        "Percent_unit",
-        "Percent_value"
+        "Percent_unit"
       ],
       "slot_usage": {},
       "class_uri": "http://linked.data.gov.au/def/datatype/Percent",
@@ -1039,10 +951,10 @@
       ],
       "is_a": "QuantitativeRange",
       "slots": [
+        "QuantitativeRange_min",
+        "QuantitativeRange_max",
         "uncertainty",
-        "PercentRange_unit",
-        "PercentRange_min",
-        "PercentRange_max"
+        "PercentRange_unit"
       ],
       "slot_usage": {},
       "class_uri": "http://linked.data.gov.au/def/datatype/PercentRange",
@@ -1067,8 +979,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "datatype.yaml",
-  "source_file_date": "2026-10-31T12:18:42",
-  "source_file_size": 8221,
+  "source_file_date": "2026-10-31T12:50:09",
+  "source_file_size": 7435,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/datatype.context.jsonld",

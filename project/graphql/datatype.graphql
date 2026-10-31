@@ -19,17 +19,17 @@ type Count
 
 type Percent
   {
+    value: Float!
     uncertainty: Float
     unit: String!
-    value: Float!
   }
 
 type PercentRange
   {
-    uncertainty: Float
-    unit: String!
     min: Float!
     max: Float!
+    uncertainty: Float
+    unit: String!
   }
 
 type QuantitativeMeasure

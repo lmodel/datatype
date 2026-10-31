@@ -23,23 +23,23 @@ message Count {
 }
 // Class to encapsulate a quantitative measure expressed as a percent value
 message Percent {
-  // Uncertainty for a quantitative value
-  string uncertainty = 1;
-  // Measurement scale
-  string unit = 2;
   // simple value (a literal)
-  string value = 3;
+  string value = 1;
+  // Uncertainty for a quantitative value
+  string uncertainty = 2;
+  // Measurement scale
+  string unit = 3;
 }
 // Class to encapsulate a quantitative range expressed as in percent values
 message PercentRange {
-  // Uncertainty for a quantitative value
-  string uncertainty = 1;
-  // Measurement scale
-  string unit = 2;
   // Minimum value of range
-  string min = 3;
+  string min = 1;
   // Maximum value of a range
-  string max = 4;
+  string max = 2;
+  // Uncertainty for a quantitative value
+  string uncertainty = 3;
+  // Measurement scale
+  string unit = 4;
 }
 // Class to encapsulate a quantitative measure value
 message QuantitativeMeasure {

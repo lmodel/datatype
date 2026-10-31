@@ -95,12 +95,11 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_branch': {'tag': 'upstream_b
                   "ontology's restrictions on its class name. OWL leaves a class "
                   'open to other properties, so data that adds, say, a standard to '
                   'a QuantitativeMeasure is valid OWL but not valid here.',
-                  "Three rules are this project's, not the ontology's, each marked "
-                  'where it is stated: a percent lies between 0 and 100, an '
-                  "uncertainty is not negative, and a range's min is not above its "
-                  'max. The validator checks the first two; no validator can '
-                  'compare two slots, so tests/test_data.py checks the third over '
-                  'the examples.'],
+                  "One rule is this project's, not the ontology's: a range's min "
+                  'is not above its max. The ontology does not state it, and no '
+                  'validator can compare two slots, so the validator accepts such '
+                  'a range and tests/test_data.py checks the rule over the '
+                  'examples only.'],
      'default_prefix': 'datatype_linkml',
      'default_range': 'string',
      'description': 'A LinkML rendering of the Datatype Ontology ("Datatypes") of '
@@ -190,9 +189,7 @@ class Count(ConfiguredBaseModel):
     value: int = Field(default=..., title="data value", description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Boolean', 'Count', 'QuantitativeMeasure', 'Text'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:value'} })
-    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", ge=0, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: an uncertainty is not negative. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
+    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:uncertainty'} })
 
@@ -217,9 +214,7 @@ class QuantitativeMeasure(ConfiguredBaseModel):
          'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'slot_uri': 'data:unit'} })
-    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", ge=0, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: an uncertainty is not negative. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
+    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:uncertainty'} })
 
@@ -229,9 +224,9 @@ class QuantitativeRange(ConfiguredBaseModel):
     Class to encapsulate a quantitative range
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'data:QuantitativeRange',
-         'comments': ["This project's rule: min is not above max. No validator can "
-                      'compare two slots, so tests/test_data.py checks it over the '
-                      'examples.'],
+         'comments': ["This project's rule, which the ontology does not state: min is "
+                      'not above max. No validator can compare two slots, so '
+                      'tests/test_data.py checks it over the examples.'],
          'from_schema': 'https://w3id.org/lmodel/datatype',
          'slot_usage': {'max': {'name': 'max', 'required': True},
                         'min': {'name': 'min', 'required': True},
@@ -249,9 +244,7 @@ class QuantitativeRange(ConfiguredBaseModel):
          'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'slot_uri': 'data:unit'} })
-    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", ge=0, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: an uncertainty is not negative. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
+    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:uncertainty'} })
 
@@ -267,18 +260,10 @@ class Percent(QuantitativeMeasure):
                                               'pattern states it, since equals_string '
                                               'needs a string range.'],
                                  'name': 'unit',
-                                 'pattern': '^http://qudt\\.org/vocab/unit/PERCENT$'},
-                        'value': {'comments': ["This project's rule: a percent lies "
-                                               'between 0 and 100. The ontology states '
-                                               'no bound.'],
-                                  'maximum_value': 100,
-                                  'minimum_value': 0,
-                                  'name': 'value'}},
+                                 'pattern': '^http://qudt\\.org/vocab/unit/PERCENT$'}},
          'title': 'Percent'})
 
-    value: Decimal = Field(default=..., title="data value", description="""simple value (a literal)""", ge=0, le=100, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: a percent lies between 0 and 100. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Boolean', 'Count', 'QuantitativeMeasure', 'Text'],
+    value: Decimal = Field(default=..., title="data value", description="""simple value (a literal)""", json_schema_extra = { "linkml_meta": {'domain_of': ['Boolean', 'Count', 'QuantitativeMeasure', 'Text'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:value'} })
     unit: str = Field(default=..., title="unit of measure", description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'comments': ["The ontology's owl:hasValue: the unit is QUDT's PERCENT and no "
@@ -287,9 +272,7 @@ class Percent(QuantitativeMeasure):
          'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'slot_uri': 'data:unit'} })
-    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", ge=0, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: an uncertainty is not negative. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
+    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:uncertainty'} })
 
@@ -313,19 +296,7 @@ class PercentRange(QuantitativeRange):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'data:PercentRange',
          'from_schema': 'https://w3id.org/lmodel/datatype',
-         'slot_usage': {'max': {'comments': ["This project's rule: a percent lies "
-                                             'between 0 and 100. The ontology states '
-                                             'no bound.'],
-                                'maximum_value': 100,
-                                'minimum_value': 0,
-                                'name': 'max'},
-                        'min': {'comments': ["This project's rule: a percent lies "
-                                             'between 0 and 100. The ontology states '
-                                             'no bound.'],
-                                'maximum_value': 100,
-                                'minimum_value': 0,
-                                'name': 'min'},
-                        'unit': {'comments': ["The ontology's owl:hasValue: the unit "
+         'slot_usage': {'unit': {'comments': ["The ontology's owl:hasValue: the unit "
                                               "is QUDT's PERCENT and no other. A "
                                               'pattern states it, since equals_string '
                                               'needs a string range.'],
@@ -333,14 +304,10 @@ class PercentRange(QuantitativeRange):
                                  'pattern': '^http://qudt\\.org/vocab/unit/PERCENT$'}},
          'title': 'Percent range'})
 
-    min: Decimal = Field(default=..., title="data minimum", description="""Minimum value of range""", ge=0, le=100, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: a percent lies between 0 and 100. The "
-                      'ontology states no bound.'],
-         'domain_of': ['QuantitativeRange'],
+    min: Decimal = Field(default=..., title="data minimum", description="""Minimum value of range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:min'} })
-    max: Decimal = Field(default=..., title="data maximum", description="""Maximum value of a range""", ge=0, le=100, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: a percent lies between 0 and 100. The "
-                      'ontology states no bound.'],
-         'domain_of': ['QuantitativeRange'],
+    max: Decimal = Field(default=..., title="data maximum", description="""Maximum value of a range""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:max'} })
     unit: str = Field(default=..., title="unit of measure", description="""Measurement scale""", json_schema_extra = { "linkml_meta": {'comments': ["The ontology's owl:hasValue: the unit is QUDT's PERCENT and no "
@@ -349,9 +316,7 @@ class PercentRange(QuantitativeRange):
          'domain_of': ['QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'standard',
          'slot_uri': 'data:unit'} })
-    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", ge=0, json_schema_extra = { "linkml_meta": {'comments': ["This project's rule: an uncertainty is not negative. The "
-                      'ontology states no bound.'],
-         'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
+    uncertainty: Optional[Decimal] = Field(default=None, title="data uncertainty", description="""Uncertainty for a quantitative value""", json_schema_extra = { "linkml_meta": {'domain_of': ['Count', 'QuantitativeMeasure', 'QuantitativeRange'],
          'is_a': 'rdf_value',
          'slot_uri': 'data:uncertainty'} })
 
