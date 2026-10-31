@@ -1,0 +1,4 @@
+# Fails at: /value
+# Invalid: a measure's value is an xsd:decimal, with the unit apart.
+value: 12.5 m
+unit: http://qudt.org/vocab/unit/M

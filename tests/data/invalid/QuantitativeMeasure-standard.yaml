@@ -1,0 +1,6 @@
+# Fails at: /
+# Invalid: the ontology's restrictions on QuantitativeMeasure name no
+# standard, and the class is closed.
+value: 12.5
+unit: http://qudt.org/vocab/unit/M
+standard: https://example.org/standards/tape-measure

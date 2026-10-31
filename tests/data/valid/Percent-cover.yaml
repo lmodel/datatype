@@ -1,0 +1,4 @@
+# A percent cover of vegetation on a plot.
+value: 35
+unit: http://qudt.org/vocab/unit/PERCENT
+uncertainty: 5

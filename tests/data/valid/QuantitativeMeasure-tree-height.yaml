@@ -1,0 +1,4 @@
+# A height in metres, with its uncertainty, the unit named by its QUDT IRI.
+value: 12.5
+unit: http://qudt.org/vocab/unit/M
+uncertainty: 0.25

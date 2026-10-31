@@ -1,0 +1,5 @@
+# Fails at: /uncertainty
+# Invalid, by this project's rule: an uncertainty is not negative.
+value: 12.5
+unit: http://qudt.org/vocab/unit/M
+uncertainty: -0.25

@@ -1,0 +1,6 @@
+# Fails at: /min
+# Invalid, by this project's rule: min is not above max. The validator
+# cannot compare two slots, so tests/test_data.py checks it over this file.
+min: 18.5
+max: 12.0
+unit: http://qudt.org/vocab/unit/DEG_C

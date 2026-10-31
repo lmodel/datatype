@@ -1,0 +1,4 @@
+# A cover class of 10 to 25 percent.
+min: 10
+max: 25
+unit: http://qudt.org/vocab/unit/PERCENT

@@ -1,0 +1,3 @@
+# Fails at: /
+# Invalid: a Concept names exactly one concept in rdf_value.
+vocabulary: https://example.org/vocab/soil-texture

@@ -1,0 +1,4 @@
+# Fails at: /unit
+# Invalid: a Percent's unit is QUDT's PERCENT, and no other.
+value: 0.35
+unit: http://qudt.org/vocab/unit/FRACTION
