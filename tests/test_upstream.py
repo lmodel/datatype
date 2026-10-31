@@ -253,7 +253,7 @@ def test_superclasses_are_the_ontologys():
         "Text",
     ],
 )
-def test_restrictions_are_the_classs_slots(name):
+def test_restrictions_give_the_slots_of_the_class(name):
     """A class's slots are the properties its restrictions name. Exactly one
     is required and single, at most one is single, allValuesFrom is the
     range, and hasValue the one value a pattern allows."""
