@@ -26,8 +26,10 @@ comments:
   so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence
   at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch
   moves.
-- The ontology's own dcterms:license is CC0 1.0, and the repository's LICENSE, added later, is CC BY 4.0.
-  Each description is the ontology's skos:definition of the term, used with the attribution NOTICE gives.
+- The title and description of each of the ontology's terms are its rdfs:label and skos:definition. The
+  ontology states CC0 1.0 as its dcterms:license, and the repository's LICENSE, added later, is CC BY
+  4.0 (https://creativecommons.org/licenses/by/4.0/). This rendering follows CC BY 4.0, is provided as
+  is, and carries the attribution that https://github.com/lmodel/datatype/blob/main/NOTICE gives.
 - 'The classes are closed: a value carries only the properties the ontology''s restrictions on its class
   name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure
   is valid OWL but not valid here.'
