@@ -265,9 +265,13 @@ def check_copy() -> tuple[list[str], bool]:
         if not path.is_file():
             differing.append(f"`{name}` is missing from the copy")
         elif pinned_tree.get(name) != pinned_sha:
-            differing.append(f"`{name}` at commit `{PINNED_COMMIT[:12]}` is not the pinned blob")
+            differing.append(
+                f"`{name}` at commit `{PINNED_COMMIT[:12]}` is not the pinned blob"
+            )
         elif _blob_sha(path) != pinned_sha:
-            differing.append(f"`{name}` differs from its file at `{PINNED_COMMIT[:12]}`")
+            differing.append(
+                f"`{name}` differs from its file at `{PINNED_COMMIT[:12]}`"
+            )
         else:
             matching += 1
     extra = sorted(
@@ -290,7 +294,9 @@ def check_copy() -> tuple[list[str], bool]:
         head_tree = _tree(head)
         dropped = sorted(n for n in PINNED_BLOBS if n not in head_tree)
         changed = sorted(
-            n for n, sha in PINNED_BLOBS.items() if n in head_tree and head_tree[n] != sha
+            n
+            for n, sha in PINNED_BLOBS.items()
+            if n in head_tree and head_tree[n] != sha
         )
         for name in dropped:
             attention = True
@@ -305,7 +311,9 @@ def check_copy() -> tuple[list[str], bool]:
                 "with the file at its head, move the pins here, and update the schema."
             )
         if not dropped and not changed:
-            report.append(f"- The head of `{PINNED_BRANCH}` holds the copied files unchanged.")
+            report.append(
+                f"- The head of `{PINNED_BRANCH}` holds the copied files unchanged."
+            )
         added = _added(head_tree)
 
     if added:
@@ -322,12 +330,18 @@ def check_namespace() -> tuple[list[str], bool]:
     copied file on master."""
     found = _location(NAMESPACE)
     if found != PINNED_REDIRECT:
-        shown = f"redirects to {_code(found)}" if found is not None else "answers without a redirect"
+        shown = (
+            f"redirects to {_code(found)}"
+            if found is not None
+            else "answers without a redirect"
+        )
         return [
             f"- **The namespace `{NAMESPACE}` now {shown}, not to `{PINNED_REDIRECT}`.** "
             "Find out whether the ontology has moved, and where its current edition is."
         ], True
-    return [f"- The namespace still redirects a request for Turtle to `{PINNED_BRANCH}`."], False
+    return [
+        f"- The namespace still redirects a request for Turtle to `{PINNED_BRANCH}`."
+    ], False
 
 
 # Each check, by the name the report gives it when it cannot finish.
@@ -341,7 +355,9 @@ CHECKS = (
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--report", type=Path, help="Also write the Markdown report to this file")
+    parser.add_argument(
+        "--report", type=Path, help="Also write the Markdown report to this file"
+    )
     args = parser.parse_args(argv)
     lines, attention = [], False
     for label, check in CHECKS:

@@ -41,7 +41,9 @@ def _target(path: Path) -> str:
 
 def _pointer(text: str, name: str) -> str:
     first = text.splitlines()[0]
-    assert first.startswith("# Fails at: "), f"{name}: the first line names where it fails"
+    assert first.startswith("# Fails at: "), (
+        f"{name}: the first line names where it fails"
+    )
     return first.removeprefix("# Fails at: ").strip()
 
 
@@ -57,7 +59,11 @@ def rule_problems(target: str, data: dict) -> list[str]:
     problems = []
     if target in RANGES and isinstance(data, dict):
         low, high = data.get("min"), data.get("max")
-        if isinstance(low, (int, float)) and isinstance(high, (int, float)) and low > high:
+        if (
+            isinstance(low, (int, float))
+            and isinstance(high, (int, float))
+            and low > high
+        ):
             problems.append(f"min {low} is above max {high} in /min")
     return problems
 
@@ -142,7 +148,9 @@ def _generated_failures(data, target: str) -> list[str]:
 @pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES, ids=lambda p: p.name)
 def test_valid_data_files_pass_the_generated_json_schema(filepath):
     """Each valid example passes the committed JSON Schema."""
-    failures = _generated_failures(yaml.safe_load(filepath.read_text()), _target(filepath))
+    failures = _generated_failures(
+        yaml.safe_load(filepath.read_text()), _target(filepath)
+    )
     assert not failures, failures
 
 

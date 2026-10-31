@@ -110,7 +110,9 @@ def test_the_header_names_the_pinned_edition():
     assert header()["version"] == WATCH.PINNED_EDITION
     assert header()["source"] == WATCH.PINNED_SOURCE == str(ONTOLOGY)
     assert _text(ONTOLOGY, DCTERMS.modified) == WATCH.PINNED_EDITION
-    assert _text(ONTOLOGY, DCTERMS.created) == header()["annotations"]["upstream_created"]
+    assert (
+        _text(ONTOLOGY, DCTERMS.created) == header()["annotations"]["upstream_created"]
+    )
     assert header()["annotations"]["upstream_commit"] == WATCH.PINNED_COMMIT
     assert header()["annotations"]["upstream_branch"] == WATCH.PINNED_BRANCH
     assert WATCH.PINNED_COMMIT in " ".join(header()["see_also"])
@@ -195,7 +197,9 @@ def test_ranges_and_super_properties_are_the_ontologys():
         parents = list(graph().objects(prop, RDFS.subPropertyOf))
         if parents:
             assert len(parents) == 1
-            assert _iri(view().get_slot(slot.is_a).slot_uri) == str(parents[0]), slot.name
+            assert _iri(view().get_slot(slot.is_a).slot_uri) == str(parents[0]), (
+                slot.name
+            )
         else:
             assert slot.is_a is None, slot.name
         assert graph().value(prop, RDFS.domain) is None
@@ -226,15 +230,28 @@ def _restrictions(cls: URIRef) -> dict[str, dict]:
 
 def test_superclasses_are_the_ontologys():
     for iri, name in _classes().items():
-        named = [p for p in graph().objects(URIRef(iri), RDFS.subClassOf) if isinstance(p, URIRef)]
+        named = [
+            p
+            for p in graph().objects(URIRef(iri), RDFS.subClassOf)
+            if isinstance(p, URIRef)
+        ]
         cls = view().get_class(name)
         parent = [_iri(view().get_class(cls.is_a).class_uri)] if cls.is_a else []
         assert parent == [str(p) for p in named], name
 
 
 @pytest.mark.parametrize(
-    "name", ["Boolean", "Concept", "Count", "Percent", "PercentRange",
-             "QuantitativeMeasure", "QuantitativeRange", "Text"],
+    "name",
+    [
+        "Boolean",
+        "Concept",
+        "Count",
+        "Percent",
+        "PercentRange",
+        "QuantitativeMeasure",
+        "QuantitativeRange",
+        "Text",
+    ],
 )
 def test_restrictions_are_the_classs_slots(name):
     """A class's slots are the properties its restrictions name. Exactly one
@@ -242,7 +259,9 @@ def test_restrictions_are_the_classs_slots(name):
     range, and hasValue the one value a pattern allows."""
     cls = URIRef(_iri(view().get_class(name).class_uri))
     restrictions = _restrictions(cls)
-    slots = {_iri(view().induced_slot(s, name).slot_uri): s for s in view().class_slots(name)}
+    slots = {
+        _iri(view().induced_slot(s, name).slot_uri): s for s in view().class_slots(name)
+    }
     assert set(slots) == set(restrictions), name
     for prop, facts in restrictions.items():
         slot = view().induced_slot(slots[prop], name)
@@ -268,8 +287,14 @@ def test_the_schema_maps_nothing():
     """The ontology states no alignment to another vocabulary beyond
     rdf:value, which is_a renders, so the schema carries no mapping. A
     mapping added later comes with a hash-pinned term list to test it."""
-    keys = ("exact_mappings", "close_mappings", "related_mappings",
-            "narrow_mappings", "broad_mappings", "mappings")
+    keys = (
+        "exact_mappings",
+        "close_mappings",
+        "related_mappings",
+        "narrow_mappings",
+        "broad_mappings",
+        "mappings",
+    )
     for element in view().all_elements().values():
         if element.from_schema == "https://w3id.org/linkml/types":
             continue

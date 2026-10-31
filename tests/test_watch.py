@@ -149,7 +149,10 @@ def test_a_changed_licence_is_reported(watch, tmp_path):
     _stub(watch, answers)
     code, text = _run(watch, tmp_path)
     assert code == 1
-    assert "**AGLDWG/datatype-ont's licence now reads as `CC0-1.0`, not CC-BY-4.0.**" in text
+    assert (
+        "**AGLDWG/datatype-ont's licence now reads as `CC0-1.0`, not CC-BY-4.0.**"
+        in text
+    )
 
 
 def test_no_licence_is_reported(watch, tmp_path):
@@ -187,13 +190,16 @@ def test_a_network_failure_still_writes_a_report(watch, tmp_path):
     """A check that cannot reach the API is reported as unfinished, sets
     attention, and leaves the other checks to run."""
     answers = _answers(watch)
-    answers[f"{watch.API}/git/trees/{watch.PINNED_COMMIT}?recursive=1"] = urllib.error.URLError(
-        "Connection refused"
+    answers[f"{watch.API}/git/trees/{watch.PINNED_COMMIT}?recursive=1"] = (
+        urllib.error.URLError("Connection refused")
     )
     _stub(watch, answers, location=urllib.error.URLError("Name or service not known"))
     code, text = _run(watch, tmp_path)
     assert code == 1
-    assert "**The copy check could not finish: `<urlopen error Connection refused>`.**" in text
+    assert (
+        "**The copy check could not finish: `<urlopen error Connection refused>`.**"
+        in text
+    )
     assert "**The namespace check could not finish: `<urlopen error Name" in text
     assert "Licence: CC-BY-4.0, as pinned." in text
     assert "`master` still names the pinned commit" in text
@@ -203,7 +209,9 @@ def test_a_truncated_tree_is_reported_as_unfinished(watch, tmp_path):
     """A listing GitHub cut short cannot prove a file is gone, so the check
     stops instead of reporting it dropped."""
     answers = _answers(watch)
-    answers[f"{watch.API}/git/trees/{watch.PINNED_COMMIT}?recursive=1"]["truncated"] = True
+    answers[f"{watch.API}/git/trees/{watch.PINNED_COMMIT}?recursive=1"]["truncated"] = (
+        True
+    )
     _stub(watch, answers)
     code, text = _run(watch, tmp_path)
     assert code == 1
@@ -308,7 +316,9 @@ def test_the_namespace_check_sends_no_token_and_follows_no_redirect(watch, monke
             )
 
     monkeypatch.setenv("GITHUB_TOKEN", "secret")
-    monkeypatch.setattr(watch.urllib.request, "build_opener", lambda *handlers: Opener())
+    monkeypatch.setattr(
+        watch.urllib.request, "build_opener", lambda *handlers: Opener()
+    )
     assert watch._location(watch.NAMESPACE) == "https://example.org/x"
     assert seen[0].unredirected_hdrs == {}
     assert "Authorization" not in seen[0].headers
