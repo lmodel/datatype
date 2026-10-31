@@ -1,5 +1,22 @@
 ---
 # https://pre-commit.com/
+# No hook may rewrite a file this repository does not write by hand: what
+# the LinkML generators and `lokf adapt` write, which the next run would
+# rewrite back; the ontology's files under upstream/ and the neighbours'
+# released copies, which tests hold to their hashes and checksums; npm's
+# lockfile for the release tools; and the KTL sidecar's scripts, which the
+# weekly sync replaces.
+exclude: >-
+  (?x)^(
+    src/datatype/datamodel/|
+    project/|
+    docs/schema/|
+    upstream/|
+    \.lokf/(scripts|m365)/|
+    \.lokf/(lokf|datatype)\.yaml$|
+    \.github/release/package-lock\.json$|
+    tests/neighbours/
+  )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
