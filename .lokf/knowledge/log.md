@@ -2,6 +2,12 @@
 
 ## 2026-10-31
 
+* **Changed**: Percent, which no longer names a bound on its value: the schema dropped the bound of 0 to 100, which the ontology does not state.
+* **Changed**: Percent range, which no longer names a bound on its min and max: the schema dropped the bound of 0 to 100, which the ontology does not state.
+* **Changed**: Quantitative Range, which now says the ontology does not state the rule that min is not above max.
+* **Changed**: How the schema departs from OWL, which drops the percent and uncertainty bounds the schema no longer states and keeps the one rule of the project's own.
+* **Changed**: Test data and tests, which now counts 21 counter-examples, since the five for the dropped bounds are gone.
+* **Changed**: Validate data, which no longer speaks of bounds, since the schema states none.
 * **Changed**: Security policy, which now names the four locks and the action pins Dependabot keeps current, as `.github/dependabot.yml` lists them.
 * **Added**: Datatype LinkML schema, from `src/datatype/schema/datatype.yaml`.
 * **Added**: Copy of the Datatype Ontology, from `upstream`.

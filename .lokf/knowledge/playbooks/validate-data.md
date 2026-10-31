@@ -11,7 +11,7 @@ sources:
     title: Validating data
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T12:41:26Z"
+  at: "2026-10-31T12:51:35Z"
 status: draft
 ---
 
@@ -19,6 +19,6 @@ status: draft
 
 1. Run `linkml-validate -s src/datatype/schema/datatype.yaml -C QuantitativeMeasure measure.yaml`, naming the class the file holds. It checks the file against the JSON Schema generated from the schema.[^index]
 2. Check by hand, or as `tests/test_data.py` does, that a range's `min` is not above its `max`: no validator checks it.[^index]
-3. Only then load the file into a model in `src/datatype/datamodel/`. The dataclasses check no bound or pattern, and the Pydantic models read a word such as "yes" as a true `Boolean`.[^index]
+3. Only then load the file into a model in `src/datatype/datamodel/`. The dataclasses check no pattern, and the Pydantic models read a word such as "yes" as a true `Boolean`.[^index]
 
 [^index]: docs/index.md, Validating data

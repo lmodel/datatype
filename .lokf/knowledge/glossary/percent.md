@@ -3,7 +3,7 @@ type: GlossaryTerm
 id: https://w3id.org/lmodel/datatype/knowledge/glossary/percent
 genre: reference
 title: Percent
-description: "The Datatype Ontology's `data:Percent`: class to encapsulate a quantitative measure expressed as a percent value. A `Percent` is a `QuantitativeMeasure` whose unit is QUDT's PERCENT, `http://qudt.org/vocab/unit/PERCENT`. By this project's rule, its value lies between 0 and 100."
+description: "The Datatype Ontology's `data:Percent`: class to encapsulate a quantitative measure expressed as a percent value. A `Percent` is a `QuantitativeMeasure` whose unit is QUDT's PERCENT, `http://qudt.org/vocab/unit/PERCENT`."
 definition: Class to encapsulate a quantitative measure expressed as a percent value
 resource: src/datatype/schema/datatype.yaml
 definedBy:
@@ -19,13 +19,13 @@ sources:
     title: the class Percent
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T12:41:26Z"
+  at: "2026-10-31T12:51:35Z"
 status: draft
 ---
 
 # Percent
 
-The ontology defines `data:Percent` as "Class to encapsulate a quantitative measure expressed as a percent value".[^ttl] A `Percent` is a `QuantitativeMeasure` whose unit is QUDT's PERCENT, `http://qudt.org/vocab/unit/PERCENT`. By this project's rule, its value lies between 0 and 100.[^datatype.yaml]
+The ontology defines `data:Percent` as "Class to encapsulate a quantitative measure expressed as a percent value".[^ttl] A `Percent` is a `QuantitativeMeasure` whose unit is QUDT's PERCENT, `http://qudt.org/vocab/unit/PERCENT`.[^datatype.yaml]
 
 [^ttl]: upstream/rdf/datatype.ttl, data:Percent
 [^datatype.yaml]: src/datatype/schema/datatype.yaml, the class Percent
