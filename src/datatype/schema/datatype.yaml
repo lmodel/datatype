@@ -209,7 +209,8 @@ classes:
 
   Percent:
     title: Percent
-    description: Class to encapsulate a quantitative measure expressed as a percent value
+    description: >-
+      Class to encapsulate a quantitative measure expressed as a percent value
     class_uri: data:Percent
     is_a: QuantitativeMeasure
     slot_usage:
@@ -223,7 +224,8 @@ classes:
 
   PercentRange:
     title: Percent range
-    description: Class to encapsulate a quantitative range expressed as in percent values
+    description: >-
+      Class to encapsulate a quantitative range expressed as in percent values
     class_uri: data:PercentRange
     is_a: QuantitativeRange
     slot_usage:

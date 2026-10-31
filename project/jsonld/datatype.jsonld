@@ -975,8 +975,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "datatype.yaml",
-  "source_file_date": "2026-10-31T17:55:31",
-  "source_file_size": 7144,
+  "source_file_date": "2026-10-31T18:05:24",
+  "source_file_size": 7162,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/datatype.context.jsonld",
