@@ -475,3 +475,13 @@ def test_a_broken_copy_is_reported(watch, tmp_path, monkeypatch):
     assert (
         "  - `rdf/datatype.ttl` at commit `dd8f24120cd5` is not the pinned blob"
     ) in text
+
+
+def test_server_text_stays_on_one_line(watch, tmp_path):
+    """A tag name with a blank line and a mention in it stays inside its
+    code span, so the issue mentions no one."""
+    _stub(watch, _answers(watch, tags=("v1\n\n@someone `x`",)))
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**AGLDWG/datatype-ont now has the tags `v1 @someone 'x'`." in text
+    assert "\n@someone" not in text

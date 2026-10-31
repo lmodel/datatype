@@ -45,9 +45,9 @@ A file the AGLDWG adds beside the copied ones, in the folders the copy is
 taken from, is reported for information only.
 
 Text a server chose, such as a tag name, a redirect target, a date the
-Turtle file states or an error message, is quoted as code in the report, so the issue the workflow opens
-from it cannot mention anyone. Set ``GITHUB_TOKEN`` to raise the API rate
-limit. The token goes to api.github.com alone, never on to a redirect or to
+Turtle file states or an error message, is quoted as code on one line in
+the report, so the issue the workflow opens from it cannot mention anyone.
+Set ``GITHUB_TOKEN`` to raise the API rate limit. The token goes to api.github.com alone, never on to a redirect or to
 the namespace's host. Usage::
 
     python scripts/check_upstream_release.py [--report FILE]
@@ -188,9 +188,10 @@ def _location(url: str) -> str | None:
 
 
 def _code(text: object) -> str:
-    """Text a server chose, such as a tag name, as a code span, so it cannot
-    mention a person or add a link in the issue."""
-    return "`" + str(text).replace("`", "'") + "`"
+    """Text a server chose, such as a tag name, as a code span on one line,
+    so it cannot mention a person or add a link in the issue. A blank line
+    would end the span, so every run of spaces and line breaks is one space."""
+    return "`" + " ".join(str(text).replace("`", "'").split()) + "`"
 
 
 def _git_sha(data: bytes) -> str:
