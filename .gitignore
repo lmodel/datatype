@@ -147,3 +147,6 @@ dmypy.json
 .agents/
 .claude/
 skills-lock.json
+
+# The release job's tools, installed from .github/release/package-lock.json
+/.github/release/node_modules/
