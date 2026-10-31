@@ -1,4 +1,5 @@
-# A cover class of 10 to 25 percent.
+# A cover class of 10 to 25 percent, each bound read to within 1 percent.
 min: 10
 max: 25
 unit: http://qudt.org/vocab/unit/PERCENT
+uncertainty: 1

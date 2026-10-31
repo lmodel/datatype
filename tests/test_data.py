@@ -3,9 +3,11 @@
 Each valid example under tests/data/valid/ must load into the generated
 dataclasses and pass the validator. Each counter-example under
 tests/data/invalid/ must fail the validator at the place its first line
-names, as `# Fails at: <JSON pointer>`, and nowhere else. The class an
-example is checked against is the part of its file name before the first
-`-`.
+names, as `# Fails at: <JSON pointer>`, and nowhere else. Each slot of a
+valid example also gives counter-examples made from it, which fail at that
+slot: a list, and a word where the slot takes a number or a truth value.
+The class an example is checked against is the part of its file name
+before the first `-`.
 """
 
 import functools
@@ -16,6 +18,7 @@ import jsonschema
 import pytest
 import yaml
 from linkml.validator import validate
+from linkml_runtime import SchemaView
 from linkml_runtime.loaders import yaml_loader
 
 import datatype.datamodel.datatype
@@ -122,3 +125,54 @@ def test_invalid_data_files_fail_the_generated_json_schema(filepath):
     pointer = _pointer(text, filepath.name)
     failures = _generated_failures(yaml.safe_load(text), _target(filepath))
     assert failures and all(f == pointer for f in failures), failures
+
+
+# The files above give each class a counter-example. These give each slot
+# of each valid example two more, made from the example: a list where the
+# ontology allows one value, and a word where it gives a number or a truth
+# value. Each must fail the validator and the committed JSON Schema at that
+# slot alone.
+NOT_A_WORD = {"boolean", "decimal", "integer"}
+
+
+@functools.cache
+def _view() -> SchemaView:
+    return SchemaView(str(SCHEMA))
+
+
+def _variants():
+    for path in VALID_EXAMPLE_FILES:
+        target, data = _target(path), yaml.safe_load(path.read_text())
+        for key, value in data.items():
+            yield path.stem, key, target, {**data, key: [value, value]}
+            if _view().induced_slot(key, target).range in NOT_A_WORD:
+                yield path.stem, key, target, {**data, key: "many"}
+
+
+VARIANTS = list(_variants())
+
+
+@pytest.mark.parametrize(
+    ("stem", "key", "target", "data"),
+    VARIANTS,
+    ids=[
+        f"{s}-{k}-{'list' if isinstance(d[k], list) else 'word'}"
+        for s, k, _, d in VARIANTS
+    ],
+)
+def test_each_slot_takes_one_value_of_its_datatype(stem, key, target, data):
+    """A list in a single-valued slot, or a word in a number or truth-value
+    slot, fails at that slot and nowhere else."""
+    messages = [r.message for r in validate(data, str(SCHEMA), target).results]
+    assert messages and all(m.endswith(f" in /{key}") for m in messages), messages
+    failures = _generated_failures(data, target)
+    assert failures and all(f == f"/{key}" for f in failures), failures
+
+
+def test_every_slot_has_a_variant():
+    """Every slot a class carries appears in one of its valid examples, so
+    the variants above reach it."""
+    seen = {(target, key) for _, key, target, _ in VARIANTS}
+    for name in _view().all_classes():
+        for slot in _view().class_slots(name):
+            assert (name, slot) in seen, (name, slot)
