@@ -5,11 +5,13 @@ AGLDWG/datatype-ont, and the ontology's namespace where it redirects.
 These tests replace its two network calls, `_get` and `_location`, with
 tables of answers, so they run offline. They show what the report says when
 master moves, a tag appears, the head of master drops or changes a copied
-file, the licence changes or the namespace redirects elsewhere. They also
-show it when the network fails or cuts an answer off, or the AGLDWG adds a
-file.
+file, the changed Turtle file states a new edition or licence, the licence
+GitHub detects changes or the namespace redirects elsewhere. They also show
+it when the network fails or cuts an answer off, an answer is not what its
+hash says, or the AGLDWG adds a file.
 """
 
+import base64
 import http.client
 import importlib.util
 import json
@@ -20,6 +22,7 @@ import pytest
 
 ROOT = Path(__file__).parent.parent
 SCRIPT = ROOT / "scripts" / "check_upstream_release.py"
+TURTLE = (ROOT / "upstream" / "rdf" / "datatype.ttl").read_bytes()
 HEAD = "4" * 40
 
 
@@ -58,6 +61,24 @@ def _answers(watch, head=None, tags=()):
     }
     for ref in {watch.PINNED_COMMIT, head}:
         answers[f"{api}/git/trees/{ref}?recursive=1"] = _tree(watch)
+    return answers
+
+
+def _with_turtle(watch, turtle: bytes):
+    """What the API answers when master has moved to HEAD and changes the
+    Turtle file to `turtle`, which it serves as a base64 blob."""
+    answers = _answers(watch, head=HEAD)
+    sha = watch._git_sha(turtle)
+    tree = answers[f"{watch.API}/git/trees/{HEAD}?recursive=1"]
+    tree["tree"] = [
+        {**e, "sha": sha} if e["path"] == watch.ONTOLOGY_FILE else e
+        for e in tree["tree"]
+    ]
+    answers[f"{watch.API}/git/blobs/{sha}"] = {
+        "sha": sha,
+        "encoding": "base64",
+        "content": base64.b64encode(turtle).decode(),
+    }
     return answers
 
 
@@ -102,6 +123,10 @@ def test_nothing_changed(watch, tmp_path):
     count = len(watch.PINNED_BLOBS)
     assert f"{count} of {count} copied files match" in text
     assert "The namespace still redirects a request for Turtle to `master`." in text
+    assert (
+        "holds the pinned `rdf/datatype.ttl`, which states `dcterms:modified` 2019-10-03"
+        in text
+    )
     assert "For information" not in text
 
 
@@ -323,3 +348,100 @@ def test_the_namespace_check_sends_no_token_and_follows_no_redirect(watch, monke
     assert seen[0].unredirected_hdrs == {}
     assert "Authorization" not in seen[0].headers
     assert seen[0].headers["Accept"] == "text/turtle"
+
+
+def test_the_patterns_read_the_pinned_copy(watch):
+    """The patterns that stand in for a Turtle parser read the copied file's
+    date and licence as the pins name them."""
+    assert watch.stated(TURTLE) == (
+        [watch.PINNED_EDITION],
+        [watch.PINNED_ONTOLOGY_LICENSE],
+    )
+
+
+def test_a_new_edition_is_reported(watch, tmp_path):
+    """A changed Turtle file with a new dcterms:modified date names a new
+    edition, and the date, which the file chose, is quoted as code."""
+    turtle = TURTLE.replace(b'"2019-10-03"', b'"2026-01-01 @someone`x"')
+    _stub(watch, _with_turtle(watch, turtle))
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        "**The changed `rdf/datatype.ttl` states `dcterms:modified` "
+        "`2026-01-01 @someone'x`, not the pinned 2019-10-03.**"
+    ) in text
+    assert "@someone`" not in text
+    assert "It still states the `dcterms:license`" in text
+
+
+def test_a_change_with_the_same_date_names_no_new_edition(watch, tmp_path):
+    """A changed Turtle file that keeps its date is reported as a change,
+    since master moved, and as no new edition."""
+    turtle = TURTLE.replace(b"Class to encapsulate a textual value", b"A text")
+    _stub(watch, _with_turtle(watch, turtle))
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**`master` changes `rdf/datatype.ttl`.**" in text
+    assert (
+        "The changed `rdf/datatype.ttl` still states `dcterms:modified` "
+        "2019-10-03, so the change names no new edition."
+    ) in text
+    assert "It still states the `dcterms:license`" in text
+
+
+def test_a_changed_ontology_licence_is_reported(watch, tmp_path):
+    """A changed Turtle file that states another dcterms:license sets
+    attention, whatever GitHub detects from the LICENSE file."""
+    turtle = TURTLE.replace(
+        b"http://creativecommons.org/publicdomain/zero/1.0/",
+        b"https://creativecommons.org/licenses/by-nc/4.0/",
+    )
+    _stub(watch, _with_turtle(watch, turtle))
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert (
+        "**The changed `rdf/datatype.ttl` states the `dcterms:license` "
+        "`https://creativecommons.org/licenses/by-nc/4.0/`, not "
+    ) in text
+    assert "still states `dcterms:modified` 2019-10-03" in text
+
+
+def test_a_turtle_file_the_watch_cannot_read_is_reported(watch, tmp_path):
+    """A changed Turtle file whose date and licence the patterns cannot
+    find is reported, not passed."""
+    _stub(watch, _with_turtle(watch, b"@prefix data: <x> .\n"))
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "states `dcterms:modified` none the watch can read" in text
+    assert "states the `dcterms:license` none the watch can read" in text
+
+
+def test_a_blob_that_is_not_its_hash_could_not_finish(watch, tmp_path):
+    """A blob whose bytes do not hash to the tree's hash is not read."""
+    answers = _with_turtle(watch, TURTLE.replace(b"2019-10-03", b"2026-01-01"))
+    for url, answer in answers.items():
+        if "/git/blobs/" in url:
+            answer["content"] = base64.b64encode(TURTLE).decode()
+    _stub(watch, answers)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**The statements check could not finish: `the blob " in text
+    assert "does not match its hash`.**" in text
+    assert "2026-01-01" not in text
+
+
+def test_a_head_that_is_no_hash_goes_in_no_url(watch, tmp_path):
+    """A commit name the API gives that is not a git object hash stops the
+    checks that would put it in a URL."""
+    answers = _answers(watch)
+    answers[f"{watch.API}/git/ref/heads/master"] = {"object": {"sha": "../x?y"}}
+    asked = []
+    _stub(watch, answers)
+    get = watch._get
+    watch._get = lambda url: asked.append(url) or get(url)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**The edition check could not finish: `the API names '../x?y', not" in text
+    assert "**The copy check could not finish: `" in text
+    assert "**The statements check could not finish: `" in text
+    assert not [url for url in asked if "../x" in url]

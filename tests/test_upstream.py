@@ -120,10 +120,12 @@ def test_the_header_names_the_pinned_edition():
 
 def test_the_ontology_states_no_version_and_the_licence_notice_holds():
     """The ontology has no versionInfo or versionIRI, so the date stands in
-    for one, and it states CC0 as the header's annotation says."""
+    for one, and it states CC0, as the watch's pin and the header's
+    annotation say."""
     assert graph().value(ONTOLOGY, OWL.versionInfo) is None
     assert graph().value(ONTOLOGY, OWL.versionIRI) is None
     licence = str(graph().value(ONTOLOGY, DCTERMS.license))
+    assert licence == WATCH.PINNED_ONTOLOGY_LICENSE
     assert licence == "http://creativecommons.org/publicdomain/zero/1.0/"
     assert "CC0-1.0" in header()["annotations"]["upstream_licence"]
     assert "Attribution 4.0 International" in (COPY / "LICENSE").read_text()
