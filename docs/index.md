@@ -18,13 +18,18 @@ checks a file against the JSON Schema generated from the schema, and
 `tests/test_data.py` holds every example to it and to the committed
 `project/jsonschema/datatype.schema.json`.
 
-The validator checks the ontology's restrictions: the one value of a `Text`,
-`Boolean`, `Count` or `QuantitativeMeasure` and its datatype, the one unit of
-a measure or range, the one `min` and `max` of a range, at most one
-`uncertainty`, the one concept and vocabulary of a `Concept`, and QUDT's
-PERCENT as the only unit of a `Percent` or `PercentRange`. It checks no
-rule the ontology does not state, so it accepts a percent above 100, a
-negative uncertainty and a range whose `min` is above its `max`.
+The validator checks the ontology's restrictions:
+
+- the one value of a `Text`, `Boolean`, `Count` or `QuantitativeMeasure`,
+  and its datatype;
+- the one unit of a measure or range;
+- the one `min` and `max` of a range;
+- at most one `uncertainty`;
+- the one concept and vocabulary of a `Concept`;
+- QUDT's PERCENT as the only unit of a `Percent` or `PercentRange`.
+
+It checks no rule the ontology does not state, so it accepts a percent above
+100, a negative uncertainty and a range whose `min` is above its `max`.
 
 Validate a file before loading it into either model in
 `src/datatype/datamodel/`. LinkML 1.12.1 generates models that check less:

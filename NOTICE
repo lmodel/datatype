@@ -9,17 +9,19 @@ The Datatype Ontology
 ---------------------
 
 src/datatype/schema/datatype.yaml, docs/schema/, src/datatype/datamodel/,
-project/ and .lokf/datatype.yaml, the schema copy each release carries,
+project/ and .lokf/datatype.yaml (the schema copy each release carries)
 render the Datatype Ontology ("Datatypes",
-http://linked.data.gov.au/def/datatype), created by Simon J.D. Cox of
-CSIRO and published by the Australian Government Linked Data Working
-Group (AGLDWG) at https://github.com/AGLDWG/datatype-ont. They are this
-project's adaptation of that work: it is rendered as a LinkML schema,
-which closes each class to the properties the ontology's restrictions on
-it name and gives rdf:value the slot name rdf_value. They are not the
-AGLDWG's or CSIRO's, and their use does not imply endorsement by either.
-Each class and property keeps the ontology's IRI, and its description is
-the ontology's skos:definition of that term.
+http://linked.data.gov.au/def/datatype). Simon J.D. Cox of CSIRO created
+it, and the Australian Government Linked Data Working Group (AGLDWG)
+publishes it at https://github.com/AGLDWG/datatype-ont.
+
+These files are this project's adaptation of that work. They render it as
+a LinkML schema, which closes each class to the properties the
+ontology's restrictions on it name and gives rdf:value the slot name
+rdf_value. Each class and property keeps the ontology's IRI, and its
+description is the ontology's skos:definition of that term. The files
+are not the AGLDWG's or CSIRO's, and their use does not imply
+endorsement by either.
 
 upstream/ holds a copy of rdf/datatype.ttl and LICENSE, retrieved from
 https://github.com/AGLDWG/datatype-ont/tree/dd8f24120cd59f686086f58175de37807c569e18

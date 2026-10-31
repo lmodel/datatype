@@ -10,7 +10,7 @@ schema's tests read that copy.
 
 Each class and property keeps its local name and its IRI under `data:`,
 `http://linked.data.gov.au/def/datatype/`. Its title is the ontology's
-`rdfs:label`, and its description the ontology's `skos:definition`. One slot
+`rdfs:label`, and its description is the ontology's `skos:definition`. One slot
 comes from outside the ontology: `rdf_value`, RDF's `rdf:value`, which the
 ontology uses for a `Concept` and names as the parent of `value`, `min`, `max`
 and `uncertainty`. What the schema adds sits under `datatype_linkml:`,

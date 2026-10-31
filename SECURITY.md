@@ -14,7 +14,7 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/datatyp
 
 It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
-`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It reads the GitHub API's listings of AGLDWG/datatype-ont, where the Datatype Ontology is published, and the ontology's Turtle file only when `master` changes it, checked against the hash the listing gives. It asks the ontology's namespace where it redirects, without following it, and writes nothing but its report. It sends the workflow's read-only token to api.github.com alone, never on to a redirect or the namespace's host.
+`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It reads the GitHub API's listings of AGLDWG/datatype-ont, where the Datatype Ontology is published. It reads the ontology's Turtle file only when `master` changes it, and checks that file against the hash the listing gives. It asks the ontology's namespace where it redirects, without following it, and writes nothing but its report. It sends the workflow's read-only token to api.github.com alone, never on to a redirect or the namespace's host.
 
 ## What executes here
 

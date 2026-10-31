@@ -54,7 +54,7 @@ None. The ontology states no alignment to another vocabulary, so the schema carr
 ## Not modelled here
 
 * Properties a class's restrictions do not name. OWL leaves each class open to them, but LinkML's classes are closed, so a `standard` on a `QuantitativeMeasure` is not valid here.
-* What an IRI names: the ontology says a `Concept`'s value is a `skos:Concept` and a vocabulary a SKOS scheme, a SKOS collection or an OWL ontology, which no validator can check of an IRI.
+* What an IRI names. The ontology says a `Concept`'s value is a `skos:Concept`, and a vocabulary is a SKOS scheme, a SKOS collection or an OWL ontology. No validator can check that of an IRI.
 * The ontology's RDF/XML, JSON-LD and HTML forms, which hold the same terms as the Turtle file.
 * Rules the ontology does not state: the validator accepts a percent above 100, a negative uncertainty and a range whose `min` is above its `max`.
 
@@ -82,7 +82,7 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 LOKF defines `Concept` and `unit`, so the copy renames them `DatatypeConcept` and `datatype_unit`, keeping the ontology's IRIs. Data written for the copy uses those names; data written for the schema uses the ontology's.
 
-A host imports the copy beside LOKF's schema, `lokf.yaml`, and beside other adapt copies. LinkML merges them into one namespace, where the last definition of a name wins silently. No class, enum or type of the copy shares a name with LOKF's or with the released copies of slsa, github-actions, oscal, spdx, nist-sp-800-218, nist-sp-800-53, nist-sp-800-171, nist-csf-v2, in-toto, cis-controls, iso27001, stix and attack. The copy shares one key, `value`, with six of them, attack, in-toto, oscal, slsa, spdx and stix, each under its own IRI, so in a composite with one of them one `value` projects under the other's IRI. `tests/test_schema_rules.py` lists that key and fails on a new shared name. Until `lokf adapt` can rename what a neighbour defines ([lokf issue 169](https://github.com/nicholsn/lokf/issues/169), `--beside`), import this copy beside none of those six.
+A host imports the copy beside LOKF's schema, `lokf.yaml`, and beside other adapt copies. LinkML merges them into one namespace, where the last definition of a name wins silently. No class, enum or type of the copy shares a name with LOKF's or with the thirteen released lmodel copies in `tests/neighbours/`. The copy shares one key, `value`, with six of them (attack, in-toto, oscal, slsa, spdx and stix), each under its own IRI. In a composite with one of them, one copy's `value` projects under the other's IRI. `tests/test_schema_rules.py` lists that key and fails on a new shared name. Do not import this copy beside any of those six until `lokf adapt` can rename what a neighbour defines ([lokf issue 169](https://github.com/nicholsn/lokf/issues/169), `--beside`).
 
 ## License
 

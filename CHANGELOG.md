@@ -17,7 +17,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ### Changed
 
-- **The schema follows the ontology's own restrictions.** `Concept` holds its concept in `rdf_value`, which renders `rdf:value`; `min`, `max`, `uncertainty` and `value` are sub-properties of `rdf:value`; a `Percent` or `PercentRange` takes QUDT's PERCENT as its one unit; and each class carries only the properties the ontology's restrictions name.
+- **The schema follows the ontology's own restrictions.** Each class carries only the properties they name, `Concept` holds its concept in `rdf_value` (RDF's `rdf:value`), and a `Percent` or `PercentRange` takes QUDT's PERCENT as its one unit. `min`, `max`, `uncertainty` and `value` are sub-properties of `rdf:value`.
 - **The version is the ontology's `dcterms:modified` date, `2019-10-03`,** since the ontology states no version.
 - **The Python project's name is `datatype-linkml`.** PyPI publishing stays off.
 
