@@ -4,19 +4,9 @@
 
 AGLDWG Datatype Ontology (LinkML)
 
-> **Two ways in.** This README is one; the other is a docent, a museum's name
-> for a guide. Install
-> [`ktl-docent`](https://github.com/noelmcloughlin/knowledge-trust-ladder) into
-> whatever agent you already use, by a route from
-> [the install page](https://w3id.org/ktl/docs/install/), and ask it anything
-> about this project. It answers from `.lokf/knowledge/`,
-> the checked part of what the project knows, and says how far each answer has
-> been trusted (still a draft, checked by automation only, or confirmed by a
-> named person). It opens the source for exact values, and records what it
-> could not answer so the gap gets filled. The same docent serves a person at a
-> prompt, an agent reading this file, or a chatbot that can load a skill.
-> **Agents:** if `.lokf/knowledge/index.md` exists, read it first. `llms.txt`
-> says how to weigh it.
+> **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
+>
+> **Agents:** if `.lokf/knowledge/index.md` exists, read it first. `llms.txt` says how to weigh it.
 
 ## Documentation Website
 
@@ -24,17 +14,9 @@ AGLDWG Datatype Ontology (LinkML)
 
 ## What it models
 
-The schema renders the [Datatype Ontology](http://linked.data.gov.au/def/datatype) ("Datatypes"), which Simon Cox of CSIRO wrote and the Australian Government Linked Data Working Group (AGLDWG) publishes at [AGLDWG/datatype-ont](https://github.com/AGLDWG/datatype-ont). The pinned edition is the ontology of 3 October 2019, its `dcterms:modified` date, at commit `dd8f24120cd5` of the `master` branch. The ontology states no version number, so the schema header's `version` is that date.
+The schema renders the [Datatype Ontology](http://linked.data.gov.au/def/datatype) ("Datatypes"), which Simon Cox of CSIRO wrote and the Australian Government Linked Data Working Group (AGLDWG) publishes at [AGLDWG/datatype-ont](https://github.com/AGLDWG/datatype-ont). The pinned edition is the ontology of 3 October 2019 at commit `dd8f24120cd5`. The ontology states no version number, so the schema header's `version` is that date.
 
-Each class wraps one value, for use as an observation result or as the range of another schema's slot:
-
-* `Text`, `Boolean` and `Count`: one string, true-or-false or integer `value`.
-* `Concept`: a classifier from a controlled vocabulary, its IRI in `rdf_value` and its vocabulary's IRI in `vocabulary`.
-* `QuantitativeMeasure`: a decimal `value` with its `unit` and an optional `uncertainty`.
-* `QuantitativeRange`: a `min` and a `max` with their `unit` and an optional `uncertainty`.
-* `Percent` and `PercentRange`: a measure and a range whose unit is QUDT's PERCENT, `http://qudt.org/vocab/unit/PERCENT`.
-
-Each class and property keeps the ontology's local name and its IRI under `data:` (`http://linked.data.gov.au/def/datatype/`). `rdf_value` is RDF's own `rdf:value`, which the ontology uses for a `Concept`. `upstream/` holds the ontology's Turtle file and licence at the pinned commit, and `tests/test_upstream.py` holds the schema to that file's classes, properties, ranges and restrictions. A weekly workflow compares the copy with `master` and opens an issue when the ontology, its licence or its namespace moves.
+Each class wraps one value, such as a text, a count, a classifier or a measure with its unit, for use as an observation result or as the range of another schema's slot. Each class and property keeps its IRI under `data:` (`http://linked.data.gov.au/def/datatype/`).
 
 ```yaml
 # A QuantitativeMeasure: a height of 12.5 metres, give or take 0.25.
@@ -43,13 +25,11 @@ unit: http://qudt.org/vocab/unit/M
 uncertainty: 0.25
 ```
 
-## Influences
-
-None beyond the Datatype Ontology: the schema renders one publication, and its release asset and governance files follow [lmodel/slsa](https://github.com/lmodel/slsa).
+`upstream/` holds the ontology's Turtle file and licence at the pinned commit, and `tests/test_upstream.py` holds the schema to it. A weekly workflow opens an issue when the ontology, its licence or its namespace moves.
 
 ## Mappings
 
-None. The ontology states no alignment to another vocabulary, so the schema carries no mapping. Its one link outward is that `value`, `min`, `max` and `uncertainty` are sub-properties of `rdf:value`, which the schema states with `is_a`.
+None: the ontology states no alignment to another vocabulary. `value`, `min`, `max` and `uncertainty` are sub-properties of `rdf:value`, which the schema states with `is_a`.
 
 ## Not modelled here
 
@@ -76,23 +56,17 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 ## Knowledge Trust Ladder (KTL)
 
-`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle, in the Linked Open Knowledge Format (LOKF). Its domain schema is `.lokf/datatype.yaml`, which `lokf adapt` writes from `src/datatype/schema/datatype.yaml`. Edit the source, never the copy. A release carries the copy as `schema-<tag>-datatype.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
+`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/datatype.yaml`, is the copy `just lokf-adapt` writes from `src/datatype/schema/datatype.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-datatype.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
 
-`just lokf-adapt` rewrites the copy, and `just lokf-adapt-check` says when it is stale. No class is a concept type, so the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins gains nothing from this copy, and no concept names one of its classes as its `type`. Every class is a value class to import: a host's own concept class takes one as the range of a slot, such as a `height` that is a `QuantitativeMeasure`.
+No class is a concept type, so the *Known LOKF types* setting gains nothing from this copy. A host's own concept class takes a value class as the range of a slot, such as a `height` that is a `QuantitativeMeasure`.
 
-LOKF defines `Concept` and `unit`, so the copy renames them `DatatypeConcept` and `datatype_unit`, keeping the ontology's IRIs. Data written for the copy uses those names; data written for the schema uses the ontology's.
-
-A host imports the copy beside LOKF's schema, `lokf.yaml`, and beside other adapt copies. LinkML merges them into one namespace, where the last definition of a name wins silently. No class, enum or type of the copy shares a name with LOKF's or with the thirteen released lmodel copies in `tests/neighbours/`. The copy shares one key, `value`, with six of them (attack, in-toto, oscal, slsa, spdx and stix), each under its own IRI. In a composite with one of them, one copy's `value` projects under the other's IRI. `tests/test_schema_rules.py` lists that key and fails on a new shared name. Do not import this copy beside any of those six until `lokf adapt` can rename what a neighbour defines ([lokf issue 169](https://github.com/nicholsn/lokf/issues/169), `--beside`).
+LOKF defines `Concept` and `unit`, so the copy renames them `DatatypeConcept` and `datatype_unit`, keeping the ontology's IRIs. The copy shares one key, `value`, with six lmodel copies (attack, in-toto, oscal, slsa, spdx and stix), each under its own IRI, and `tests/test_schema_rules.py` fails on a new shared name. Do not import this copy beside any of those six until `lokf adapt` can rename what a neighbour defines ([lokf #169](https://github.com/nicholsn/lokf/issues/169), `--beside`).
 
 ## License
 
-The schema and the code are under the Apache License 2.0 ([LICENSE](LICENSE)).
+The schema and the code are under the Apache License 2.0 ([LICENSE](LICENSE)), and the knowledge bundle in `.lokf/knowledge/` is under CC BY 4.0.
 
-The knowledge bundle in `.lokf/knowledge/` is under the Creative Commons Attribution 4.0 International licence (CC BY 4.0), as its `index.md` declares.
-
-The ontology states CC0 1.0 as its `dcterms:license`, and the repository it is published from carries a CC BY 4.0 licence, added later. This repository follows the stricter of the two: [NOTICE](NOTICE) attributes the ontology to Simon Cox, CSIRO and the AGLDWG, names the licence and says what was changed. Each description in the schema is the ontology's `skos:definition` of the term.
-
-This is not an official AGLDWG or CSIRO project, and its use implies no endorsement by either.
+The ontology states CC0 1.0, and the repository it is published from carries CC BY 4.0. This repository follows the stricter of the two: [NOTICE](NOTICE) gives the attribution and says what was changed. This is not an official AGLDWG or CSIRO project, and its use implies no endorsement by either.
 
 ## Contributing and security
 
