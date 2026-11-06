@@ -26,7 +26,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for datatype. Every Mark
 * [Copy of the Datatype Ontology](datasets/ontology-copy.md) - `upstream/`: the ontology's Turtle file `rdf/datatype.ttl` and the repository's `LICENSE`, copied from AGLDWG/datatype-ont at commit `dd8f24120cd5` and pinned by git object hash. The schema's tests read the copy, and the upstream watch checks it.
 * [Generated artefacts](datasets/generated-artefacts.md) - What the LinkML generators write from the schema: `project/` (JSON Schema, OWL, SHACL, ShEx, JSON-LD, GraphQL, protobuf, SQL, TypeScript, Excel, a prefix map and eight Java classes), the Python dataclasses and Pydantic models in `src/datatype/datamodel/`, and `docs/schema/datatype.yaml`. None is edited by hand.
 * [Test data and tests](datasets/test-data.md) - The examples under `tests/data/` (14 valid examples and 21 counter-examples the validator rejects) and the four test files under `tests/` that hold the examples, the ontology copy, the adapt copy and the upstream watch.
-* [The adapt copy (.lokf/datatype.yaml)](datasets/lokf-adapt-copy.md) - `.lokf/datatype.yaml`, the copy `lokf adapt` writes from the schema for knowledge bundles: rooted on no class, with `Concept` renamed `DatatypeConcept` and `unit` renamed `datatype_unit`, keeping their IRIs. A release attaches it as `schema-<tag>-datatype.yaml`.
+* [The adapt copy (.lokf/schema/datatype.yaml)](datasets/lokf-adapt-copy.md) - `.lokf/schema/datatype.yaml`, the copy `lokf adapt` writes from the schema for knowledge bundles: rooted on no class, with `Concept` renamed `DatatypeConcept` and `unit` renamed `datatype_unit`, keeping their IRIs. A release attaches it as `schema-<tag>-datatype.yaml`.
 
 # References
 
@@ -52,7 +52,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for datatype. Every Mark
 
 # Playbooks
 
-* [Regenerate and test](playbooks/regenerate-and-test.md) - The steps after a schema edit: `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt`, then `just test`, committing the regenerated files and `.lokf/datatype.yaml` with the change.
+* [Regenerate and test](playbooks/regenerate-and-test.md) - The steps after a schema edit: `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt`, then `just test`, committing the regenerated files and `.lokf/schema/datatype.yaml` with the change.
 * [Cut a release](playbooks/release.md) - How a release is made: Conventional Commits on `main`, an `## [Unreleased]` changelog section, the `v0.0.0` baseline tag that keeps the first release at 0.1.0, and `semantic-release.yml`, which tags the release and dispatches Knowledge Release to attach `schema-<tag>-datatype.yaml` once `KNOWLEDGE_RELEASE_ENABLED` is true.
 * [Update the upstream pins](playbooks/update-upstream-pins.md) - What to do when the upstream watch opens an issue: a new commit, tag or `dcterms:modified` date on AGLDWG/datatype-ont, a changed or dropped file, a changed licence, a namespace that redirects elsewhere, or a check that could not finish; and how to move the copy, the pins and the schema header together.
 * [Validate data](playbooks/validate-data.md) - How to check a file of datatype values: `linkml-validate -s src/datatype/schema/datatype.yaml -C <Class>`, before loading it into the generated dataclasses or Pydantic models, which check less.
@@ -66,7 +66,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for datatype. Every Mark
 
 # Workflows
 
-* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow, `.github/workflows/main.yaml`: on a push to main and on every pull request, its test job runs `just test` on Python 3.10 to 3.14, and on 3.13 also `just lint` and `just lokf-adapt-check`, the check that `.lokf/datatype.yaml` is current.
+* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow, `.github/workflows/main.yaml`: on a push to main and on every pull request, its test job runs `just test` on Python 3.10 to 3.14, and on 3.13 also `just lint` and `just lokf-adapt-check`, the check that `.lokf/schema/datatype.yaml` is current.
 * [Lint & docs (lint-and-docs.yaml)](workflows/lint-and-docs.md) - The Lint & docs workflow, `.github/workflows/lint-and-docs.yaml`: on a push to main, every pull request, a Monday 06:00 UTC schedule and by hand, four jobs run ShellCheck, actionlint, the word budgets of CONTRIBUTING.md (1000) and SECURITY.md (900), and markdownlint, lychee and codespell over the Markdown.
 * [Upstream watch (upstream-watch.yaml)](workflows/upstream-watch.md) - The Upstream watch workflow, `.github/workflows/upstream-watch.yaml`: every Monday at 07:00 UTC and by hand, its datatype-copy job runs `scripts/check_upstream_release.py` against AGLDWG/datatype-ont and the ontology's namespace, and on a finding opens or updates the issue titled Upstream watch: the Datatype Ontology has changed.
 * [Semantic release (semantic-release.yml)](workflows/semantic-release.md) - The Semantic release workflow, `.github/workflows/semantic-release.yml`: on a pull request into main, its plan job checks that the commits, the changelog and the title would release; on a push to main, its release job in the release Environment tags vX.Y.Z, publishes the GitHub release and dispatches Knowledge Release.
