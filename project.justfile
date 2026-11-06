@@ -6,8 +6,8 @@
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/datatype.yaml` is the copy `lokf adapt` writes from the schema so
-# that it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the
+# `.lokf/schema/datatype.yaml` is the copy `lokf adapt` writes from the schema so
+# that it can sit beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the
 # moves). The roots would be the classes a knowledge concept may use as its
 # `type`, and there are none: every class of the Datatype Ontology is a value
 # that a concept holds, such as a measure or a range, never a thing a concept
@@ -22,12 +22,12 @@
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := ""
 
-# Rewrite .lokf/datatype.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/datatype.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --prefix datatype --lokf .lokf/lokf.yaml -o .lokf/datatype.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --prefix datatype --lokf .lokf/schema/lokf.yaml -o .lokf/schema/datatype.yaml
 
-# Fail when .lokf/datatype.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/datatype.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --prefix datatype --lokf .lokf/lokf.yaml -o .lokf/datatype.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --prefix datatype --lokf .lokf/schema/lokf.yaml -o .lokf/schema/datatype.yaml --check

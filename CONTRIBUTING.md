@@ -37,7 +37,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the schema, then regenerate.** Edit `src/datatype/schema/datatype.yaml`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/datatype/datamodel/`, `docs/schema/` and `.lokf/datatype.yaml` are generated.
+- **Edit the schema, then regenerate.** Edit `src/datatype/schema/datatype.yaml`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/datatype/datamodel/`, `docs/schema/` and `.lokf/schema/datatype.yaml` are generated.
 - **Render only what the ontology states.** `tests/test_upstream.py` holds the schema to the copied Turtle file. Mark a rule of this project's own in the schema's comments and `docs/index.md`; [AI_COVENANT.md](AI_COVENANT.md) says why.
 - **Leave `upstream/` as the AGLDWG published it.** Replace it whole from one upstream commit, and move the pins in `scripts/check_upstream_release.py` and the schema header together: `tests/test_upstream.py` holds them to the same edition.
 - **Keep names apart.** A host imports this adapt copy beside the Linked Open Knowledge Format (LOKF) schema and the released neighbours' copies in `tests/neighbours/`. `tests/test_schema_rules.py` lists the one key the copy shares with them, `value`, and fails on a new one.

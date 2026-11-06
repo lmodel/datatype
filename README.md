@@ -56,7 +56,7 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 ## Knowledge Trust Ladder (KTL)
 
-`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/datatype.yaml`, is the copy `just lokf-adapt` writes from `src/datatype/schema/datatype.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-datatype.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
+`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/schema/datatype.yaml`, is the copy `just lokf-adapt` writes from `src/datatype/schema/datatype.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-datatype.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
 
 No class is a concept type, so the *Known LOKF types* setting gains nothing from this copy. A host's own concept class takes a value class as the range of a slot, such as a `height` that is a `QuantitativeMeasure`.
 
