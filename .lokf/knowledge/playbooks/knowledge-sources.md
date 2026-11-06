@@ -13,7 +13,7 @@ sources:
   - resource: src/datatype/datamodel
   - resource: upstream
   - resource: project.justfile
-  - resource: .lokf/datatype.yaml
+  - resource: .lokf/schema/datatype.yaml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
   - resource: NOTICE
@@ -83,7 +83,7 @@ exclusions:
     reason: The link to .lokf/knowledge, the bundle itself.
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T12:41:26Z"
+  at: "2026-11-06T21:19:16Z"
 status: draft
 ---
 
@@ -96,7 +96,7 @@ This map lists where the bundle's concepts come from, so that a refresh run know
 | `src/datatype/schema/datatype.yaml`, `.linkmllint.yaml` | the schema dataset and the glossary terms | read the classes and slots again |
 | `upstream/` | the ontology copy and the ontology reference | `scripts/check_upstream_release.py` and `tests/test_upstream.py` |
 | `project/`, `src/datatype/datamodel/`, `docs/schema/`, `justfile`, `.linkml/generators.yaml`, `.pre-commit-config.yaml` | the generated artefacts | rerun `just gen-project` and `just gen-doc` |
-| `project.justfile`, `.lokf/datatype.yaml`, `.lokf/justfile`, `.lokf/pyproject.toml` | the adapt copy and the value class term | `just lokf-adapt-check` |
+| `project.justfile`, `.lokf/schema/datatype.yaml`, `.lokf/justfile`, `.lokf/pyproject.toml` | the adapt copy and the value class term | `just lokf-adapt-check` |
 | `tests/` | the test data | `just test` |
 | `README.md`, `docs/` | the explanations and the data validation playbook | read the sections again |
 | `CONTRIBUTING.md`, `CHANGELOG.md`, `.releaserc.json`, `.github/release/` | the playbooks | read the checklists again |

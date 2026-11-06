@@ -9,7 +9,7 @@ The Datatype Ontology
 ---------------------
 
 src/datatype/schema/datatype.yaml, docs/schema/, src/datatype/datamodel/,
-project/ and .lokf/datatype.yaml (the schema copy each release carries)
+project/ and .lokf/schema/datatype.yaml (the schema copy each release carries)
 render the Datatype Ontology ("Datatypes",
 http://linked.data.gov.au/def/datatype). Simon J.D. Cox of CSIRO created
 it, and the Australian Government Linked Data Working Group (AGLDWG)

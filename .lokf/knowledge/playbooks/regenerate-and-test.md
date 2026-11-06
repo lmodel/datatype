@@ -3,7 +3,7 @@ type: Playbook
 id: https://w3id.org/lmodel/datatype/knowledge/playbooks/regenerate-and-test
 genre: how-to
 title: Regenerate and test
-description: "The steps after a schema edit: `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt`, then `just test`, committing the regenerated files and `.lokf/datatype.yaml` with the change."
+description: "The steps after a schema edit: `just lint`, `just gen-project`, `just gen-doc`, `just lokf-adapt`, then `just test`, committing the regenerated files and `.lokf/schema/datatype.yaml` with the change."
 resource: CONTRIBUTING.md
 sources:
   - id: contributing
@@ -14,7 +14,7 @@ sources:
     title: the lint and test recipes
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T12:41:26Z"
+  at: "2026-11-06T21:19:16Z"
 status: draft
 ---
 
