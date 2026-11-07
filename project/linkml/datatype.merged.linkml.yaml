@@ -1,0 +1,940 @@
+{
+  "name": "datatype",
+  "annotations": {
+    "upstream_repository": {
+      "tag": "upstream_repository",
+      "value": "https://github.com/AGLDWG/datatype-ont"
+    },
+    "upstream_branch": {
+      "tag": "upstream_branch",
+      "value": "master"
+    },
+    "upstream_commit": {
+      "tag": "upstream_commit",
+      "value": "dd8f24120cd59f686086f58175de37807c569e18"
+    },
+    "upstream_created": {
+      "tag": "upstream_created",
+      "value": "2019-03-25"
+    },
+    "upstream_creator": {
+      "tag": "upstream_creator",
+      "value": "Simon J.D. Cox, CSIRO, https://orcid.org/0000-0002-3884-3420"
+    },
+    "upstream_licence": {
+      "tag": "upstream_licence",
+      "value": "CC0-1.0 in the ontology's dcterms:license; CC-BY-4.0 in the repository's LICENSE"
+    }
+  },
+  "description": "A LinkML rendering of the Datatype Ontology (\"Datatypes\") of the Australian Government Linked Data Working Group (AGLDWG), by Simon Cox of CSIRO. In its own words: a set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required. Each class and property keeps the ontology's local name and IRI.",
+  "title": "Datatype Ontology",
+  "comments": [
+    "The ontology states no owl:versionInfo or owl:versionIRI, and its repository has no tag or release, so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch moves.",
+    "The title and description of each of the ontology's terms are its rdfs:label and skos:definition. The ontology states CC0 1.0 as its dcterms:license, and the repository's LICENSE, added later, is CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). This rendering follows CC BY 4.0, is provided as is, and carries the attribution that https://github.com/lmodel/datatype/blob/main/NOTICE gives.",
+    "The classes are closed: a value carries only the properties the ontology's restrictions on its class name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure is valid OWL but not valid here."
+  ],
+  "source": "http://linked.data.gov.au/def/datatype",
+  "see_also": [
+    "https://lmodel.github.io/datatype",
+    "https://github.com/AGLDWG/datatype-ont/tree/dd8f24120cd59f686086f58175de37807c569e18"
+  ],
+  "id": "https://w3id.org/lmodel/datatype",
+  "version": "2019-10-03",
+  "license": "Apache-2.0",
+  "prefixes": {
+    "datatype_linkml": {
+      "prefix_prefix": "datatype_linkml",
+      "prefix_reference": "https://w3id.org/lmodel/datatype/"
+    },
+    "data": {
+      "prefix_prefix": "data",
+      "prefix_reference": "http://linked.data.gov.au/def/datatype/"
+    },
+    "linkml": {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    "rdf": {
+      "prefix_prefix": "rdf",
+      "prefix_reference": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    "xsd": {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "shex": {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
+    },
+    "schema": {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    }
+  },
+  "default_prefix": "datatype_linkml",
+  "default_range": "string",
+  "types": {
+    "string": {
+      "name": "string",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "xsd:string"
+    },
+    "integer": {
+      "name": "integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "xsd:integer"
+    },
+    "boolean": {
+      "name": "boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "xsd:boolean",
+      "repr": "bool"
+    },
+    "float": {
+      "name": "float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:float"
+    },
+    "double": {
+      "name": "double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:double"
+    },
+    "decimal": {
+      "name": "decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "xsd:decimal"
+    },
+    "time": {
+      "name": "time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "xsd:time",
+      "repr": "str"
+    },
+    "date": {
+      "name": "date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "xsd:date",
+      "repr": "str"
+    },
+    "datetime": {
+      "name": "datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "xsd:dateTime",
+      "repr": "str"
+    },
+    "date_or_datetime": {
+      "name": "date_or_datetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "str",
+      "uri": "linkml:DateOrDatetime",
+      "repr": "str"
+    },
+    "uriorcurie": {
+      "name": "uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "URIorCURIE",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "curie": {
+      "name": "curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "Curie",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "uri": {
+      "name": "uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "ncname": {
+      "name": "ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "NCName",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "objectidentifier": {
+      "name": "objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "ElementIdentifier",
+      "uri": "shex:iri",
+      "repr": "str"
+    },
+    "nodeidentifier": {
+      "name": "nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "NodeIdentifier",
+      "uri": "shex:nonLiteral",
+      "repr": "str"
+    },
+    "jsonpointer": {
+      "name": "jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "jsonpath": {
+      "name": "jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "sparqlpath": {
+      "name": "sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    }
+  },
+  "slots": {
+    "rdf_value": {
+      "name": "rdf_value",
+      "description": "The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties.",
+      "title": "value",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slot_uri": "rdf:value",
+      "domain_of": [
+        "Concept"
+      ]
+    },
+    "value": {
+      "name": "value",
+      "description": "simple value (a literal)",
+      "title": "data value",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "rdf_value",
+      "slot_uri": "data:value",
+      "domain_of": [
+        "Boolean",
+        "Count",
+        "QuantitativeMeasure",
+        "Text"
+      ]
+    },
+    "min": {
+      "name": "min",
+      "description": "Minimum value of range",
+      "title": "data minimum",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "rdf_value",
+      "slot_uri": "data:min",
+      "domain_of": [
+        "QuantitativeRange"
+      ],
+      "range": "decimal"
+    },
+    "max": {
+      "name": "max",
+      "description": "Maximum value of a range",
+      "title": "data maximum",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "rdf_value",
+      "slot_uri": "data:max",
+      "domain_of": [
+        "QuantitativeRange"
+      ],
+      "range": "decimal"
+    },
+    "uncertainty": {
+      "name": "uncertainty",
+      "description": "Uncertainty for a quantitative value",
+      "title": "data uncertainty",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "rdf_value",
+      "slot_uri": "data:uncertainty",
+      "domain_of": [
+        "Count",
+        "QuantitativeMeasure",
+        "QuantitativeRange"
+      ],
+      "range": "decimal"
+    },
+    "standard": {
+      "name": "standard",
+      "description": "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc",
+      "title": "data standard",
+      "comments": [
+        "No class of the ontology restricts this property; it is the parent of unit and vocabulary."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slot_uri": "data:standard",
+      "range": "uriorcurie"
+    },
+    "unit": {
+      "name": "unit",
+      "description": "Measurement scale",
+      "title": "unit of measure",
+      "comments": [
+        "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "standard",
+      "slot_uri": "data:unit",
+      "domain_of": [
+        "QuantitativeMeasure",
+        "QuantitativeRange"
+      ],
+      "range": "uriorcurie"
+    },
+    "vocabulary": {
+      "name": "vocabulary",
+      "description": "controlled vocabulary, taxonomy etc",
+      "title": "vocabulary",
+      "comments": [
+        "The vocabulary by its IRI. The ontology's range is a skos:ConceptScheme, a skos:Collection or an owl:Ontology, which the validator cannot check of an IRI."
+      ],
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "standard",
+      "slot_uri": "data:vocabulary",
+      "domain_of": [
+        "Concept"
+      ],
+      "range": "uriorcurie"
+    }
+  },
+  "classes": {
+    "Boolean": {
+      "name": "Boolean",
+      "description": "Class to encapsulate a true-or-false value",
+      "title": "Boolean",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "value"
+      ],
+      "slot_usage": {
+        "value": {
+          "name": "value",
+          "range": "boolean",
+          "required": true
+        }
+      },
+      "attributes": {
+        "value": {
+          "name": "value",
+          "description": "simple value (a literal)",
+          "title": "data value",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:value",
+          "owner": "Boolean",
+          "domain_of": [
+            "Boolean",
+            "Count",
+            "QuantitativeMeasure",
+            "Text"
+          ],
+          "range": "boolean",
+          "required": true
+        }
+      },
+      "class_uri": "data:Boolean"
+    },
+    "Concept": {
+      "name": "Concept",
+      "description": "Class to encapsulate a classifier, usually a values from a controlled vocabulary",
+      "title": "Concept",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "rdf_value",
+        "vocabulary"
+      ],
+      "slot_usage": {
+        "rdf_value": {
+          "name": "rdf_value",
+          "comments": [
+            "The concept by its IRI. The ontology's range is a skos:Concept, which the validator cannot check of an IRI."
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "vocabulary": {
+          "name": "vocabulary",
+          "required": true
+        }
+      },
+      "attributes": {
+        "rdf_value": {
+          "name": "rdf_value",
+          "description": "The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties.",
+          "title": "value",
+          "comments": [
+            "The concept by its IRI. The ontology's range is a skos:Concept, which the validator cannot check of an IRI."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "slot_uri": "rdf:value",
+          "owner": "Concept",
+          "domain_of": [
+            "Concept"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "vocabulary": {
+          "name": "vocabulary",
+          "description": "controlled vocabulary, taxonomy etc",
+          "title": "vocabulary",
+          "comments": [
+            "The vocabulary by its IRI. The ontology's range is a skos:ConceptScheme, a skos:Collection or an owl:Ontology, which the validator cannot check of an IRI."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "standard",
+          "slot_uri": "data:vocabulary",
+          "owner": "Concept",
+          "domain_of": [
+            "Concept"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        }
+      },
+      "class_uri": "data:Concept"
+    },
+    "Count": {
+      "name": "Count",
+      "description": "Class to encapsulate an integer value",
+      "title": "Count",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "value",
+        "uncertainty"
+      ],
+      "slot_usage": {
+        "value": {
+          "name": "value",
+          "range": "integer",
+          "required": true
+        }
+      },
+      "attributes": {
+        "value": {
+          "name": "value",
+          "description": "simple value (a literal)",
+          "title": "data value",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:value",
+          "owner": "Count",
+          "domain_of": [
+            "Boolean",
+            "Count",
+            "QuantitativeMeasure",
+            "Text"
+          ],
+          "range": "integer",
+          "required": true
+        },
+        "uncertainty": {
+          "name": "uncertainty",
+          "description": "Uncertainty for a quantitative value",
+          "title": "data uncertainty",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:uncertainty",
+          "owner": "Count",
+          "domain_of": [
+            "Count",
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "decimal"
+        }
+      },
+      "class_uri": "data:Count"
+    },
+    "QuantitativeMeasure": {
+      "name": "QuantitativeMeasure",
+      "description": "Class to encapsulate a quantitative measure value",
+      "title": "Quantitative Measure",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "value",
+        "unit",
+        "uncertainty"
+      ],
+      "slot_usage": {
+        "value": {
+          "name": "value",
+          "range": "decimal",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "required": true
+        }
+      },
+      "attributes": {
+        "value": {
+          "name": "value",
+          "description": "simple value (a literal)",
+          "title": "data value",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:value",
+          "owner": "QuantitativeMeasure",
+          "domain_of": [
+            "Boolean",
+            "Count",
+            "QuantitativeMeasure",
+            "Text"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "description": "Measurement scale",
+          "title": "unit of measure",
+          "comments": [
+            "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "standard",
+          "slot_uri": "data:unit",
+          "owner": "QuantitativeMeasure",
+          "domain_of": [
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "uncertainty": {
+          "name": "uncertainty",
+          "description": "Uncertainty for a quantitative value",
+          "title": "data uncertainty",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:uncertainty",
+          "owner": "QuantitativeMeasure",
+          "domain_of": [
+            "Count",
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "decimal"
+        }
+      },
+      "class_uri": "data:QuantitativeMeasure"
+    },
+    "QuantitativeRange": {
+      "name": "QuantitativeRange",
+      "description": "Class to encapsulate a quantitative range",
+      "title": "Quantitative Range",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "min",
+        "max",
+        "unit",
+        "uncertainty"
+      ],
+      "slot_usage": {
+        "min": {
+          "name": "min",
+          "required": true
+        },
+        "max": {
+          "name": "max",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "required": true
+        }
+      },
+      "attributes": {
+        "min": {
+          "name": "min",
+          "description": "Minimum value of range",
+          "title": "data minimum",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:min",
+          "owner": "QuantitativeRange",
+          "domain_of": [
+            "QuantitativeRange"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "max": {
+          "name": "max",
+          "description": "Maximum value of a range",
+          "title": "data maximum",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:max",
+          "owner": "QuantitativeRange",
+          "domain_of": [
+            "QuantitativeRange"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "description": "Measurement scale",
+          "title": "unit of measure",
+          "comments": [
+            "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "standard",
+          "slot_uri": "data:unit",
+          "owner": "QuantitativeRange",
+          "domain_of": [
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "uncertainty": {
+          "name": "uncertainty",
+          "description": "Uncertainty for a quantitative value",
+          "title": "data uncertainty",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:uncertainty",
+          "owner": "QuantitativeRange",
+          "domain_of": [
+            "Count",
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "decimal"
+        }
+      },
+      "class_uri": "data:QuantitativeRange"
+    },
+    "Percent": {
+      "name": "Percent",
+      "description": "Class to encapsulate a quantitative measure expressed as a percent value",
+      "title": "Percent",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "QuantitativeMeasure",
+      "slot_usage": {
+        "unit": {
+          "name": "unit",
+          "comments": [
+            "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range."
+          ],
+          "pattern": "^http://qudt\\.org/vocab/unit/PERCENT$"
+        }
+      },
+      "attributes": {
+        "value": {
+          "name": "value",
+          "description": "simple value (a literal)",
+          "title": "data value",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:value",
+          "owner": "Percent",
+          "domain_of": [
+            "Boolean",
+            "Count",
+            "QuantitativeMeasure",
+            "Text"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "description": "Measurement scale",
+          "title": "unit of measure",
+          "comments": [
+            "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "standard",
+          "slot_uri": "data:unit",
+          "owner": "Percent",
+          "domain_of": [
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^http://qudt\\.org/vocab/unit/PERCENT$"
+        },
+        "uncertainty": {
+          "name": "uncertainty",
+          "description": "Uncertainty for a quantitative value",
+          "title": "data uncertainty",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:uncertainty",
+          "owner": "Percent",
+          "domain_of": [
+            "Count",
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "decimal"
+        }
+      },
+      "class_uri": "data:Percent"
+    },
+    "PercentRange": {
+      "name": "PercentRange",
+      "description": "Class to encapsulate a quantitative range expressed as in percent values",
+      "title": "Percent range",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "is_a": "QuantitativeRange",
+      "slot_usage": {
+        "unit": {
+          "name": "unit",
+          "comments": [
+            "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range."
+          ],
+          "pattern": "^http://qudt\\.org/vocab/unit/PERCENT$"
+        }
+      },
+      "attributes": {
+        "min": {
+          "name": "min",
+          "description": "Minimum value of range",
+          "title": "data minimum",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:min",
+          "owner": "PercentRange",
+          "domain_of": [
+            "QuantitativeRange"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "max": {
+          "name": "max",
+          "description": "Maximum value of a range",
+          "title": "data maximum",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:max",
+          "owner": "PercentRange",
+          "domain_of": [
+            "QuantitativeRange"
+          ],
+          "range": "decimal",
+          "required": true
+        },
+        "unit": {
+          "name": "unit",
+          "description": "Measurement scale",
+          "title": "unit of measure",
+          "comments": [
+            "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range."
+          ],
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "standard",
+          "slot_uri": "data:unit",
+          "owner": "PercentRange",
+          "domain_of": [
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^http://qudt\\.org/vocab/unit/PERCENT$"
+        },
+        "uncertainty": {
+          "name": "uncertainty",
+          "description": "Uncertainty for a quantitative value",
+          "title": "data uncertainty",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:uncertainty",
+          "owner": "PercentRange",
+          "domain_of": [
+            "Count",
+            "QuantitativeMeasure",
+            "QuantitativeRange"
+          ],
+          "range": "decimal"
+        }
+      },
+      "class_uri": "data:PercentRange"
+    },
+    "Text": {
+      "name": "Text",
+      "description": "Class to encapsulate a textual value",
+      "title": "Text",
+      "from_schema": "https://w3id.org/lmodel/datatype",
+      "slots": [
+        "value"
+      ],
+      "slot_usage": {
+        "value": {
+          "name": "value",
+          "range": "string",
+          "required": true
+        }
+      },
+      "attributes": {
+        "value": {
+          "name": "value",
+          "description": "simple value (a literal)",
+          "title": "data value",
+          "from_schema": "https://w3id.org/lmodel/datatype",
+          "is_a": "rdf_value",
+          "slot_uri": "data:value",
+          "owner": "Text",
+          "domain_of": [
+            "Boolean",
+            "Count",
+            "QuantitativeMeasure",
+            "Text"
+          ],
+          "range": "string",
+          "required": true
+        }
+      },
+      "class_uri": "data:Text"
+    }
+  },
+  "metamodel_version": "1.12.0",
+  "source_file": "src/datatype/schema/datatype.yaml",
+  "@type": "SchemaDefinition"
+}
