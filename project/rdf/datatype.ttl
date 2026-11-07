@@ -1,0 +1,597 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+<https://w3id.org/lmodel/datatype/Boolean> dcterms:title "Boolean" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/Boolean"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/Boolean"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a true-or-false value" ;
+	linkml:slot_usage _:c14n12 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Boolean_value> .
+<https://w3id.org/lmodel/datatype/Boolean_value> dcterms:title "data value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	skos:prefLabel "value" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/value"^^xsd:anyURI ;
+	linkml:description "simple value (a literal)" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Boolean> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Boolean> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/value> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Boolean> ;
+	linkml:range <https://w3id.org/lmodel/datatype/boolean> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	linkml:usage_slot_name "value" .
+<https://w3id.org/lmodel/datatype/Concept> dcterms:title "Concept" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:Concept"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/Concept"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/Concept"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a classifier, usually a values from a controlled vocabulary" ;
+	linkml:slot_usage _:c14n8 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Concept_rdf_value> , <https://w3id.org/lmodel/datatype/Concept_vocabulary> .
+<https://w3id.org/lmodel/datatype/Concept_rdf_value> dcterms:title "value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"^^xsd:anyURI ;
+	skos:note "The concept by its IRI. The ontology's range is a skos:Concept, which the validator cannot check of an IRI." ;
+	skos:prefLabel "rdf_value" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/rdf_value"^^xsd:anyURI ;
+	linkml:description "The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties." ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/rdf_value> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"^^xsd:anyURI ;
+	linkml:usage_slot_name "rdf_value" .
+<https://w3id.org/lmodel/datatype/Concept_vocabulary> dcterms:title "vocabulary" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/vocabulary"^^xsd:anyURI ;
+	skos:note "The vocabulary by its IRI. The ontology's range is a skos:ConceptScheme, a skos:Collection or an owl:Ontology, which the validator cannot check of an IRI." ;
+	skos:prefLabel "vocabulary" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/vocabulary"^^xsd:anyURI ;
+	linkml:description "controlled vocabulary, taxonomy etc" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/vocabulary> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/vocabulary"^^xsd:anyURI ;
+	linkml:usage_slot_name "vocabulary" .
+<https://w3id.org/lmodel/datatype/Count> dcterms:title "Count" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:Count"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/Count"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/Count"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate an integer value" ;
+	linkml:slot_usage _:c14n1 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Count_value> , <https://w3id.org/lmodel/datatype/uncertainty> .
+<https://w3id.org/lmodel/datatype/Count_value> dcterms:title "data value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	skos:prefLabel "value" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/value"^^xsd:anyURI ;
+	linkml:description "simple value (a literal)" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Count> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Count> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/value> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Count> ;
+	linkml:range <https://w3id.org/lmodel/datatype/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	linkml:usage_slot_name "value" .
+<https://w3id.org/lmodel/datatype/Percent> dcterms:title "Percent" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:Percent"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/Percent"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/Percent"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a quantitative measure expressed as a percent value" ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:slot_usage _:c14n18 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Percent_unit> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure_value> , <https://w3id.org/lmodel/datatype/uncertainty> .
+<https://w3id.org/lmodel/datatype/PercentRange> dcterms:title "Percent range" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:PercentRange"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/PercentRange"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/PercentRange"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a quantitative range expressed as in percent values" ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:slot_usage _:c14n0 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/PercentRange_unit> , <https://w3id.org/lmodel/datatype/QuantitativeRange_max> , <https://w3id.org/lmodel/datatype/QuantitativeRange_min> , <https://w3id.org/lmodel/datatype/uncertainty> .
+<https://w3id.org/lmodel/datatype/PercentRange_unit> dcterms:title "unit of measure" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	skos:note "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range." ;
+	skos:prefLabel "unit" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/unit"^^xsd:anyURI ;
+	linkml:description "Measurement scale" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/PercentRange> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/PercentRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/QuantitativeRange_unit> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/PercentRange> ;
+	linkml:pattern "^http://qudt\\.org/vocab/unit/PERCENT$" ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	linkml:usage_slot_name "unit" .
+<https://w3id.org/lmodel/datatype/Percent_unit> dcterms:title "unit of measure" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	skos:note "The ontology's owl:hasValue: the unit is QUDT's PERCENT and no other. A pattern states it, since equals_string needs a string range." ;
+	skos:prefLabel "unit" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/unit"^^xsd:anyURI ;
+	linkml:description "Measurement scale" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Percent> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Percent> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/QuantitativeMeasure_unit> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Percent> ;
+	linkml:pattern "^http://qudt\\.org/vocab/unit/PERCENT$" ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	linkml:usage_slot_name "unit" .
+<https://w3id.org/lmodel/datatype/QuantitativeMeasure> dcterms:title "Quantitative Measure" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:QuantitativeMeasure"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/QuantitativeMeasure"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/QuantitativeMeasure"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a quantitative measure value" ;
+	linkml:slot_usage _:c14n15 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/QuantitativeMeasure_unit> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure_value> , <https://w3id.org/lmodel/datatype/uncertainty> .
+<https://w3id.org/lmodel/datatype/QuantitativeMeasure_unit> dcterms:title "unit of measure" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	skos:note "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range." ;
+	skos:prefLabel "unit" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/unit"^^xsd:anyURI ;
+	linkml:description "Measurement scale" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/unit> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	linkml:usage_slot_name "unit" .
+<https://w3id.org/lmodel/datatype/QuantitativeMeasure_value> dcterms:title "data value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	skos:prefLabel "value" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/value"^^xsd:anyURI ;
+	linkml:description "simple value (a literal)" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/value> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeMeasure> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	linkml:usage_slot_name "value" .
+<https://w3id.org/lmodel/datatype/QuantitativeRange> dcterms:title "Quantitative Range" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:QuantitativeRange"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/QuantitativeRange"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/QuantitativeRange"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a quantitative range" ;
+	linkml:slot_usage _:c14n7 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/QuantitativeRange_max> , <https://w3id.org/lmodel/datatype/QuantitativeRange_min> , <https://w3id.org/lmodel/datatype/QuantitativeRange_unit> , <https://w3id.org/lmodel/datatype/uncertainty> .
+<https://w3id.org/lmodel/datatype/QuantitativeRange_max> dcterms:title "data maximum" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/max"^^xsd:anyURI ;
+	skos:prefLabel "max" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/max"^^xsd:anyURI ;
+	linkml:description "Maximum value of a range" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/max> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/max"^^xsd:anyURI ;
+	linkml:usage_slot_name "max" .
+<https://w3id.org/lmodel/datatype/QuantitativeRange_min> dcterms:title "data minimum" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/min"^^xsd:anyURI ;
+	skos:prefLabel "min" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/min"^^xsd:anyURI ;
+	linkml:description "Minimum value of range" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/min> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/min"^^xsd:anyURI ;
+	linkml:usage_slot_name "min" .
+<https://w3id.org/lmodel/datatype/QuantitativeRange_unit> dcterms:title "unit of measure" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	skos:note "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range." ;
+	skos:prefLabel "unit" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/unit"^^xsd:anyURI ;
+	linkml:description "Measurement scale" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/unit> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	linkml:usage_slot_name "unit" .
+<https://w3id.org/lmodel/datatype/Text> dcterms:title "Text" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "data:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:class_uri "http://linked.data.gov.au/def/datatype/Text"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/Text"^^xsd:anyURI ;
+	linkml:description "Class to encapsulate a textual value" ;
+	linkml:slot_usage _:c14n5 ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Text_value> .
+<https://w3id.org/lmodel/datatype/Text_value> dcterms:title "data value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	skos:prefLabel "value" ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/value"^^xsd:anyURI ;
+	linkml:description "simple value (a literal)" ;
+	linkml:domain <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/value> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:range <https://w3id.org/lmodel/datatype/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	linkml:usage_slot_name "value" .
+<https://w3id.org/lmodel/datatype/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/datatype> dcterms:license "Apache-2.0" ;
+	dcterms:source "http://linked.data.gov.au/def/datatype"^^xsd:anyURI ;
+	dcterms:title "Datatype Ontology" ;
+	pav:version "2019-10-03" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://github.com/AGLDWG/datatype-ont/tree/dd8f24120cd59f686086f58175de37807c569e18"^^xsd:anyURI , "https://lmodel.github.io/datatype"^^xsd:anyURI ;
+	skos:note "The classes are closed: a value carries only the properties the ontology's restrictions on its class name. OWL leaves a class open to other properties, so data that adds, say, a standard to a QuantitativeMeasure is valid OWL but not valid here." , "The ontology states no owl:versionInfo or owl:versionIRI, and its repository has no tag or release, so the version is the ontology's dcterms:modified date. upstream/ copies its Turtle file and licence at the commit in the annotations, and scripts/check_upstream_release.py reports when the master branch moves." , "The title and description of each of the ontology's terms are its rdfs:label and skos:definition. The ontology states CC0 1.0 as its dcterms:license, and the repository's LICENSE, added later, is CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). This rendering follows CC BY 4.0, is provided as is, and carries the attribution that https://github.com/lmodel/datatype/blob/main/NOTICE gives." ;
+	sh:declare _:c14n11 , _:c14n13 , _:c14n14 , _:c14n17 , _:c14n6 ;
+	linkml:annotations _:c14n10 , _:c14n16 , _:c14n2 , _:c14n3 , _:c14n4 , _:c14n9 ;
+	linkml:classes <https://w3id.org/lmodel/datatype/Boolean> , <https://w3id.org/lmodel/datatype/Concept> , <https://w3id.org/lmodel/datatype/Count> , <https://w3id.org/lmodel/datatype/Percent> , <https://w3id.org/lmodel/datatype/PercentRange> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure> , <https://w3id.org/lmodel/datatype/QuantitativeRange> , <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:default_prefix "datatype_linkml" ;
+	linkml:default_range <https://w3id.org/lmodel/datatype/string> ;
+	linkml:description "A LinkML rendering of the Datatype Ontology (\"Datatypes\") of the Australian Government Linked Data Working Group (AGLDWG), by Simon Cox of CSIRO. In its own words: a set of classes representing data-types. These may be used for observation results, or for the range of specific properties in other applications where scaled numbers, ranges, percents etc are required. Each class and property keeps the ontology's local name and IRI." ;
+	linkml:id "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	linkml:imports "linkml:types"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/datatype/Boolean_value> , <https://w3id.org/lmodel/datatype/Concept_rdf_value> , <https://w3id.org/lmodel/datatype/Concept_vocabulary> , <https://w3id.org/lmodel/datatype/Count_value> , <https://w3id.org/lmodel/datatype/PercentRange_unit> , <https://w3id.org/lmodel/datatype/Percent_unit> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure_unit> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure_value> , <https://w3id.org/lmodel/datatype/QuantitativeRange_max> , <https://w3id.org/lmodel/datatype/QuantitativeRange_min> , <https://w3id.org/lmodel/datatype/QuantitativeRange_unit> , <https://w3id.org/lmodel/datatype/Text_value> , <https://w3id.org/lmodel/datatype/max> , <https://w3id.org/lmodel/datatype/min> , <https://w3id.org/lmodel/datatype/rdf_value> , <https://w3id.org/lmodel/datatype/standard> , <https://w3id.org/lmodel/datatype/uncertainty> , <https://w3id.org/lmodel/datatype/unit> , <https://w3id.org/lmodel/datatype/value> , <https://w3id.org/lmodel/datatype/vocabulary> ;
+	linkml:source_file "datatype.yaml" ;
+	linkml:source_file_date "2026-11-07T02:03:58"^^xsd:dateTime ;
+	linkml:source_file_size 7162 ;
+	linkml:types <https://w3id.org/lmodel/datatype/boolean> , <https://w3id.org/lmodel/datatype/curie> , <https://w3id.org/lmodel/datatype/date> , <https://w3id.org/lmodel/datatype/date_or_datetime> , <https://w3id.org/lmodel/datatype/datetime> , <https://w3id.org/lmodel/datatype/decimal> , <https://w3id.org/lmodel/datatype/double> , <https://w3id.org/lmodel/datatype/float> , <https://w3id.org/lmodel/datatype/integer> , <https://w3id.org/lmodel/datatype/jsonpath> , <https://w3id.org/lmodel/datatype/jsonpointer> , <https://w3id.org/lmodel/datatype/ncname> , <https://w3id.org/lmodel/datatype/nodeidentifier> , <https://w3id.org/lmodel/datatype/objectidentifier> , <https://w3id.org/lmodel/datatype/sparqlpath> , <https://w3id.org/lmodel/datatype/string> , <https://w3id.org/lmodel/datatype/time> , <https://w3id.org/lmodel/datatype/uri> , <https://w3id.org/lmodel/datatype/uriorcurie> .
+<https://w3id.org/lmodel/datatype/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/max> dcterms:title "data maximum" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/max"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/max"^^xsd:anyURI ;
+	linkml:description "Maximum value of a range" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/rdf_value> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/max"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/min> dcterms:title "data minimum" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/min"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/min"^^xsd:anyURI ;
+	linkml:description "Minimum value of range" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/rdf_value> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/min"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/rdf_value> dcterms:title "value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/rdf_value"^^xsd:anyURI ;
+	linkml:description "The main value of a structured value, as RDF's own rdf:value property names it. The ontology restricts it on Concept and makes value, min, max and uncertainty its sub-properties." ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:range <https://w3id.org/lmodel/datatype/string> ;
+	linkml:slot_uri "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/standard> dcterms:title "data standard" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/standard"^^xsd:anyURI ;
+	skos:note "No class of the ontology restricts this property; it is the parent of unit and vocabulary." ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/standard"^^xsd:anyURI ;
+	linkml:description "Measurement standard, scale, uom, reference system, controlled vocabulary, taxonomy etc" ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/standard"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/uncertainty> dcterms:title "data uncertainty" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/uncertainty"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/uncertainty"^^xsd:anyURI ;
+	linkml:description "Uncertainty for a quantitative value" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Count> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure> , <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/rdf_value> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/decimal> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/uncertainty"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/unit> dcterms:title "unit of measure" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI ;
+	skos:note "The unit by its IRI, such as http://qudt.org/vocab/unit/M from the QUDT units vocabulary. The ontology states no range." ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/unit"^^xsd:anyURI ;
+	linkml:description "Measurement scale" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/QuantitativeMeasure> , <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/standard> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/QuantitativeRange> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/unit"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/value> dcterms:title "data value" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/value"^^xsd:anyURI ;
+	linkml:description "simple value (a literal)" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Boolean> , <https://w3id.org/lmodel/datatype/Count> , <https://w3id.org/lmodel/datatype/QuantitativeMeasure> , <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/rdf_value> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Text> ;
+	linkml:range <https://w3id.org/lmodel/datatype/string> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/value"^^xsd:anyURI .
+<https://w3id.org/lmodel/datatype/vocabulary> dcterms:title "vocabulary" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/datatype"^^xsd:anyURI ;
+	skos:mappingRelation "http://linked.data.gov.au/def/datatype/vocabulary"^^xsd:anyURI ;
+	skos:note "The vocabulary by its IRI. The ontology's range is a skos:ConceptScheme, a skos:Collection or an owl:Ontology, which the validator cannot check of an IRI." ;
+	linkml:definition_uri "https://w3id.org/lmodel/datatype/vocabulary"^^xsd:anyURI ;
+	linkml:description "controlled vocabulary, taxonomy etc" ;
+	linkml:domain_of <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:is_a <https://w3id.org/lmodel/datatype/standard> ;
+	linkml:owner <https://w3id.org/lmodel/datatype/Concept> ;
+	linkml:range <https://w3id.org/lmodel/datatype/uriorcurie> ;
+	linkml:slot_uri "http://linked.data.gov.au/def/datatype/vocabulary"^^xsd:anyURI .
+_:c14n10 skos:example "dd8f24120cd59f686086f58175de37807c569e18" ;
+	linkml:tag "upstream_commit"^^xsd:anyURI .
+_:c14n11 sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+	sh:prefix "xsd" .
+_:c14n13 sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ;
+	sh:prefix "rdf" .
+_:c14n14 sh:namespace "https://w3id.org/lmodel/datatype/"^^xsd:anyURI ;
+	sh:prefix "datatype_linkml" .
+_:c14n16 skos:example "Simon J.D. Cox, CSIRO, https://orcid.org/0000-0002-3884-3420" ;
+	linkml:tag "upstream_creator"^^xsd:anyURI .
+_:c14n17 sh:namespace "http://linked.data.gov.au/def/datatype/"^^xsd:anyURI ;
+	sh:prefix "data" .
+_:c14n2 skos:example "CC0-1.0 in the ontology's dcterms:license; CC-BY-4.0 in the repository's LICENSE" ;
+	linkml:tag "upstream_licence"^^xsd:anyURI .
+_:c14n3 skos:example "https://github.com/AGLDWG/datatype-ont" ;
+	linkml:tag "upstream_repository"^^xsd:anyURI .
+_:c14n4 skos:example "2019-03-25" ;
+	linkml:tag "upstream_created"^^xsd:anyURI .
+_:c14n6 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+_:c14n9 skos:example "master" ;
+	linkml:tag "upstream_branch"^^xsd:anyURI .
+
