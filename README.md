@@ -2,6 +2,11 @@
 
 # datatype
 
+[![Build and test](https://github.com/lmodel/datatype/actions/workflows/main.yaml/badge.svg)](https://github.com/lmodel/datatype/actions/workflows/main.yaml)
+[![Licence](https://img.shields.io/github/license/lmodel/datatype?label=licence)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/lmodel/datatype/badge)](https://scorecard.dev/viewer/?uri=github.com/lmodel/datatype)
+[![KTL scorecard](https://img.shields.io/endpoint?url=https://lmodel.github.io/datatype/badge.json)](https://lmodel.github.io/datatype/health/)
+
 AGLDWG Datatype Ontology (LinkML)
 
 > **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
@@ -40,7 +45,7 @@ None: the ontology states no alignment to another vocabulary. `value`, `min`, `m
 
 ## Repository Structure
 
-* [docs/](docs/): the website's pages, with the generated schema pages in [elements/](docs/elements/)
+* [docs/](docs/): the website's pages, with the generated schema pages in `docs/elements/`
 * [examples/](examples/): usage examples
 * [project/](project/): generated project files (do not edit them)
 * [scripts/](scripts/): the upstream watch
@@ -48,7 +53,7 @@ None: the ontology states no alignment to another vocabulary. `value`, `min`, `m
 * [src/datatype/datamodel/](src/datatype/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): the ontology's Turtle file and licence at the pinned commit (do not edit them)
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
