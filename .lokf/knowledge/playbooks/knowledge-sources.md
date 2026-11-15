@@ -83,7 +83,7 @@ exclusions:
     reason: The link to .lokf/knowledge, the bundle itself.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-06T21:19:16Z"
+  at: "2026-11-15T03:03:20Z"
 status: draft
 ---
 
@@ -102,7 +102,7 @@ This map lists where the bundle's concepts come from, so that a refresh run know
 | `CONTRIBUTING.md`, `CHANGELOG.md`, `.releaserc.json`, `.github/release/` | the playbooks | read the checklists again |
 | `AI_COVENANT.md`, `NOTICE`, `LICENSE`, `SECURITY.md`, `.github/dependabot.yml` | the policies | read the sections again |
 | `.github/workflows/`, `.github/scripts/`, `scripts/check_upstream_release.py` | the workflow concepts and the upstream playbook | read each header comment, `on` key and jobs |
-| `website/` | the documentation site | `npm run build` in `website/` |
+| `website/` | the documentation site | `scripts/build.sh` in `website/` |
 | <http://linked.data.gov.au/def/datatype> | the ontology reference | the upstream watch's namespace check |
 
 The exclusions list the tracked paths the map leaves out, each with its reason.

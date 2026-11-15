@@ -14,17 +14,18 @@ sources:
     title: the build
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T02:35:00Z"
+  at: "2026-11-15T03:03:20Z"
 status: draft
 ---
 
 # Documentation site
 
-`website/` is a Hugo site from the ktl-website template, for `https://lmodel.github.io/datatype`. `npm run build` syncs the README, the pages of `docs/`, the schema's element pages and the bundle into it, builds it and checks every link.[^website-readme]
+`website/` is a Hugo site from the ktl-website template, for `https://lmodel.github.io/datatype`.[^site-config] It shows the README as its home page, the pages of `docs/`, a page per class, slot, enumeration and type of `src/datatype/schema/datatype.yaml`, written by LinkML's `gen-doc` and each also at `elements/<Name>/`, and a page per concept of the bundle with its trust label.[^website-readme]
 
-Its `REDIRECTS` keep the retired mkdocs site's addresses working:
+`scripts/build.sh`, run in `website/`, writes the site to `dist/` with its search index and then checks every link between its pages. Hugo and Pagefind come from PyPI through uv, so the build needs bash, git and uv. `scripts/build.sh serve` serves the site at `http://localhost:1313/datatype/` and rebuilds it as you edit.[^website-readme]
 
-- `/elements/` and each element page go to the schema pages;
+The redirects in `website/site.toml` keep the retired mkdocs site's addresses working:
+
 - three types of the old schema's own go to the LinkML type that replaced them;
 - four others go to the schema index;
 - `/about` goes to the docs' about page.[^site-config]
