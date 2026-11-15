@@ -22,7 +22,7 @@ sources:
   - resource: .github/scripts
   - resource: .github/workflows
   - resource: .github/dependabot.yml
-  - resource: .github/release
+  - resource: .release
   - resource: justfile
   - resource: .linkml/generators.yaml
   - resource: .linkmllint.yaml
@@ -83,7 +83,7 @@ exclusions:
     reason: The link to .lokf/knowledge, the bundle itself.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T03:03:20Z"
+  at: "2026-11-15T20:56:41Z"
 status: draft
 ---
 
@@ -99,7 +99,7 @@ This map lists where the bundle's concepts come from, so that a refresh run know
 | `project.justfile`, `.lokf/schema/datatype.yaml`, `.lokf/justfile`, `.lokf/pyproject.toml` | the adapt copy and the value class term | `just lokf-adapt-check` |
 | `tests/` | the test data | `just test` |
 | `README.md`, `docs/` | the explanations and the data validation playbook | read the sections again |
-| `CONTRIBUTING.md`, `CHANGELOG.md`, `.releaserc.json`, `.github/release/` | the playbooks | read the checklists again |
+| `CONTRIBUTING.md`, `CHANGELOG.md`, `.releaserc.json`, `.release/` | the playbooks | read the checklists again |
 | `AI_COVENANT.md`, `NOTICE`, `LICENSE`, `SECURITY.md`, `.github/dependabot.yml` | the policies | read the sections again |
 | `.github/workflows/`, `.github/scripts/`, `scripts/check_upstream_release.py` | the workflow concepts and the upstream playbook | read each header comment, `on` key and jobs |
 | `website/` | the documentation site | `scripts/build.sh` in `website/` |
