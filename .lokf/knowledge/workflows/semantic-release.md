@@ -11,12 +11,12 @@ sources:
     title: the header comment, the on key and the jobs
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T12:41:26Z"
+  at: "2026-11-15T20:56:41Z"
 status: draft
 ---
 
 # Semantic release (semantic-release.yml)
 
-`.github/workflows/semantic-release.yml` is the workflow named "Semantic release". It runs on a pull request into `main` and on a push to `main`. Its `plan` job runs on the pull request, read-only. Its `release` job runs on the push, in the `release` Environment. Both install semantic-release from `.github/release/package-lock.json` with `npm ci --ignore-scripts`. The release job tags `vX.Y.Z`, commits the promoted changelog, publishes the GitHub release, and dispatches Knowledge Release once `KNOWLEDGE_RELEASE_ENABLED` is `true`.[^semantic-release.yml]
+`.github/workflows/semantic-release.yml` is the workflow named "Semantic release". It runs on a pull request into `main` and on a push to `main`. Its `plan` job runs on the pull request, read-only. Its `release` job runs on the push, in the `release` Environment. Both install semantic-release from `.release/package-lock.json` with `npm ci --ignore-scripts`. The release job tags `vX.Y.Z`, commits the promoted changelog, publishes the GitHub release, and dispatches Knowledge Release once `KNOWLEDGE_RELEASE_ENABLED` is `true`.[^semantic-release.yml]
 
 [^semantic-release.yml]: .github/workflows/semantic-release.yml, the header comment, the on key and the jobs
